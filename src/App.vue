@@ -1,19 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <v-formly :schema="schema"></v-formly>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import VFormly from "@/Formly.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data: () => {
+    return {
+      schema: {
+        type: "object",
+        properties: {
+          name: {
+            type: "string",
+          },
+          password: {
+            type: "string",
+            ui: {
+              type: "password",
+            },
+          },
+        },
+        required: ["name", "password"],
+      },
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    VFormly,
+  },
+};
 </script>
 
 <style>
