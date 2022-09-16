@@ -1,14 +1,20 @@
 class ObjectMeta {
-    constructor(meta) {
+    constructor(id, meta, depth) {
+        this.id = id;
         this.meta = meta;
-        this.type = meta.type;
-        this.properties = meta.properties || {};
-        this.propertiesKey = Object.keys(meta.properties || {});
+        this.depth = depth;
+        this.childMetaPairs = buildChildMetaPairs(id, meta, depth);
+    }
+}
+
+function buildChildMetaPairs(id, meta, depth) {
+    let results = [];
+    for (let [key, value] of Object.entries(meta.properties)) {
+        let keyVal = id === 'root' ? key : `${id}.${key}`;
+        results.push({ key: keyVal, meta: value, depth: depth + 1 });
     }
 
-    buildChildMeta() {
-        
-    }
+    return results;
 }
 
 export { ObjectMeta }

@@ -1,6 +1,6 @@
 <template>
   <a-form-model-item>
-    <a-col class="ant-form-item-label">
+    <a-col class="ant-form-item-label" :span="ui.spanLabel">
       <label>
         <span>{{ schema.title }}</span>
         <span v-if="ui.optional || oh">
@@ -20,7 +20,11 @@
         </span>
       </label>
     </a-col>
-    <a-col class="ant-form-item-control">
+    <a-col
+      class="ant-form-item-control"
+      :span="ui.spanControl"
+      :offset="ui.offsetControl"
+    >
       <div class="ant-form-item-control-input">
         <div class="ant-form-item-control-input-content">
           <slot></slot>
@@ -41,16 +45,31 @@
   </a-form-model-item>
 </template>
 <script>
-import { getSchema, getUI } from "@/utils/global.js";
+import { getUI } from "@/utils/global.js";
 export default {
   name: "v-component-wrapper",
+  props: {
+    id: String,
+    meta: {
+      type: Object,
+      default: () => {},
+    },
+  },
   data: () => {
     return {
-      schema: getSchema(),
-      ui: getUI(),
-      oh: getUI().optionalHelp,
-      error: "",  // TODO
+      error: "",
     };
+  },
+  computed: {
+    schema: function () {
+      return this.meta;
+    },
+    ui: function () {
+      return Object.assign({}, getUI(), this.meta.ui);
+    },
+    oh: function () {
+      return Object.assign({}, getUI(), this.meta.ui).optionalHelp;
+    },
   },
 };
 </script>

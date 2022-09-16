@@ -12,20 +12,51 @@ export default {
   name: "App",
   data: () => {
     return {
+      // schema: {
+      //   type: "object",
+      //   properties: {
+      //     name: {
+      //       type: "string",
+      //     },
+      //     password: {
+      //       type: "string",
+      //       ui: {
+      //         type: "password",
+      //       },
+      //     },
+      //   },
+      //   required: ["name", "password"],
+      // },
       schema: {
         type: "object",
         properties: {
           name: {
+            title: "姓名",
             type: "string",
           },
-          password: {
+          desc: {
+            title: "描述",
             type: "string",
-            ui: {
-              type: "password",
+          },
+          obj: {
+            type: "object",
+            properties: {
+              name1: {
+                title: "姓名1",
+                type: "string",
+              },
+              obj1: {
+                type: "object",
+                properties: {
+                  name2: {
+                    title: "姓名2",
+                    type: "string",
+                  },
+                },
+              },
             },
           },
         },
-        required: ["name", "password"],
       },
     };
   },
@@ -43,5 +74,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  padding: 0 600px;
 }
 </style>
