@@ -19,6 +19,15 @@
       ></v-formly-item>
     </a-col>
   </a-row>
+  <!-- <div>
+    <v-formly-item
+      v-for="(item, index) in childMetaPairs"
+      :key="index"
+      :id="item.key"
+      :depth="item.depth"
+      :meta="item.meta"
+    ></v-formly-item>
+  </div> -->
 </template>
 <script>
 import { ObjectMeta } from "../meta/object.meta.js";
@@ -54,4 +63,4 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less"></style>

@@ -1,7 +1,10 @@
 <template>
-  <div ref="container">
-    <component v-bind:is="currentComponent" :id="id" :depth="depth" :meta="meta"></component>
-  </div>
+  <component
+    v-bind:is="currentComponent"
+    :id="id"
+    :depth="depth"
+    :meta="meta"
+  ></component>
 </template>
 <script>
 export default {

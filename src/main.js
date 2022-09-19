@@ -3,6 +3,8 @@ import { Button, FormModel, Tooltip, Icon, Input, Row, Col } from 'ant-design-vu
 import App from './App.vue';
 import EventBus from "./utils/event-bus.js";
 
+import "@/style/index.less";
+
 Vue.config.productionTip = false;
 
 Vue.use(EventBus);

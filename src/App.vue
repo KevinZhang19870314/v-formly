@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <v-formly :schema="schema"></v-formly>
+    <v-formly :schema="schema" :layout="'vertical'"></v-formly>
   </div>
 </template>
 

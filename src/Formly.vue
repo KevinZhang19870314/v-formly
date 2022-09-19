@@ -1,5 +1,12 @@
 <template>
-  <a-form-model :layout="layout">
+  <a-form-model
+    :layout="layout"
+    :class="{
+      v__inline: layout === 'inline',
+      v__horizontal: layout === 'horizontal',
+    }"
+  >
+    <div>{{ layout + "123" }}</div>
     <v-formly-item id="root" :depth="0" :meta="objectMeta"></v-formly-item>
   </a-form-model>
 </template>
@@ -47,6 +54,8 @@ export default {
     Vue.bus.on(FORM_VALUE_CHANGE, (change) => {
       // TODO: ajv validate
       this.applyFormData(this.formData, change.id, change.value);
+      // TODO: emit value
+      console.log(this.formData);
     });
   },
   methods: {
@@ -67,4 +76,4 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less"></style>

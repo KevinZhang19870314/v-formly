@@ -2,8 +2,8 @@
   <a-form-model-item>
     <a-col class="ant-form-item-label" :span="ui.spanLabel">
       <label>
-        <span>{{ schema.title }}</span>
-        <span v-if="ui.optional || oh">
+        <span class="v__label-text">{{ schema.title }}</span>
+        <span v-if="ui.optional || oh" class="v__optional">
           {{ ui.optional }}
           <a-tooltip
             v-if="oh"
@@ -70,7 +70,12 @@ export default {
     oh: function () {
       return Object.assign({}, getUI(), this.meta.ui).optionalHelp;
     },
+    grid: function () {
+      return getUI().grid || this.grid || {};
+    },
   },
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less">
+
+</style>
