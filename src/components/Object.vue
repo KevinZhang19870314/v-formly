@@ -32,7 +32,7 @@
 <script>
 import { ObjectMeta } from "../meta/object.meta.js";
 import VFormlyItem from "@/FormlyItem.vue";
-import { getUI } from "@/utils/global.js";
+import { getUI, getContext } from "@/utils/global.js";
 export default {
   name: "v-object",
   components: { VFormlyItem },
@@ -57,6 +57,9 @@ export default {
   created() {
     const metaInstance = new ObjectMeta(this.id, this.meta, this.depth);
     this.childMetaPairs = metaInstance.childMetaPairs;
+
+    const context = getContext();
+    context.addContext(this.id, metaInstance);
   },
   mounted() {
     // console.log("this.meta", this.meta);

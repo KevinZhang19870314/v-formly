@@ -1,7 +1,7 @@
 <template>
-  <a-form-model-item>
-    <a-col class="ant-form-item-label" :span="ui.spanLabel">
-      <label>
+  <a-form-model-item :labelCol="labelCol" :wrapperCol="wrapperCol">
+    <template #label>
+      <a-col class="ant-form-item-label">
         <span class="v__label-text">{{ schema.title }}</span>
         <span v-if="ui.optional || oh" class="v__optional">
           {{ ui.optional }}
@@ -18,34 +18,22 @@
             <a-icon :type="oh.icon" />
           </a-tooltip>
         </span>
-      </label>
-    </a-col>
-    <a-col
-      class="ant-form-item-control"
-      :span="ui.spanControl"
-      :offset="ui.offsetControl"
-    >
-      <div class="ant-form-item-control-input">
-        <div class="ant-form-item-control-input-content">
-          <slot></slot>
-        </div>
-      </div>
-      <div
-        v-if="error"
-        class="ant-form-item-explain ant-form-item-explain-error"
-      >
-        <div>{{ error }}</div>
-      </div>
-      <div
-        v-if="schema.description"
-        class="ant-form-item-extra"
-        v-html="schema.description"
-      ></div>
-    </a-col>
+      </a-col>
+    </template>
+    <slot></slot>
+    <div v-if="error" class="ant-form-item-explain ant-form-item-explain-error">
+      <div>{{ error }}</div>
+    </div>
+    <div
+      v-if="schema.description"
+      class="ant-form-item-extra"
+      v-html="schema.description"
+    ></div>
   </a-form-model-item>
 </template>
 <script>
-import { getUI } from "@/utils/global.js";
+import Vue from "vue";
+import { getUI, getLayout, FORM_ERROR_CHANGE } from "@/utils/global.js";
 export default {
   name: "v-component-wrapper",
   props: {
@@ -58,6 +46,7 @@ export default {
   data: () => {
     return {
       error: "",
+      layout: getLayout(),
     };
   },
   computed: {
@@ -73,9 +62,24 @@ export default {
     grid: function () {
       return getUI().grid || this.grid || {};
     },
+    labelCol: function () {
+      return this.layout === "vertical" ? null : { span: this.ui.spanLabel };
+    },
+    wrapperCol: function () {
+      return this.layout === "vertical"
+        ? null
+        : { span: this.ui.spanControl, offset: this.ui.offsetControl || 0 };
+    },
+  },
+  created() {
+    Vue.bus.on(FORM_ERROR_CHANGE, (err) => {
+      if (err.id === this.id) {
+        // console.log(err);
+        this.error = err.error ? err.error.keyword : undefined;
+        console.log("this.error", this.error);
+      }
+    });
   },
 };
 </script>
-<style lang="less">
-
-</style>
+<style lang="less"></style>

@@ -20,7 +20,8 @@
 <script>
 import Vue from "vue";
 import VWrapper from "./Wrapper.vue";
-import { FORM_VALUE_CHANGE } from "@/utils/global.js";
+import { FORM_VALUE_CHANGE, getContext } from "@/utils/global.js";
+import { StringMeta } from "@/meta/string.meta.js";
 export default {
   name: "v-string",
   components: { VWrapper },
@@ -39,6 +40,9 @@ export default {
   },
   created() {
     // console.log("v-string", this.id, this.depth, this.meta);
+    const metaInstance = new StringMeta();
+    const context = getContext();
+    context.addContext(this.id, metaInstance);
   },
   computed: {
     ui: function () {
@@ -53,7 +57,7 @@ export default {
       Vue.bus.emit(FORM_VALUE_CHANGE, {
         id: this.id,
         depth: this.depth,
-        value: this.value,
+        value: this.value ? this.value : undefined,
       });
     },
   },

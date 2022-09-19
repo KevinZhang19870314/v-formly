@@ -6,7 +6,6 @@
       v__horizontal: layout === 'horizontal',
     }"
   >
-    <div>{{ layout + "123" }}</div>
     <v-formly-item id="root" :depth="0" :meta="objectMeta"></v-formly-item>
   </a-form-model>
 </template>
@@ -15,7 +14,15 @@ import Vue from "vue";
 import VFormlyItem from "@/FormlyItem.vue";
 import VObject from "@/components/Object.vue";
 import VString from "@/components/String.vue";
-import { FORM_VALUE_CHANGE, updateObjProp } from "@/utils/global.js";
+import {
+  FORM_VALUE_CHANGE,
+  FORM_ERROR_CHANGE,
+  updateObjProp,
+  setLayout,
+  setContext,
+} from "@/utils/global.js";
+import { ajvValidate, getAjvError } from "@/utils/validate.factory.js";
+import { FormItemContext } from "@/utils/context.js";
 export default {
   name: "v-formly",
   components: { VFormlyItem },
@@ -41,6 +48,8 @@ export default {
     if (!this.schema || typeof this.schema.properties === "undefined")
       throw new Error(`Invalid Schema`);
 
+    console.log("formly created");
+    setLayout(this.layout);
     this.schema.type = "object";
     this.objectMeta = Object.assign({}, this.objectMeta, this.schema);
     this.formData = Object.assign({}, this.formData, this.value);
@@ -48,14 +57,19 @@ export default {
     // TODO: testing, need to split to new rigister factory file
     Vue.component("v-object", VObject);
     Vue.component("v-string", VString);
+
+    const context = new FormItemContext();
+    setContext(context);
   },
   mounted() {
+    console.log("formly mounted");
     this.initFormData(this.formData, this.schema.properties);
+    console.log(this.formData);
     Vue.bus.on(FORM_VALUE_CHANGE, (change) => {
-      // TODO: ajv validate
-      this.applyFormData(this.formData, change.id, change.value);
-      // TODO: emit value
-      console.log(this.formData);
+      this.applyFormData(change.id, change.value);
+      this.validateFormData(change.id);
+
+      // TODO: emit value for v-model
     });
   },
   methods: {
@@ -70,8 +84,25 @@ export default {
         }
       });
     },
-    applyFormData(formData, id, value) {
-      updateObjProp(formData, id, value);
+    applyFormData(id, value) {
+      updateObjProp(this.formData, id, value);
+    },
+    validateFormData(id) {
+      const validate = ajvValidate(this.schema);
+      const valid = validate(this.formData);
+      if (!valid) {
+        console.log(validate.errors);
+        const error = getAjvError(id, validate.errors);
+        Vue.bus.emit(FORM_ERROR_CHANGE, {
+          id: id,
+          error: error,
+        });
+      } else {
+        Vue.bus.emit(FORM_ERROR_CHANGE, {
+          id: id,
+          error: undefined,
+        });
+      }
     },
   },
 };

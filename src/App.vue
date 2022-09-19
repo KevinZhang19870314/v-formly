@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
+    <!-- 'horizontal','vertical','inline' -->
     <v-formly :schema="schema" :layout="'vertical'"></v-formly>
   </div>
 </template>
@@ -53,10 +54,13 @@ export default {
                     type: "string",
                   },
                 },
+                required: ["name2"],
               },
             },
+            required: ["name1"],
           },
         },
+        // required: ["name", "desc"],
       },
     };
   },
