@@ -1,5 +1,5 @@
 <template>
-  <a-form-model-item :labelCol="labelCol" :wrapperCol="wrapperCol">
+  <a-form-model-item :labelCol="labelCol" :wrapperCol="wrapperCol" :required="ui.showRequired">
     <template #label>
       <a-col class="ant-form-item-label">
         <span class="v__label-text">{{ schema.title }}</span>

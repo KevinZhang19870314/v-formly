@@ -45,6 +45,7 @@ export default {
               name1: {
                 title: "姓名1",
                 type: "string",
+                showRequired: true
               },
               obj1: {
                 type: "object",
@@ -52,6 +53,7 @@ export default {
                   name2: {
                     title: "姓名2",
                     type: "string",
+                    showRequired: true
                   },
                 },
                 required: ["name2"],

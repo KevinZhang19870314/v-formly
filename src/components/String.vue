@@ -40,9 +40,8 @@ export default {
   },
   created() {
     // console.log("v-string", this.id, this.depth, this.meta);
-    const metaInstance = new StringMeta();
-    const context = getContext();
-    context.addContext(this.id, metaInstance);
+    const metaInstance = new StringMeta(getContext(), this.id);
+    console.log(metaInstance);
   },
   computed: {
     ui: function () {

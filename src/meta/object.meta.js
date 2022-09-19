@@ -5,7 +5,7 @@ class ObjectMeta {
         this.depth = depth;
         this.childMetaPairs = buildChildMetaPairs(id, meta, depth);
 
-        context.add(this);
+        context.addContext(id, this);
     }
 }
 
@@ -18,7 +18,7 @@ class ObjectMeta {
  */
 function buildChildMetaPairs(id, meta, depth) {
     let results = [];
-    for (let [key, value] of Object.entries(meta.properties)) {
+    for (let [key, value] of Object.entries(meta.properties || {})) {
         const idStartWithSlash = id && `${id}`.indexOf('/') === 0 ? id : `/${id}`;
         let keyVal = id === 'root' ? key : `${idStartWithSlash}/${key}`;
         results.push({ key: keyVal, meta: value, depth: depth + 1 });

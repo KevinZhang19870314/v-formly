@@ -55,11 +55,8 @@ export default {
     },
   },
   created() {
-    const metaInstance = new ObjectMeta(this.id, this.meta, this.depth);
+    const metaInstance = new ObjectMeta(getContext(), this.id, this.meta, this.depth);
     this.childMetaPairs = metaInstance.childMetaPairs;
-
-    const context = getContext();
-    context.addContext(this.id, metaInstance);
   },
   mounted() {
     // console.log("this.meta", this.meta);
