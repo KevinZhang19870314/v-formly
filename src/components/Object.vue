@@ -12,11 +12,7 @@
       :xl="grid.xl"
       :xxl="grid.xxl"
     >
-      <v-formly-item
-        :id="item.key"
-        :depth="item.depth"
-        :meta="item.meta"
-      ></v-formly-item>
+      <v-formly-item :id="item.key" :meta="item.meta"></v-formly-item>
     </a-col>
   </a-row>
   <!-- <div>
@@ -24,7 +20,6 @@
       v-for="(item, index) in childMetaPairs"
       :key="index"
       :id="item.key"
-      :depth="item.depth"
       :meta="item.meta"
     ></v-formly-item>
   </div> -->
@@ -38,7 +33,6 @@ export default {
   components: { VFormlyItem },
   props: {
     id: String,
-    depth: Number,
     meta: {
       type: Object,
       default: () => {},
@@ -55,7 +49,7 @@ export default {
     },
   },
   created() {
-    const metaInstance = new ObjectMeta(getContext(), this.id, this.meta, this.depth);
+    const metaInstance = new ObjectMeta(getContext(), this.id, this.meta);
     this.childMetaPairs = metaInstance.childMetaPairs;
   },
   mounted() {

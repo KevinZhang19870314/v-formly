@@ -1,12 +1,13 @@
 <template>
   <a-form-model
+    class="v"
     :layout="layout"
     :class="{
       v__inline: layout === 'inline',
       v__horizontal: layout === 'horizontal',
     }"
   >
-    <v-formly-item id="root" :depth="0" :meta="objectMeta"></v-formly-item>
+    <v-formly-item id="root" :meta="objectMeta"></v-formly-item>
   </a-form-model>
 </template>
 <script>

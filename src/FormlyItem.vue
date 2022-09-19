@@ -2,7 +2,6 @@
   <component
     v-bind:is="currentComponent"
     :id="id"
-    :depth="depth"
     :meta="meta"
   ></component>
 </template>
@@ -11,7 +10,6 @@ export default {
   name: "v-formly-item",
   props: {
     id: String,
-    depth: Number,
     meta: {
       type: Object,
       default: () => {},

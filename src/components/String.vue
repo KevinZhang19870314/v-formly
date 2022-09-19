@@ -11,6 +11,7 @@
       :size="ui.size"
       :suffix="ui.suffix"
       :allowClear="ui.allowClear"
+      :placeholder="ui.placeholder"
       v-model="value"
       @change="change"
     >
@@ -27,7 +28,6 @@ export default {
   components: { VWrapper },
   props: {
     id: String,
-    depth: Number,
     meta: {
       type: Object,
       default: () => {},
@@ -39,7 +39,6 @@ export default {
     };
   },
   created() {
-    // console.log("v-string", this.id, this.depth, this.meta);
     const metaInstance = new StringMeta(getContext(), this.id);
     console.log(metaInstance);
   },
@@ -55,7 +54,6 @@ export default {
     change() {
       Vue.bus.emit(FORM_VALUE_CHANGE, {
         id: this.id,
-        depth: this.depth,
         value: this.value ? this.value : undefined,
       });
     },

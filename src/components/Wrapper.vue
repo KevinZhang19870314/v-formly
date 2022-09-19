@@ -1,34 +1,37 @@
 <template>
-  <a-form-model-item :labelCol="labelCol" :wrapperCol="wrapperCol" :required="ui.showRequired">
+  <a-form-model-item
+    :labelCol="labelCol"
+    :wrapperCol="wrapperCol"
+    :required="ui.showRequired"
+    :class="{ 'has-error': error }"
+  >
     <template #label>
-      <a-col class="ant-form-item-label">
-        <span class="v__label-text">{{ schema.title }}</span>
-        <span v-if="ui.optional || oh" class="v__optional">
-          {{ ui.optional }}
-          <a-tooltip
-            v-if="oh"
-            :title="oh.text"
-            :placement="oh.placement"
-            :trigger="oh.trigger"
-            :overlayStyle="oh.overlayStyle"
-            :mouseEnterDelay="oh.mouseEnterDelay"
-            :mouseLeaveDelay="oh.mouseLeaveDelay"
-            :overlayClassName="oh.overlayClassName"
-          >
-            <a-icon :type="oh.icon" />
-          </a-tooltip>
-        </span>
-      </a-col>
+      <span class="v__label-text">{{ schema.title }}</span>
+      <span v-if="ui.optional || oh" class="v__optional">
+        {{ ui.optional }}
+        <a-tooltip
+          v-if="oh"
+          :title="oh.text"
+          :placement="oh.placement"
+          :trigger="oh.trigger"
+          :overlayStyle="oh.overlayStyle"
+          :mouseEnterDelay="oh.mouseEnterDelay"
+          :mouseLeaveDelay="oh.mouseLeaveDelay"
+          :overlayClassName="oh.overlayClassName"
+        >
+          <a-icon :type="oh.icon" />
+        </a-tooltip>
+      </span>
     </template>
     <slot></slot>
-    <div v-if="error" class="ant-form-item-explain ant-form-item-explain-error">
-      <div>{{ error }}</div>
-    </div>
     <div
       v-if="schema.description"
-      class="ant-form-item-extra"
+      class="ant-form-extra"
       v-html="schema.description"
     ></div>
+    <div v-if="error" class="ant-form-explain">
+      {{ error }}
+    </div>
   </a-form-model-item>
 </template>
 <script>

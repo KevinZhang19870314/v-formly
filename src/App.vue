@@ -2,7 +2,8 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- 'horizontal','vertical','inline' -->
-    <v-formly :schema="schema" :layout="'vertical'"></v-formly>
+    <h1>horizontal</h1>
+    <v-formly :schema="schema" :layout="'horizontal'"></v-formly>
   </div>
 </template>
 
@@ -45,7 +46,16 @@ export default {
               name1: {
                 title: "姓名1",
                 type: "string",
-                showRequired: true
+                description: "属性目的性解释",
+                ui: {
+                  showRequired: true,
+                  placeholder: "请输入姓名",
+                  optional: "(选填)",
+                  optionalHelp: {
+                    icon: "question-circle",
+                    text: "选填帮助",
+                  },
+                },
               },
               obj1: {
                 type: "object",
@@ -53,7 +63,9 @@ export default {
                   name2: {
                     title: "姓名2",
                     type: "string",
-                    showRequired: true
+                    ui: {
+                      showRequired: true,
+                    },
                   },
                 },
                 required: ["name2"],
@@ -80,6 +92,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  padding: 0 600px;
+  padding: 0 500px;
 }
 </style>

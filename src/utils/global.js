@@ -4,7 +4,8 @@ const global = {
     formValueChangeName: 'form-value-change',
     formErrorChangeName: 'form-error-change',
     ajvOptions: {
-        allErrors: true
+        allErrors: true,
+        strict: false
     },
     schema: {},
     ui: {
