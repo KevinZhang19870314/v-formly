@@ -78,7 +78,6 @@ export default {
   created() {
     Vue.bus.on(FORM_ERROR_CHANGE, (err) => {
       if (err.id === this.id) {
-        // console.log(err);
         this.error = err.error ? err.error.keyword : undefined;
         console.log("this.error", this.error);
       }

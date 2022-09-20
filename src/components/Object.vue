@@ -12,17 +12,13 @@
       :xl="grid.xl"
       :xxl="grid.xxl"
     >
-      <v-formly-item :id="item.key" :meta="item.meta"></v-formly-item>
+      <v-formly-item
+        :id="item.key"
+        :meta="item.meta"
+        :show="visibleIf(item.key, item.meta)"
+      ></v-formly-item>
     </a-col>
   </a-row>
-  <!-- <div>
-    <v-formly-item
-      v-for="(item, index) in childMetaPairs"
-      :key="index"
-      :id="item.key"
-      :meta="item.meta"
-    ></v-formly-item>
-  </div> -->
 </template>
 <script>
 import { ObjectMeta } from "../meta/object.meta.js";
@@ -51,6 +47,23 @@ export default {
   created() {
     const metaInstance = new ObjectMeta(this.state, this.id, this.meta);
     this.childMetaPairs = metaInstance.childMetaPairs;
+  },
+  methods: {
+    visibleIf(id, meta) {
+      let visible = true;
+      if (!meta.ui) {
+        visible = true;
+      } else if (typeof meta.ui.visibleIf === "boolean") {
+        visible = meta.ui.visibleIf;
+      } else if (typeof meta.ui.visibleIf === "function") {
+        visible = meta.ui.visibleIf(null, id, meta.default);
+      } else {
+        visible = true;
+      }
+
+      console.log("visible = ", visible);
+      return visible;
+    },
   },
   mounted() {
     // console.log("this.meta", this.meta);

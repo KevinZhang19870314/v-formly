@@ -34,6 +34,22 @@ export default {
               },
             },
           },
+          showAge: {
+            title: "显示座右铭",
+            type: "boolean",
+            default: true,
+          },
+          motto: {
+            title: "座右铭",
+            type: "string",
+            ui: {
+              // eslint-disable-next-line no-unused-vars
+              visibleIf: (context, id, value) => {
+                // context 在第一次的初始化的时候为空，因为这个时候还没有添加具体的组件上下文
+                return value || false;
+              },
+            },
+          },
           obj: {
             type: "object",
             properties: {
