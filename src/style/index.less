@@ -31,6 +31,18 @@
       text-align: left;
     }
 
+    .@{ant-prefix}-form-item-required::before {
+      line-height: inherit;
+    }
+
+    // Boolean
+    &__boolean {
+      &.@{ant-prefix}-switch {
+        display: block;
+        margin-top: 4px;
+      }
+    }
+
     // Object
     &__object {
       &-card {

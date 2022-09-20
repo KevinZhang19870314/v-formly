@@ -1,28 +1,22 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-input
-      :addonAfter="ui.addonAfter"
-      :addonBefore="ui.addonBefore"
-      :defaultValue="ui.defaultValue"
-      :disabled="ui.disabled"
-      :id="ui.id"
-      :maxLength="schema.maxLength"
-      :prefix="ui.prefix"
-      :size="ui.size"
-      :suffix="ui.suffix"
-      :allowClear="ui.allowClear"
-      :placeholder="ui.placeholder"
+    <a-switch
+      class="v__boolean"
       v-model="value"
+      :disabled="ui.disabled"
+      :size="ui.size"
+      :checkedChildren="ui.checkedChildren"
+      :unCheckedChildren="ui.unCheckedChildren"
       @change="change"
     >
-    </a-input>
+    </a-switch>
   </v-wrapper>
 </template>
 <script>
 import VWrapper from "./Wrapper.vue";
-import { StringMeta } from "../meta/string.meta.js";
+import { BooleanMeta } from "../meta/boolean.meta.js";
 export default {
-  name: "v-string",
+  name: "v-boolean",
   components: { VWrapper },
   inject: ["state"],
   props: {
@@ -34,9 +28,10 @@ export default {
   },
   data() {
     return {
-      context: new StringMeta(this.state, this.id),
+      context: new BooleanMeta(this.state, this.id),
     };
   },
+
   computed: {
     ui: function () {
       return this.meta.ui || {};
@@ -49,7 +44,7 @@ export default {
         return this.context.value;
       },
       set: function (val) {
-        this.context.value = val || undefined;
+        this.context.value = val || false;
       },
     },
   },

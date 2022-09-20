@@ -15,6 +15,7 @@ import Vue from "vue";
 import VFormlyItem from "@/FormlyItem.vue";
 import VObject from "@/components/Object.vue";
 import VString from "@/components/String.vue";
+import VBoolean from "@/components/Boolean.vue";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
@@ -60,6 +61,7 @@ export default {
     // TODO: testing, need to split to new rigister factory file
     Vue.component("v-object", VObject);
     Vue.component("v-string", VString);
+    Vue.component("v-boolean", VBoolean);
 
     this.globalInstance.schema = this.objectMeta;
     this.globalInstance.formData = this.formData;

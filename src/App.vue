@@ -4,7 +4,10 @@
     <!-- 'horizontal','vertical','inline' -->
     <h1>horizontal</h1>
     <v-formly ref="form" :schema="schema" :layout="'horizontal'"></v-formly>
-    <a-button type="primary" @click="setNameValue"> 设置姓名 </a-button>
+    <div class="btns">
+      <a-button type="primary" @click="setNameValue"> 设置姓名 </a-button>
+      <a-button type="primary" @click="printData"> 打印FormData </a-button>
+    </div>
   </div>
 </template>
 
@@ -27,9 +30,9 @@ export default {
             type: "string",
             ui: {
               change: (val) => {
-                console.log('val = ', val);
-              }
-            }
+                console.log("val = ", val);
+              },
+            },
           },
           obj: {
             type: "object",
@@ -51,15 +54,15 @@ export default {
               obj1: {
                 type: "object",
                 properties: {
-                  name2: {
-                    title: "姓名2",
-                    type: "string",
+                  enable: {
+                    title: "是否启用",
+                    type: "boolean",
                     ui: {
                       showRequired: true,
                     },
                   },
                 },
-                required: ["name2"],
+                required: ["enable"],
               },
             },
             required: ["name1"],
@@ -74,15 +77,18 @@ export default {
   },
   methods: {
     setNameValue() {
-      const nameContext = this.$refs.form.getContext('/obj/name1');
+      const nameContext = this.$refs.form.getContext("/obj/name1");
       console.log(nameContext.value);
-      nameContext.value = 'kevin';
-    }
-  }
+      nameContext.value = "kevin";
+    },
+    printData() {
+      console.log(this.$refs.form.formData);
+    },
+  },
 };
 </script>
 
-<style>
+<style lang="less" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -91,5 +97,14 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   padding: 0 500px;
+
+  .btns {
+    display: flex;
+    justify-content: flex-end;
+
+    .ant-btn {
+      margin-right: 8px;
+    }
+  }
 }
 </style>

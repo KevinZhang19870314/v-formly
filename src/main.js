@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { Button, FormModel, Tooltip, Icon, Input, Row, Col } from 'ant-design-vue';
+import { Button, FormModel, Tooltip, Icon, Input, Row, Col, Switch } from 'ant-design-vue';
 import App from './App.vue';
 import EventBus from "./utils/event-bus.js";
 
@@ -16,6 +16,7 @@ Vue.use(Icon);
 Vue.use(Input);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Switch);
 
 new Vue({
   render: h => h(App),

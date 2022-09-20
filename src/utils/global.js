@@ -9,7 +9,7 @@ class Global {
         this._formData = null;
         this._schema = {};
         this._ui = {
-            spanLabel: 4,
+            spanLabel: 5,
             spanControl: 19,
             grid: {
                 gutter: 36,
