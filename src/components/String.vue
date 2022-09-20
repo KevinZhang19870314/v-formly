@@ -37,6 +37,11 @@ export default {
       context: new StringMeta(this.state, this.id),
     };
   },
+  mounted() {
+    if (this.meta.default) {
+      this.value = this.meta.default;
+    }
+  },
   computed: {
     ui: function () {
       return this.meta.ui || {};

@@ -24,6 +24,7 @@ class StringMeta {
         });
 
         this.state.updateObjProp(this.state.formData, this.id, val);
+        console.log('this.state.formData', this.state.formData);
         this.state.validate.runValidation(this);
     }
 }

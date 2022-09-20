@@ -16,7 +16,6 @@ import VFormlyItem from "@/FormlyItem.vue";
 import VObject from "@/components/Object.vue";
 import VString from "@/components/String.vue";
 import VBoolean from "@/components/Boolean.vue";
-import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
@@ -25,7 +24,7 @@ export default {
   components: { VFormlyItem },
   model: {
     prop: "value",
-    event: FORM_VALUE_CHANGE,
+    event: "value-change",
   },
   props: {
     value: Object,
@@ -35,12 +34,11 @@ export default {
     },
     schema: {},
   },
-  data: () => {
+  data() {
     return {
       objectMeta: {},
       formData: {},
       globalInstance: new Global(),
-      validateFactory: null,
     };
   },
   provide() {
@@ -65,16 +63,15 @@ export default {
 
     this.globalInstance.schema = this.objectMeta;
     this.globalInstance.formData = this.formData;
+    this.initFormData(this.globalInstance.formData, this.schema.properties);
+
     this.globalInstance.context = new FormItemContext();
 
-    this.validateFactory = new ValidateFactory(this.globalInstance);
-    this.globalInstance.validate = this.validateFactory;
+    this.globalInstance.validate = new ValidateFactory(this.globalInstance);
   },
   mounted() {
     console.log("formly mounted");
-    this.initFormData(this.formData, this.schema.properties);
-    console.log(this.formData);
-    // TODO: emit value for v-model
+    this.$emit("value-change", this.formData);
   },
   methods: {
     initFormData(formData, properties) {
