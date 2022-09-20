@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     setNameValue() {
-      const nameContext = this.$refs.form.getContext('name');
+      const nameContext = this.$refs.form.getContext('/obj/name1');
       console.log(nameContext.value);
       nameContext.value = 'kevin';
     }

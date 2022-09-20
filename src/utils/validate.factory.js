@@ -1,8 +1,11 @@
 const Ajv = require("ajv");
+import Vue from "vue";
+import { FORM_ERROR_CHANGE } from "@/utils/consts.js";
 
 class ValidateFactory {
-    constructor(global) {
-        this._ajv = new Ajv(global.ajvOptions);
+    constructor(state) {
+        this.state = state;
+        this._ajv = new Ajv(state.ajvOptions);
         this._validate = null;
     }
 
@@ -25,6 +28,24 @@ class ValidateFactory {
         }
 
         return _error;
+    }
+
+    runValidation(context) {
+        const validate = this.ajvValidate(this.state.schema);
+        const valid = validate(this.state.formData);
+        if (!valid) {
+            console.log('validate.errors', validate.errors);
+            const error = this.getAjvError(context.id, validate.errors);
+            Vue.bus.emit(FORM_ERROR_CHANGE, {
+                id: context.id,
+                error: error,
+            });
+        } else {
+            Vue.bus.emit(FORM_ERROR_CHANGE, {
+                id: context.id,
+                error: undefined,
+            });
+        }
     }
 }
 

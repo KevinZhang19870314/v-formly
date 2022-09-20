@@ -6,6 +6,7 @@ class Global {
             allErrors: true,
             strict: false
         };
+        this._formData = null;
         this._schema = {};
         this._ui = {
             spanLabel: 4,
@@ -40,6 +41,14 @@ class Global {
 
     set ajvOptions(val) {
         this._ajvOptions = val;
+    }
+
+    get formData() {
+        return this._formData;
+    }
+
+    set formData(val) {
+        this._formData = val;
     }
 
     get schema() {

@@ -15,10 +15,9 @@ import Vue from "vue";
 import VFormlyItem from "@/FormlyItem.vue";
 import VObject from "@/components/Object.vue";
 import VString from "@/components/String.vue";
-import { FORM_VALUE_CHANGE, FORM_ERROR_CHANGE } from "@/utils/consts.js";
-// import { ajvValidate, getAjvError } from "@/utils/validate.factory.js";
+import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import { FormItemContext } from "./utils/context.js";
-import { Global } from "./utils/global";
+import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
 export default {
   name: "v-formly",
@@ -45,7 +44,7 @@ export default {
   },
   provide() {
     return {
-      global: this.globalInstance,
+      state: this.globalInstance,
     };
   },
   created() {
@@ -62,6 +61,8 @@ export default {
     Vue.component("v-object", VObject);
     Vue.component("v-string", VString);
 
+    this.globalInstance.schema = this.objectMeta;
+    this.globalInstance.formData = this.formData;
     this.globalInstance.context = new FormItemContext();
 
     this.validateFactory = new ValidateFactory(this.globalInstance);
@@ -71,12 +72,7 @@ export default {
     console.log("formly mounted");
     this.initFormData(this.formData, this.schema.properties);
     console.log(this.formData);
-    Vue.bus.on(FORM_VALUE_CHANGE, (change) => {
-      this.applyFormData(change.id, change.value);
-      this.validateFormData(change.id);
-
-      // TODO: emit value for v-model
-    });
+    // TODO: emit value for v-model
   },
   methods: {
     initFormData(formData, properties) {
@@ -90,29 +86,9 @@ export default {
         }
       });
     },
-    applyFormData(id, value) {
-      this.globalInstance.updateObjProp(this.formData, id, value);
-    },
-    validateFormData(id) {
-      const validate = this.validateFactory.ajvValidate(this.schema);
-      const valid = validate(this.formData);
-      if (!valid) {
-        console.log(validate.errors);
-        const error = this.validateFactory.getAjvError(id, validate.errors);
-        Vue.bus.emit(FORM_ERROR_CHANGE, {
-          id: id,
-          error: error,
-        });
-      } else {
-        Vue.bus.emit(FORM_ERROR_CHANGE, {
-          id: id,
-          error: undefined,
-        });
-      }
-    },
     getContext(id) {
       return this.globalInstance.context.getContext(id);
-    }
+    },
   },
 };
 </script>

@@ -30,7 +30,7 @@ import VFormlyItem from "@/FormlyItem.vue";
 export default {
   name: "v-object",
   components: { VFormlyItem },
-  inject: ["global"],
+  inject: ["state"],
   props: {
     id: String,
     meta: {
@@ -45,15 +45,11 @@ export default {
   },
   computed: {
     grid: function () {
-      return this.global.ui.grid || this.grid || {};
+      return this.state.ui.grid || this.grid || {};
     },
   },
   created() {
-    const metaInstance = new ObjectMeta(
-      this.global.context,
-      this.id,
-      this.meta
-    );
+    const metaInstance = new ObjectMeta(this.state, this.id, this.meta);
     this.childMetaPairs = metaInstance.childMetaPairs;
   },
   mounted() {

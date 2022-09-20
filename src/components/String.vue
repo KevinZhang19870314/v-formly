@@ -19,14 +19,14 @@
   </v-wrapper>
 </template>
 <script>
-import Vue from "vue";
+// import Vue from "vue";
 import VWrapper from "./Wrapper.vue";
-import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
+// import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import { StringMeta } from "../meta/string.meta.js";
 export default {
   name: "v-string",
   components: { VWrapper },
-  inject: ["global"],
+  inject: ["state"],
   props: {
     id: String,
     meta: {
@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      stringContext: new StringMeta(this.global.context, this.id),
+      stringContext: new StringMeta(this.state, this.id),
     };
   },
   created() {
@@ -64,10 +64,10 @@ export default {
         this.ui.change(this.value);
       }
 
-      Vue.bus.emit(FORM_VALUE_CHANGE, {
-        id: this.id,
-        value: this.value ? this.value : undefined,
-      });
+      // Vue.bus.emit(FORM_VALUE_CHANGE, {
+      //   id: this.id,
+      //   value: this.value ? this.value : undefined,
+      // });
     },
   },
 };

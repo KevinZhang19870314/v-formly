@@ -39,7 +39,7 @@ import Vue from "vue";
 import { FORM_ERROR_CHANGE } from "@/utils/consts.js";
 export default {
   name: "v-component-wrapper",
-  inject: ["global"],
+  inject: ["state"],
   props: {
     id: String,
     meta: {
@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       error: "",
-      layout: this.global.layout,
+      layout: this.state.layout,
     };
   },
   computed: {
@@ -58,13 +58,13 @@ export default {
       return this.meta;
     },
     ui: function () {
-      return Object.assign({}, this.global.ui, this.meta.ui);
+      return Object.assign({}, this.state.ui, this.meta.ui);
     },
     oh: function () {
-      return Object.assign({}, this.global.ui, this.meta.ui).optionalHelp;
+      return Object.assign({}, this.state.ui, this.meta.ui).optionalHelp;
     },
     grid: function () {
-      return this.global.ui.grid || this.grid || {};
+      return this.state.ui.grid || this.grid || {};
     },
     labelCol: function () {
       return this.layout === "vertical" ? null : { span: this.ui.spanLabel };

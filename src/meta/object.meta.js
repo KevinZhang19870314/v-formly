@@ -1,10 +1,10 @@
 class ObjectMeta {
-    constructor(context, id, meta) {
+    constructor(state, id, meta) {
         this.id = id;
         this.meta = meta;
         this.childMetaPairs = buildChildMetaPairs(id, meta);
 
-        context.addContext(id, this);
+        state.context.addContext(id, this);
     }
 }
 

@@ -1,7 +1,9 @@
 class StringMeta {
-    constructor(context, id) {
+    constructor(state, id) {
+        this.id = id;
+        this.state = state;
         console.log('String meta');
-        context.addContext(id, this);
+        state.context.addContext(id, this);
 
         this._value = undefined;
     }
@@ -11,7 +13,12 @@ class StringMeta {
     }
 
     set value(val) {
+        if (this._value === val) return;
+        
         this._value = val;
+
+        this.state.updateObjProp(this.state.formData, this.id, val);
+        this.state.validate.runValidation(this);
     }
 }
 
