@@ -36,9 +36,10 @@
 </template>
 <script>
 import Vue from "vue";
-import { getUI, getLayout, FORM_ERROR_CHANGE } from "@/utils/global.js";
+import { FORM_ERROR_CHANGE } from "@/utils/consts.js";
 export default {
   name: "v-component-wrapper",
+  inject: ["global"],
   props: {
     id: String,
     meta: {
@@ -46,10 +47,10 @@ export default {
       default: () => {},
     },
   },
-  data: () => {
+  data() {
     return {
       error: "",
-      layout: getLayout(),
+      layout: this.global.layout,
     };
   },
   computed: {
@@ -57,13 +58,13 @@ export default {
       return this.meta;
     },
     ui: function () {
-      return Object.assign({}, getUI(), this.meta.ui);
+      return Object.assign({}, this.global.ui, this.meta.ui);
     },
     oh: function () {
-      return Object.assign({}, getUI(), this.meta.ui).optionalHelp;
+      return Object.assign({}, this.global.ui, this.meta.ui).optionalHelp;
     },
     grid: function () {
-      return getUI().grid || this.grid || {};
+      return this.global.ui.grid || this.grid || {};
     },
     labelCol: function () {
       return this.layout === "vertical" ? null : { span: this.ui.spanLabel };

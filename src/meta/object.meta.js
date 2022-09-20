@@ -10,7 +10,7 @@ class ObjectMeta {
 
 /**
  * 构造结构数据给Object循环使用
- * @param {String} id 每个组件实例的唯一id，构造成json-schema中的`instancePath + params.missingProperty`
+ * @param {String} id 每个组件实例的唯一id，构造成json-schema中的`instancePath + '/' + params.missingProperty`
  * @param {Object} meta json-schema的某个层级的schema
  * @returns 返回构造后的数据给Object使用
  */

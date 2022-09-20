@@ -15,15 +15,11 @@ import Vue from "vue";
 import VFormlyItem from "@/FormlyItem.vue";
 import VObject from "@/components/Object.vue";
 import VString from "@/components/String.vue";
-import {
-  FORM_VALUE_CHANGE,
-  FORM_ERROR_CHANGE,
-  updateObjProp,
-  setLayout,
-  setContext,
-} from "@/utils/global.js";
-import { ajvValidate, getAjvError } from "@/utils/validate.factory.js";
-import { FormItemContext } from "@/utils/context.js";
+import { FORM_VALUE_CHANGE, FORM_ERROR_CHANGE } from "@/utils/consts.js";
+// import { ajvValidate, getAjvError } from "@/utils/validate.factory.js";
+import { FormItemContext } from "./utils/context.js";
+import { Global } from "./utils/global";
+import { ValidateFactory } from "./utils/validate.factory";
 export default {
   name: "v-formly",
   components: { VFormlyItem },
@@ -43,6 +39,13 @@ export default {
     return {
       objectMeta: {},
       formData: {},
+      globalInstance: new Global(),
+      validateFactory: null,
+    };
+  },
+  provide() {
+    return {
+      global: this.globalInstance,
     };
   },
   created() {
@@ -50,7 +53,7 @@ export default {
       throw new Error(`Invalid Schema`);
 
     console.log("formly created");
-    setLayout(this.layout);
+    this.globalInstance.layout = this.layout;
     this.schema.type = "object";
     this.objectMeta = Object.assign({}, this.objectMeta, this.schema);
     this.formData = Object.assign({}, this.formData, this.value);
@@ -59,8 +62,10 @@ export default {
     Vue.component("v-object", VObject);
     Vue.component("v-string", VString);
 
-    const context = new FormItemContext();
-    setContext(context);
+    this.globalInstance.context = new FormItemContext();
+
+    this.validateFactory = new ValidateFactory(this.globalInstance);
+    this.globalInstance.validate = this.validateFactory;
   },
   mounted() {
     console.log("formly mounted");
@@ -86,14 +91,14 @@ export default {
       });
     },
     applyFormData(id, value) {
-      updateObjProp(this.formData, id, value);
+      this.globalInstance.updateObjProp(this.formData, id, value);
     },
     validateFormData(id) {
-      const validate = ajvValidate(this.schema);
+      const validate = this.validateFactory.ajvValidate(this.schema);
       const valid = validate(this.formData);
       if (!valid) {
         console.log(validate.errors);
-        const error = getAjvError(id, validate.errors);
+        const error = this.validateFactory.getAjvError(id, validate.errors);
         Vue.bus.emit(FORM_ERROR_CHANGE, {
           id: id,
           error: error,
@@ -108,4 +113,4 @@ export default {
   },
 };
 </script>
-<style lang="less"></style>
+<style lang="less" scoped></style>

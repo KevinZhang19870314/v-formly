@@ -1,86 +1,78 @@
-const global = {
-    context: null,
-    layout: 'horizontal', // 'horizontal','vertical','inline'
-    formValueChangeName: 'form-value-change',
-    formErrorChangeName: 'form-error-change',
-    ajvOptions: {
-        allErrors: true,
-        strict: false
-    },
-    schema: {},
-    ui: {
-        spanLabel: 4,
-        spanControl: 19,
-        grid: {
-            gutter: 36,
-            span: 24,
-        }
+class Global {
+    constructor() {
+        this._context = null;
+        this._layout = 'horizontal';
+        this._ajvOptions = {
+            allErrors: true,
+            strict: false
+        };
+        this._schema = {};
+        this._ui = {
+            spanLabel: 4,
+            spanControl: 19,
+            grid: {
+                gutter: 36,
+                span: 24,
+            }
+        };
+        this._validate = null;
+    }
+
+    get context() {
+        return this._context;
+    }
+
+    set context(val) {
+        this._context = val;
+    }
+
+    get layout() {
+        return this._layout;
+    }
+
+    set layout(val) {
+        this._layout = val;
+    }
+
+    get ajvOptions() {
+        return this._ajvOptions;
+    }
+
+    set ajvOptions(val) {
+        this._ajvOptions = val;
+    }
+
+    get schema() {
+        return this._schema;
+    }
+
+    set schema(val) {
+        this._schema = val;
+    }
+
+    get ui() {
+        return this._ui;
+    }
+
+    set ui(val) {
+        this._ui = val;
+    }
+
+    get validate() {
+        return this._validate;
+    }
+
+    set validate(val) {
+        this._validate = val;
+    }
+
+    updateObjProp(obj, propPath, value) {
+        const [head, ...rest] = propPath.split('/').filter(f => f);
+
+        !rest.length
+            ? obj[head] = value
+            : this.updateObjProp(obj[head], rest.join('/'), value);
     }
 }
 
-const FORM_VALUE_CHANGE = global.formValueChangeName;
-const FORM_ERROR_CHANGE = global.formErrorChangeName;
-
-const getContext = () => {
-    return global.context;
-}
-
-const setContext = (context) => {
-    global.context = context;
-}
-
-const getAjvOptions = () => {
-    return global.ajvOptions;
-}
-
-const setAjvOptions = (options) => {
-    global.ajvOptions = Object.assign({}, global.ajvOptions, options);
-}
-
-const getLayout = () => {
-    return global.layout || {};
-}
-
-const setLayout = (layout) => {
-    global.layout = layout || {};
-}
-
-const getSchema = () => {
-    return global.schema || {};
-}
-
-const setSchema = (schema) => {
-    global.schema = schema || {};
-}
-
-const setUI = (ui) => {
-    global.ui = ui || {};
-}
-
-const getUI = () => {
-    return global.ui || {};
-}
-
-const updateObjProp = (obj, propPath, value) => {
-    const [head, ...rest] = propPath.split('/').filter(f => f);
-
-    !rest.length
-        ? obj[head] = value
-        : updateObjProp(obj[head], rest.join('/'), value);
-}
-
-export {
-    getContext,
-    setContext,
-    getAjvOptions,
-    setAjvOptions,
-    getLayout,
-    setLayout,
-    getSchema,
-    setSchema,
-    getUI,
-    setUI,
-    FORM_VALUE_CHANGE,
-    FORM_ERROR_CHANGE,
-    updateObjProp
-};
+export { Global };

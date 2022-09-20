@@ -21,11 +21,12 @@
 <script>
 import Vue from "vue";
 import VWrapper from "./Wrapper.vue";
-import { FORM_VALUE_CHANGE, getContext } from "@/utils/global.js";
+import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import { StringMeta } from "@/meta/string.meta.js";
 export default {
   name: "v-string",
   components: { VWrapper },
+  inject: ["global"],
   props: {
     id: String,
     meta: {
@@ -39,7 +40,7 @@ export default {
     };
   },
   created() {
-    const metaInstance = new StringMeta(getContext(), this.id);
+    const metaInstance = new StringMeta(this.global.context, this.id);
     console.log(metaInstance);
   },
   computed: {
@@ -60,4 +61,4 @@ export default {
   },
 };
 </script>
-<style lang="less"></style>
+<style lang="less" scoped></style>

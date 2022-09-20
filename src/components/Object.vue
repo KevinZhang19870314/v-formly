@@ -27,10 +27,10 @@
 <script>
 import { ObjectMeta } from "../meta/object.meta.js";
 import VFormlyItem from "@/FormlyItem.vue";
-import { getUI, getContext } from "@/utils/global.js";
 export default {
   name: "v-object",
   components: { VFormlyItem },
+  inject: ["global"],
   props: {
     id: String,
     meta: {
@@ -45,11 +45,15 @@ export default {
   },
   computed: {
     grid: function () {
-      return getUI().grid || this.grid || {};
+      return this.global.ui.grid || this.grid || {};
     },
   },
   created() {
-    const metaInstance = new ObjectMeta(getContext(), this.id, this.meta);
+    const metaInstance = new ObjectMeta(
+      this.global.context,
+      this.id,
+      this.meta
+    );
     this.childMetaPairs = metaInstance.childMetaPairs;
   },
   mounted() {
@@ -57,4 +61,4 @@ export default {
   },
 };
 </script>
-<style lang="less"></style>
+<style lang="less" scoped></style>
