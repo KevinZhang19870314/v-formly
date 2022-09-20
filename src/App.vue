@@ -3,7 +3,8 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- 'horizontal','vertical','inline' -->
     <h1>horizontal</h1>
-    <v-formly :schema="schema" :layout="'horizontal'"></v-formly>
+    <v-formly ref="form" :schema="schema" :layout="'horizontal'"></v-formly>
+    <a-button type="primary" @click="setNameValue"> 设置姓名 </a-button>
   </div>
 </template>
 
@@ -14,21 +15,6 @@ export default {
   name: "App",
   data: () => {
     return {
-      // schema: {
-      //   type: "object",
-      //   properties: {
-      //     name: {
-      //       type: "string",
-      //     },
-      //     password: {
-      //       type: "string",
-      //       ui: {
-      //         type: "password",
-      //       },
-      //     },
-      //   },
-      //   required: ["name", "password"],
-      // },
       schema: {
         type: "object",
         properties: {
@@ -39,6 +25,11 @@ export default {
           desc: {
             title: "描述",
             type: "string",
+            ui: {
+              change: (val) => {
+                console.log('val = ', val);
+              }
+            }
           },
           obj: {
             type: "object",
@@ -81,6 +72,13 @@ export default {
   components: {
     VFormly,
   },
+  methods: {
+    setNameValue() {
+      const nameContext = this.$refs.form.getContext('name');
+      console.log(nameContext.value);
+      nameContext.value = 'kevin';
+    }
+  }
 };
 </script>
 

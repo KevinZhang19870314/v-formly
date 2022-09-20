@@ -110,6 +110,9 @@ export default {
         });
       }
     },
+    getContext(id) {
+      return this.globalInstance.context.getContext(id);
+    }
   },
 };
 </script>

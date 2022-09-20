@@ -22,7 +22,7 @@
 import Vue from "vue";
 import VWrapper from "./Wrapper.vue";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
-import { StringMeta } from "@/meta/string.meta.js";
+import { StringMeta } from "../meta/string.meta.js";
 export default {
   name: "v-string",
   components: { VWrapper },
@@ -34,14 +34,13 @@ export default {
       default: () => {},
     },
   },
-  data: () => {
+  data() {
     return {
-      value: "",
+      stringContext: new StringMeta(this.global.context, this.id),
     };
   },
   created() {
-    const metaInstance = new StringMeta(this.global.context, this.id);
-    console.log(metaInstance);
+    console.log("String.vue created");
   },
   computed: {
     ui: function () {
@@ -50,9 +49,21 @@ export default {
     schema: function () {
       return this.meta || {};
     },
+    value: {
+      get: function () {
+        return this.stringContext.value;
+      },
+      set: function (val) {
+        this.stringContext.value = val || undefined;
+      },
+    },
   },
   methods: {
     change() {
+      if (this.ui.change) {
+        this.ui.change(this.value);
+      }
+
       Vue.bus.emit(FORM_VALUE_CHANGE, {
         id: this.id,
         value: this.value ? this.value : undefined,
