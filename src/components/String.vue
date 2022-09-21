@@ -38,6 +38,7 @@ export default {
     };
   },
   mounted() {
+    console.log('test');
     if (this.meta.default) {
       this.value = this.meta.default;
     }

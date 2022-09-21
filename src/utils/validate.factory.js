@@ -41,6 +41,7 @@ class ValidateFactory {
                 error: error,
             });
         } else {
+            console.log('valid');
             Vue.bus.emit(FORM_ERROR_CHANGE, {
                 id: context.id,
                 error: undefined,

@@ -76,12 +76,17 @@ export default {
     },
   },
   created() {
-    Vue.bus.on(FORM_ERROR_CHANGE, (err) => {
+    Vue.bus.on(FORM_ERROR_CHANGE, this.formErrorChangeCallback);
+  },
+  beforeDestroy() {
+    Vue.bus.off(FORM_ERROR_CHANGE, this.formErrorChangeCallback);
+  },
+  methods: {
+    formErrorChangeCallback(err) {
       if (err.id === this.id) {
         this.error = err.error ? err.error.keyword : undefined;
-        console.log("this.error", this.error);
       }
-    });
+    },
   },
 };
 </script>
