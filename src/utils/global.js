@@ -19,29 +19,29 @@ class Global {
         this._validate = null;
     }
 
-    get context() {
-        return this._context;
-    }
+  get context() {
+    return this._context;
+  }
 
-    set context(val) {
-        this._context = val;
-    }
+  set context(val) {
+    this._context = val;
+  }
 
-    get layout() {
-        return this._layout;
-    }
+  get layout() {
+    return this._layout;
+  }
 
-    set layout(val) {
-        this._layout = val;
-    }
+  set layout(val) {
+    this._layout = val;
+  }
 
-    get ajvOptions() {
-        return this._ajvOptions;
-    }
+  get ajvOptions() {
+    return this._ajvOptions;
+  }
 
-    set ajvOptions(val) {
-        this._ajvOptions = val;
-    }
+  set ajvOptions(val) {
+    this._ajvOptions = val;
+  }
 
     get formData() {
         return this._formData;
@@ -55,33 +55,37 @@ class Global {
         return this._schema;
     }
 
-    set schema(val) {
-        this._schema = val;
-    }
+  set schema(val) {
+    this._schema = val;
+  }
 
-    get ui() {
-        return this._ui;
-    }
+  get ui() {
+    return this._ui;
+  }
 
-    set ui(val) {
-        this._ui = val;
-    }
+  set ui(val) {
+    this._ui = val;
+  }
 
-    get validate() {
-        return this._validate;
-    }
+  get validate() {
+    return this._validate;
+  }
 
-    set validate(val) {
-        this._validate = val;
-    }
+  set validate(val) {
+    this._validate = val;
+  }
 
-    updateObjProp(obj, propPath, value) {
-        const [head, ...rest] = propPath.split('/').filter(f => f);
+  updateObjProp(obj, propPath, value) {
+    const [head, ...rest] = propPath.split("/").filter((f) => f);
 
-        !rest.length
-            ? obj[head] = value
-            : this.updateObjProp(obj[head], rest.join('/'), value);
+    if (rest.length) {
+      this.updateObjProp(obj[head], rest.join("/"), value);
+    } else {
+      if (obj) {
+        obj[head] = value;
+      }
     }
+  }
 }
 
 export { Global };

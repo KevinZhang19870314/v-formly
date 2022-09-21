@@ -16,6 +16,7 @@ import VFormlyItem from "@/FormlyItem.vue";
 import VObject from "@/components/Object.vue";
 import VString from "@/components/String.vue";
 import VBoolean from "@/components/Boolean.vue";
+import VArray from "@/components/Array.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
@@ -60,6 +61,7 @@ export default {
     Vue.component("v-object", VObject);
     Vue.component("v-string", VString);
     Vue.component("v-boolean", VBoolean);
+    Vue.component("v-array", VArray);
 
     this.globalInstance.schema = this.objectMeta;
     this.globalInstance.formData = this.formData;
@@ -77,11 +79,18 @@ export default {
     initFormData(formData, properties) {
       Object.keys(properties).forEach((key) => {
         const meta = properties[key];
-        if (meta.type === "object") {
-          formData[key] = {};
-          this.initFormData(formData[key], meta.properties);
-        } else {
-          formData[key] = undefined;
+        switch (meta.type) {
+          case "object":
+            formData[key] = {};
+            this.initFormData(formData[key], meta.properties);
+            break;
+          case "array":
+            formData[key] = [];
+            break;
+
+          default:
+            formData[key] = undefined;
+            break;
         }
       });
     },
