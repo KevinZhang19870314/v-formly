@@ -49,10 +49,13 @@ export default {
             title: "座右铭",
             type: "string",
             ui: {
+              hidden: true,
               // eslint-disable-next-line no-unused-vars
-              visibleIf: (context, id, value) => {
-                // context 在第一次的初始化的时候为空，因为这个时候还没有添加具体的组件上下文
-                return value || false;
+              visibleIf: {
+                showMotto: (context, id, value) => {
+                  // context 在第一次的初始化的时候为空，因为这个时候还没有添加具体的组件上下文
+                  return value || false;
+                },
               },
             },
           },
@@ -81,11 +84,13 @@ export default {
                 title: "描述1",
                 type: "string",
                 ui: {
-                  // TODO: 需要指定触发字段
+                  hidden: true,
                   // eslint-disable-next-line no-unused-vars
-                  visibleIf: (context, id, value) => {
-                    // context 在第一次的初始化的时候为空，因为这个时候还没有添加具体的组件上下文
-                    return value || false;
+                  visibleIf: {
+                    "/obj/showDesc1": (context, id, value) => {
+                      // context 在第一次的初始化的时候为空，因为这个时候还没有添加具体的组件上下文
+                      return value || false;
+                    },
                   },
                 },
               },

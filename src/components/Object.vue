@@ -15,7 +15,7 @@
       <v-formly-item
         :id="item.key"
         :meta="item.meta"
-        :show="visibleIf(item.key, item.meta)"
+        :show="visible(item.meta)"
       ></v-formly-item>
     </a-col>
   </a-row>
@@ -44,26 +44,14 @@ export default {
       return this.state.ui.grid || this.grid || {};
     },
   },
+  methods: {
+    visible(meta) {
+      return meta.ui && !meta.ui.hidden;
+    },
+  },
   created() {
     const metaInstance = new ObjectMeta(this.state, this.id, this.meta);
     this.childMetaPairs = metaInstance.childMetaPairs;
-  },
-  methods: {
-    visibleIf(id, meta) {
-      let visible = true;
-      if (!meta.ui) {
-        visible = true;
-      } else if (typeof meta.ui.visibleIf === "boolean") {
-        visible = meta.ui.visibleIf;
-      } else if (typeof meta.ui.visibleIf === "function") {
-        visible = meta.ui.visibleIf(null, id, meta.default);
-      } else {
-        visible = true;
-      }
-
-      console.log("visible = ", visible);
-      return visible;
-    },
   },
   mounted() {
     // console.log("this.meta", this.meta);

@@ -3,15 +3,17 @@
     v-bind:is="currentComponent"
     :id="id"
     :meta="meta"
-    v-if="visibleIf"
+    v-if="visible"
   ></component>
 </template>
 <script>
 import Vue from "vue";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
+import { visibleIfMixin } from "./mixin/visible-if.mixin.js";
 export default {
   name: "v-formly-item",
   inject: ["state"],
+  mixins: [visibleIfMixin],
   props: {
     id: String,
     meta: {
@@ -25,7 +27,7 @@ export default {
   },
   data() {
     return {
-      visibleIf: true,
+      visible: true,
     };
   },
   computed: {
@@ -39,29 +41,18 @@ export default {
         "Form item type must be one of these: number, string, boolean, array, object"
       );
 
-    this.visibleIf = this.show;
+    this.visible = this.show;
 
-    // TODO: 可能会有性能问题，当前没有指定是哪个字段导致此item的visibleIf，这样更灵活，但是
-    // 会导致每个字段的change事件都会触发一遍这里的visibleIf
     Vue.bus.on(FORM_VALUE_CHANGE, (change) => {
-      let visible = true;
-      if (!this.meta.ui) {
-        visible = true;
-      } else if (typeof this.meta.ui.visibleIf === "boolean") {
-        visible = this.meta.ui.visibleIf;
-      } else if (typeof this.meta.ui.visibleIf === "function") {
-        console.log(change);
-        visible = this.meta.ui.visibleIf(
-          this.state.context,
-          change.id,
-          change.value
-        );
-        console.log("change.id: ", change.id, " this.id: ", this.id);
-      } else {
-        visible = true;
-      }
-
-      this.visibleIf = visible;
+      this.visible = this.visibleIf(
+        this.state.context,
+        this.meta,
+        this.visible,
+        {
+          id: change.id,
+          value: change.value,
+        }
+      );
     });
   },
 };
