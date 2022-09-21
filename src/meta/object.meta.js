@@ -1,11 +1,11 @@
 class ObjectMeta {
-    constructor(state, id, meta) {
-        this.id = id;
-        this.meta = meta;
-        this.childMetaPairs = buildChildMetaPairs(id, meta);
+  constructor(state, id, meta) {
+    this.id = id;
+    this.meta = meta;
+    this.childMetaPairs = buildChildMetaPairs(id, meta);
 
-        state.context.addContext(id, this);
-    }
+    state.context.addContext(id, this);
+  }
 }
 
 /**
@@ -15,14 +15,14 @@ class ObjectMeta {
  * @returns 返回构造后的数据给Object使用
  */
 function buildChildMetaPairs(id, meta) {
-    let results = [];
-    for (let [key, value] of Object.entries(meta.properties || {})) {
-        const idStartWithSlash = id && `${id}`.indexOf('/') === 0 ? id : `/${id}`;
-        let keyVal = id === 'root' ? key : `${idStartWithSlash}/${key}`;
-        results.push({ key: keyVal, meta: value });
-    }
+  let results = [];
+  for (let [key, value] of Object.entries(meta.properties || {})) {
+    const idStartWithSlash = id && `${id}`.indexOf("/") === 0 ? id : `/${id}`;
+    let keyVal = id === "root" ? key : `${idStartWithSlash}/${key}`;
+    results.push({ key: keyVal, meta: value });
+  }
 
-    return results;
+  return results;
 }
 
-export { ObjectMeta }
+export { ObjectMeta, buildChildMetaPairs };

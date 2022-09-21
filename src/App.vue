@@ -111,6 +111,74 @@ export default {
             },
             required: ["name1"],
           },
+          product: {
+            type: "array",
+            title: "产品清单",
+            maxItems: 1,
+            items: {
+              type: "object",
+              properties: {
+                name: {
+                  type: "string",
+                  title: "名称",
+                  ui: {
+                    showRequired: true,
+                  },
+                },
+                desc: {
+                  type: "string",
+                  title: "简介",
+                  ui: {
+                    showRequired: true,
+                  },
+                },
+                product: {
+                  type: "array",
+                  title: "产品清单",
+                  maxItems: 1,
+                  items: {
+                    type: "object",
+                    properties: {
+                      name: {
+                        type: "string",
+                        title: "名称",
+                        ui: {
+                          showRequired: true,
+                        },
+                      },
+                      desc: {
+                        type: "string",
+                        title: "简介",
+                        ui: {
+                          showRequired: true,
+                        },
+                      },
+                    },
+                    required: ["name", "desc"],
+                  },
+                  ui: {
+                    grid: { arraySpan: 12 },
+                    addTitle: "添加",
+                    optional: "(选填)",
+                    optionalHelp: {
+                      icon: "question-circle",
+                      text: "选填帮助",
+                    },
+                  },
+                },
+              },
+              required: ["name", "desc"],
+            },
+            ui: {
+              grid: { arraySpan: 24 },
+              addTitle: "添加",
+              optional: "(选填)",
+              optionalHelp: {
+                icon: "question-circle",
+                text: "选填帮助",
+              },
+            },
+          },
         },
         // required: ["name", "desc"],
       },

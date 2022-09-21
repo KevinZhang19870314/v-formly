@@ -1,17 +1,19 @@
-// let map = {};
-
 class FormItemContext {
-    constructor() {
-        this._map = {};
-    }
+  constructor() {
+    this._map = {};
+  }
 
-    addContext(id, instance) {
-        this._map[id] = instance;
-    }
+  addContext(id, instance) {
+    this._map[id] = instance;
+  }
 
-    getContext(id) {
-        return this._map[id];
-    }
+  removeContext(id) {
+    delete this._map[id];
+  }
+
+  getContext(id) {
+    return this._map[id];
+  }
 }
 
 export { FormItemContext };
