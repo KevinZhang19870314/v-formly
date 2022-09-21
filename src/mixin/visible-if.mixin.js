@@ -21,7 +21,7 @@ export const visibleIfMixin = {
                 return visible;
             }
 
-            return changeFunc(context, change.id, change.value);
+            return changeFunc.call(this, context, change.id, change.value);
         },
     },
 }

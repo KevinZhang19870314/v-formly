@@ -52,8 +52,9 @@ export default {
               hidden: true,
               // eslint-disable-next-line no-unused-vars
               visibleIf: {
-                showMotto: (context, id, value) => {
+                showMotto: function (context, id, value) {
                   // context 在第一次的初始化的时候为空，因为这个时候还没有添加具体的组件上下文
+                  console.log(this);
                   return value || false;
                 },
               },
