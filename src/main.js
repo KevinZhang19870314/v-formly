@@ -1,26 +1,16 @@
 import Vue from 'vue';
-import { Card, Button, FormModel, Tooltip, Icon, Input, Row, Col, Switch, AutoComplete, Select } from 'ant-design-vue';
 import App from './App.vue';
+import router from './examples/router'
 import EventBus from "./utils/event-bus.js";
-
+import '@/examples/ant-design-vue.js'
 import "@/style/index.less";
 
 Vue.config.productionTip = false;
 
 Vue.use(EventBus);
 
-Vue.use(Card);
-Vue.use(Button);
-Vue.use(FormModel);
-Vue.use(Tooltip);
-Vue.use(Icon);
-Vue.use(Input);
-Vue.use(Row);
-Vue.use(Col);
-Vue.use(Switch);
-Vue.use(AutoComplete);
-Vue.use(Select);
 
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app');

@@ -1,23 +1,25 @@
 {
   "name": "v-formly",
-  "main": "./dist/v-formly.common.js",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-lib": "vue-cli-service build --target lib --name v-formly src/main.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-lib": "vue-cli-service build --target lib --name v-formly src/main.js"
   },
+  "main": "./dist/v-formly.common.js",
   "dependencies": {
     "ajv": "^8.11.0",
     "ant-design-vue": "1.7.8",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.18",
     "@vue/cli-plugin-eslint": "~4.5.18",
+    "@vue/cli-plugin-router": "~4.5.18",
     "@vue/cli-service": "~4.5.18",
     "babel-eslint": "^10.1.0",
     "babel-plugin-import": "^1.13.5",
