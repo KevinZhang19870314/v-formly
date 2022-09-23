@@ -99,6 +99,9 @@ export default {
           case "array":
             formData[key] = formData[key] || [];
             break;
+          case "boolean":
+            formData[key] = formData[key] || false;
+            break;
           default:
             formData[key] = formData[key] || undefined;
             break;

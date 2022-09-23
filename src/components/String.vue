@@ -21,35 +21,20 @@
 <script>
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "../meta/string.meta.js";
+import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-string",
   components: { VWrapper },
-  inject: ["state"],
-  props: {
-    id: String,
-    meta: {
-      type: Object,
-      default: () => {},
-    },
-  },
+  mixins: [componentMixin],
   data() {
     return {
       context: new StringMeta(this.state, this.id),
     };
   },
   mounted() {
-    console.log('test');
-    if (this.meta.default) {
-      this.value = this.meta.default;
-    }
+    this.applyInitValue();
   },
   computed: {
-    ui: function () {
-      return this.meta.ui || {};
-    },
-    schema: function () {
-      return this.meta || {};
-    },
     value: {
       get: function () {
         return this.context.value;

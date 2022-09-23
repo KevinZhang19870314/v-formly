@@ -15,29 +15,17 @@
 <script>
 import VWrapper from "./Wrapper.vue";
 import { BooleanMeta } from "../meta/boolean.meta.js";
+import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-boolean",
   components: { VWrapper },
-  inject: ["state"],
-  props: {
-    id: String,
-    meta: {
-      type: Object,
-      default: () => {},
-    },
-  },
+  mixins: [componentMixin],
   data() {
     return {
       context: new BooleanMeta(this.state, this.id),
     };
   },
   computed: {
-    ui: function () {
-      return this.meta.ui || {};
-    },
-    schema: function () {
-      return this.meta || {};
-    },
     value: {
       get: function () {
         return this.context.value;
@@ -46,6 +34,9 @@ export default {
         this.context.value = val || false;
       },
     },
+  },
+  mounted() {
+    this.applyInitValue();
   },
   methods: {
     change() {

@@ -1,9 +1,159 @@
 <template>
-  <div class="">
-    <h1>AutoCompleteView</h1>
+  <div class="wrapper">
+    <h1>v-autocomplete</h1>
+    <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
+      <template v-slot:datasource>
+        <a-select-option v-for="email in result" :key="email">
+          {{ email }}
+        </a-select-option>
+      </template>
+      <template v-slot:datasource1>
+        <a-select-option v-for="email in result1" :key="email">
+          {{ email }}
+        </a-select-option>
+      </template>
+      <template v-slot:datasource2>
+        <a-select-option v-for="email in result2" :key="email">
+          {{ email }}
+        </a-select-option>
+      </template>
+    </v-formly>
+    <div class="btns">
+      <a-button type="primary" @click="printData"> 打印FormData </a-button>
+    </div>
   </div>
 </template>
 <script>
-export default {};
+import VFormly from "@/Formly.vue";
+export default {
+  data: function () {
+    let self = this;
+    return {
+      schema: {
+        type: "object",
+        properties: {
+          name: {
+            title: "姓名",
+            type: "string",
+            default: "kevin",
+            ui: {
+              showRequired: true,
+            },
+          },
+          auto: {
+            type: "string",
+            title: "自动完成",
+            ui: {
+              component: "autocomplete",
+              placeholder: "auto complete",
+              slotName: "datasource", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
+              dataSource: [],
+              handleSearch: function (value) {
+                console.log(value);
+                self.handleSearch(value);
+              },
+            },
+          },
+          obj: {
+            type: "object",
+            properties: {
+              auto1: {
+                type: "string",
+                title: "自动完成1",
+                ui: {
+                  component: "autocomplete",
+                  placeholder: "auto complete 1",
+                  slotName: "datasource1", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
+                  dataSource: [],
+                  handleSearch: function (value) {
+                    console.log(value);
+                    self.handleSearch1(value);
+                  },
+                },
+              },
+              obj1: {
+                type: "object",
+                properties: {
+                  auto2: {
+                    type: "string",
+                    title: "自动完成2",
+                    ui: {
+                      component: "autocomplete",
+                      placeholder: "auto complete 2",
+                      slotName: "datasource2", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
+                      dataSource: [],
+                      handleSearch: function (value) {
+                        console.log(value);
+                        self.handleSearch2(value);
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        required: ["name"],
+      },
+      data: { name: "kevin zhang" },
+      result: [],
+      result1: [],
+      result2: [],
+    };
+  },
+  components: {
+    VFormly,
+  },
+  methods: {
+    printData() {
+      console.log(this.data);
+    },
+    handleSearch(value) {
+      let result;
+      if (!value || value.indexOf("@") >= 0) {
+        result = [];
+      } else {
+        result = ["gmail.com", "163.com", "qq.com"].map(
+          (domain) => `${value}@${domain}`
+        );
+      }
+      this.result = result;
+    },
+    handleSearch1(value) {
+      let result;
+      if (!value || value.indexOf("@") >= 0) {
+        result = [];
+      } else {
+        result = ["gmail.com", "163.com", "qq.com"].map(
+          (domain) => `${value}@${domain}`
+        );
+      }
+      this.result1 = result;
+    },
+    handleSearch2(value) {
+      let result;
+      if (!value || value.indexOf("@") >= 0) {
+        result = [];
+      } else {
+        result = ["gmail.com", "163.com", "qq.com"].map(
+          (domain) => `${value}@${domain}`
+        );
+      }
+      this.result2 = result;
+    },
+  },
+};
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.wrapper {
+  padding: 0 500px;
+  .btns {
+    display: flex;
+    justify-content: flex-end;
+
+    .ant-btn {
+      margin-right: 8px;
+    }
+  }
+}
+</style>

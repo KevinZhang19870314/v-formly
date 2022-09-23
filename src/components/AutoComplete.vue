@@ -19,29 +19,17 @@
 <script>
 import VWrapper from "./Wrapper.vue";
 import { AutoCompleteMeta } from "../meta/autocomplete.meta.js";
+import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-autocomplete",
   components: { VWrapper },
-  inject: ["state"],
-  props: {
-    id: String,
-    meta: {
-      type: Object,
-      default: () => {},
-    },
-  },
+  mixins: [componentMixin],
   data() {
     return {
       context: new AutoCompleteMeta(this.state, this.id),
     };
   },
   computed: {
-    ui: function () {
-      return this.meta.ui || {};
-    },
-    schema: function () {
-      return this.meta || {};
-    },
     value: {
       get: function () {
         return this.context.value;

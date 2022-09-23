@@ -74,17 +74,11 @@ import Vue from "vue";
 import { FORM_ERROR_CHANGE } from "@/utils/consts.js";
 import VFormlyItem from "@/FormlyItem.vue";
 import { ArrayMeta } from "../meta/array.meta";
+import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-array",
   components: { VFormlyItem },
-  inject: ["state"],
-  props: {
-    id: String,
-    meta: {
-      type: Object,
-      default: () => {},
-    },
-  },
+  mixins: [componentMixin],
   data() {
     return {
       error: "",
@@ -96,12 +90,6 @@ export default {
     };
   },
   computed: {
-    schema() {
-      return this.meta || {};
-    },
-    ui() {
-      return Object.assign({}, this.state.ui, this.meta.ui);
-    },
     oh() {
       return Object.assign({}, this.state.ui, this.meta.ui).optionalHelp;
     },

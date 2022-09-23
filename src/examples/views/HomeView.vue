@@ -238,7 +238,7 @@ export default {
         },
         // required: ["name", "desc"],
       },
-      data: {},
+      data: { showMotto: true },
       result: [],
       result1: [],
       result2: [],
