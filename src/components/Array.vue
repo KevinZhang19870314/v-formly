@@ -70,8 +70,6 @@
   </a-form-model-item>
 </template>
 <script>
-import Vue from "vue";
-import { FORM_ERROR_CHANGE } from "@/utils/consts.js";
 import VFormlyItem from "@/FormlyItem.vue";
 import { ArrayMeta } from "../meta/array.meta";
 import { componentMixin } from "../mixin/component.mixin.js";
@@ -82,7 +80,6 @@ export default {
   data() {
     return {
       error: "",
-      value: "",
       addTitle: "",
       addType: "",
       arraySpan: 8,
@@ -93,17 +90,33 @@ export default {
     oh() {
       return Object.assign({}, this.state.ui, this.meta.ui).optionalHelp;
     },
-    grid: function () {
-      return this.state.ui.grid || this.grid || {};
+    value: {
+      get() {
+        return this.context.value;
+      }
+    },
+    disabled() {
+      return this.schema.readOnly;
     },
     addDisabled() {
-      return false;
-    },
-    showError() {
-      return false;
+      return (
+        this.disabled ||
+        (this.schema.maxItems != null &&
+          this.context.properties.length >= this.schema.maxItems)
+      );
     },
     showRemove() {
+      if (
+        this.disabled ||
+        (this.schema.minItems != null &&
+          this.context.properties.length <= this.schema.minItems)
+      ) {
+        return false;
+      }
       return true;
+    },
+    showError() {
+      return !!this.error;
     },
 
     // TODO: layout
@@ -117,36 +130,21 @@ export default {
     this.addTitle = addTitle;
     this.addType = addType || "dashed";
     this.removeTitle = removable === false ? null : removeTitle;
-
-    Vue.bus.on(FORM_ERROR_CHANGE, (err) => {
-      if (err.id === this.id) {
-        this.error = err.error ? err.error.keyword : undefined;
-        console.log("this.error", this.error);
-      }
-    });
   },
-
   methods: {
     // 生成 itmes properties 的 id
     getSubItemsKey(index) {
       return `${this.id}/${index}`;
     },
-    reValid() {
-      // TODO: minItems / maxItems
-    },
     addItem() {
-      console.log("addItem");
       const id = this.context.add();
-      this.reValid();
       // 添加回调
       if (this.ui.add) {
         this.ui.add(id);
       }
     },
     removeItem(index) {
-      console.log("removeItem", index);
       this.context.remove(index);
-      this.reValid();
       // 移除回调
       if (this.ui.remove) {
         this.ui.remove(index);
