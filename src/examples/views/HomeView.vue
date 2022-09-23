@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img alt="Vue logo" src="../../assets/logo.png" />
     <!-- 'horizontal','vertical','inline' -->
     <h1>horizontal</h1>
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">

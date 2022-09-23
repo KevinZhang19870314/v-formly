@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router'
+import router from './examples/router'
 import EventBus from "./utils/event-bus.js";
-import '@/utils/ant-design-vue.js'
+import '@/examples/ant-design-vue.js'
 import "@/style/index.less";
 
 Vue.config.productionTip = false;
