@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { Card, Button, FormModel, Tooltip, Icon, Input, Row, Col, Switch } from 'ant-design-vue';
+import { Card, Button, FormModel, Tooltip, Icon, Input, Row, Col, Switch, AutoComplete, Select } from 'ant-design-vue';
 import App from './App.vue';
 import EventBus from "./utils/event-bus.js";
 
@@ -18,6 +18,8 @@ Vue.use(Input);
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(Switch);
+Vue.use(AutoComplete);
+Vue.use(Select);
 
 new Vue({
   render: h => h(App),

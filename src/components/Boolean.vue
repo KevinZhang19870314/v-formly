@@ -31,7 +31,6 @@ export default {
       context: new BooleanMeta(this.state, this.id),
     };
   },
-
   computed: {
     ui: function () {
       return this.meta.ui || {};

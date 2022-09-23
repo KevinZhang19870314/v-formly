@@ -1,19 +1,28 @@
 <template>
-  <component
-    v-bind:is="currentComponent"
-    :id="id"
-    :meta="meta"
-    v-if="visible"
-  ></component>
+  <div>
+    <component
+      v-bind:is="currentComponent"
+      :id="id"
+      :meta="meta"
+      v-if="visible"
+    >
+      <template v-for="slotName in slotsName" v-slot:[slotName]>
+        <slot :name="slotName">
+          {{ "formly-item inner 123" }}
+        </slot>
+      </template>
+    </component>
+  </div>
 </template>
 <script>
 import Vue from "vue";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import { visibleIfMixin } from "./mixin/visible-if.mixin.js";
+import { slotsMixin } from "./mixin/slots.mixin.js";
 export default {
   name: "v-formly-item",
   inject: ["state"],
-  mixins: [visibleIfMixin],
+  mixins: [visibleIfMixin, slotsMixin],
   props: {
     id: String,
     meta: {
@@ -32,7 +41,8 @@ export default {
   },
   computed: {
     currentComponent: function () {
-      return `v-${this.meta.type}`;
+      const type = (this.meta.ui && this.meta.ui.component) || this.meta.type;
+      return `v-${type}`;
     },
   },
   mounted() {

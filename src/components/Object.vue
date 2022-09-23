@@ -16,16 +16,24 @@
         :id="item.key"
         :meta="item.meta"
         :show="visible(item.meta)"
-      ></v-formly-item>
+      >
+        <template v-for="slotName in slotsName" v-slot:[slotName]>
+          <slot :name="slotName">
+            {{ "formly-item inner 123" }}
+          </slot>
+        </template>
+      </v-formly-item>
     </a-col>
   </a-row>
 </template>
 <script>
 import { ObjectMeta } from "../meta/object.meta.js";
 import VFormlyItem from "@/FormlyItem.vue";
+import { slotsMixin } from "../mixin/slots.mixin.js";
 export default {
   name: "v-object",
   components: { VFormlyItem },
+  mixins: [slotsMixin],
   inject: ["state"],
   props: {
     id: String,
@@ -40,6 +48,12 @@ export default {
     };
   },
   computed: {
+    ui: function () {
+      return this.meta.ui || {};
+    },
+    schema: function () {
+      return this.meta || {};
+    },
     grid: function () {
       return this.state.ui.grid || this.grid || {};
     },
@@ -52,9 +66,6 @@ export default {
   created() {
     const metaInstance = new ObjectMeta(this.state, this.id, this.meta);
     this.childMetaPairs = metaInstance.childMetaPairs;
-  },
-  mounted() {
-    // console.log("this.meta", this.meta);
   },
 };
 </script>

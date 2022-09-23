@@ -1,14 +1,22 @@
 <template>
-  <a-form-model
-    class="v"
-    :layout="layout"
-    :class="{
-      v__inline: layout === 'inline',
-      v__horizontal: layout === 'horizontal',
-    }"
-  >
-    <v-formly-item id="root" :meta="objectMeta"></v-formly-item>
-  </a-form-model>
+  <div>
+    <a-form-model
+      class="v"
+      :layout="layout"
+      :class="{
+        v__inline: layout === 'inline',
+        v__horizontal: layout === 'horizontal',
+      }"
+    >
+      <v-formly-item id="root" :meta="objectMeta">
+        <template v-for="slotName in slotsName" v-slot:[slotName]>
+          <slot :name="slotName">
+            {{ "formly-item inner 123" }}
+          </slot>
+        </template>
+      </v-formly-item>
+    </a-form-model>
+  </div>
 </template>
 <script>
 import Vue from "vue";
@@ -17,12 +25,15 @@ import VObject from "@/components/Object.vue";
 import VString from "@/components/String.vue";
 import VBoolean from "@/components/Boolean.vue";
 import VArray from "@/components/Array.vue";
+import VAutoComplete from "@/components/AutoComplete.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
+import { slotsMixin } from "./mixin/slots.mixin.js";
 export default {
   name: "v-formly",
   components: { VFormlyItem },
+  mixins: [slotsMixin],
   model: {
     prop: "value",
     event: "value-change",
@@ -62,6 +73,7 @@ export default {
     Vue.component("v-string", VString);
     Vue.component("v-boolean", VBoolean);
     Vue.component("v-array", VArray);
+    Vue.component("v-autocomplete", VAutoComplete);
 
     this.globalInstance.schema = this.objectMeta;
     this.globalInstance.formData = this.formData;

@@ -38,7 +38,7 @@
 import Vue from "vue";
 import { FORM_ERROR_CHANGE } from "@/utils/consts.js";
 export default {
-  name: "v-component-wrapper",
+  name: "v-wrapper",
   inject: ["state"],
   props: {
     id: String,
