@@ -93,15 +93,14 @@ export default {
         const meta = properties[key];
         switch (meta.type) {
           case "object":
-            formData[key] = {};
+            formData[key] = formData[key] || {};
             this.initFormData(formData[key], meta.properties);
             break;
           case "array":
-            formData[key] = [];
+            formData[key] = formData[key] || [];
             break;
-
           default:
-            formData[key] = undefined;
+            formData[key] = formData[key] || undefined;
             break;
         }
       });
