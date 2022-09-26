@@ -1,30 +1,12 @@
 <template>
   <div class="wapper">
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
-      <!-- <template v-slot:datasource>
-        Auto Complete
-      </template> -->
-      <template v-slot:datasource>
-        <a-select-option v-for="email in result" :key="email">
-          {{ email }}
-        </a-select-option>
-      </template>
-      <template v-slot:datasource1>
-        <a-select-option v-for="email in result1" :key="email">
-          {{ email }}
-        </a-select-option>
-      </template>
-      <template v-slot:datasource2>
-        <a-select-option v-for="email in result2" :key="email">
-          {{ email }}
-        </a-select-option>
-      </template>
     </v-formly>
     <div class="btns">
       <a-button type="primary" @click="printData"> 打印FormData </a-button>
-      <a-button type="primary" @click="log"> log </a-button>
-      <a-button type="primary" @click="log1"> log1 </a-button>
-      <a-button type="primary" @click="add"> add </a-button>
+      <a-button type="primary" @click="set(100)"> add more</a-button>
+      <a-button type="primary" @click="add"> add one</a-button>
+      <a-button type="primary" @click="clear"> clear </a-button>
     </div>
   </div>
 </template>
@@ -47,6 +29,7 @@ export default {
           product: {
             type: "array",
             title: "产品清单",
+            // maxItems: 3,
             items: {
               type: "object",
               properties: {
@@ -114,11 +97,16 @@ export default {
     printData() {
       console.log(this.data);
     },
-    log() {
+    clear() {
+      const ctx = this.$refs.form.getContext("product");
+      console.log(ctx.value);
+      ctx.value = [];
+    },
+    set(number) {
       const ctx = this.$refs.form.getContext("product");
       console.log(ctx.value);
       const arr = [];
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < number; i++) {
         arr.push({
           name: i,
           desc: i,
@@ -130,12 +118,7 @@ export default {
           ],
         });
       }
-      ctx.restValue(arr);
-    },
-    log1() {
-      const ctx = this.$refs.form.getContext("product");
-      console.log(ctx.value);
-      ctx.restValue([]);
+      ctx.value = arr;
     },
     add() {
       const ctx = this.$refs.form.getContext("product");

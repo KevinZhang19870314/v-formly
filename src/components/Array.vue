@@ -37,7 +37,7 @@
     >
       <div class="ant-form-item-control" :class="{ 'has-error': showError }">
         <a-row class="v__array-container">
-          <template v-for="(p, i) of context.properties">
+          <template v-for="(p, i) of context.ids">
             <a-col :span="arraySpan" class="v__array-item" :key="p.key">
               <a-card>
                 <v-formly-item
@@ -56,15 +56,11 @@
           </template>
         </a-row>
         <!-- 属性目的性解释 -->
-        <!-- <div
+        <div
           v-if="schema.description"
           v-html="schema.description"
           class="ant-form-extra"
-        ></div> -->
-        <!-- 错误信息 -->
-        <div v-if="showError" class="ant-form-explain">
-          {{ error }}
-        </div>
+        ></div>
       </div>
     </a-col>
   </a-form-model-item>
@@ -93,7 +89,10 @@ export default {
     value: {
       get() {
         return this.context.value;
-      }
+      },
+      set(value) {
+        this.context.value = value || [];
+      },
     },
     disabled() {
       return this.schema.readOnly;
@@ -102,14 +101,14 @@ export default {
       return (
         this.disabled ||
         (this.schema.maxItems != null &&
-          this.context.properties.length >= this.schema.maxItems)
+          this.context.ids.length >= this.schema.maxItems)
       );
     },
     showRemove() {
       if (
         this.disabled ||
         (this.schema.minItems != null &&
-          this.context.properties.length <= this.schema.minItems)
+          this.context.ids.length <= this.schema.minItems)
       ) {
         return false;
       }
@@ -133,8 +132,8 @@ export default {
   },
   methods: {
     // 生成 itmes properties 的 id
-    getSubItemsKey(index) {
-      return `${this.id}/${index}`;
+    getSubItemsKey(i) {
+      return `${this.id}/${i}`;
     },
     addItem() {
       const id = this.context.add();
@@ -143,11 +142,11 @@ export default {
         this.ui.add(id);
       }
     },
-    removeItem(index) {
-      this.context.remove(index);
+    removeItem(i) {
+      this.context.remove(i);
       // 移除回调
       if (this.ui.remove) {
-        this.ui.remove(index);
+        this.ui.remove(i);
       }
     },
   },

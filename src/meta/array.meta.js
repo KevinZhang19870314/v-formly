@@ -1,36 +1,39 @@
 import Vue from "vue";
 import { UUID, deepClone } from "@/utils/utils";
-import { buildChildMetaPairs } from "./object.meta.js";
 
 class ArrayMeta {
   constructor(state, id, meta) {
     this.state = state;
     this.id = id;
     this.meta = meta;
-    this.properties = [];
+    this.ids = [];
 
     state.context.addContext(id, this);
   }
 
   get value() {
-    return this.getPathValue(this.state.formData, this.id);
+    return this.getPathValue(this.state.formData, this.id) || [];
   }
 
-  restValue(val) {
-    const len = this.properties.length;
+  set value(val) {
+    const len = this.ids.length;
     // 从后往前删除
     for (let i = 0; i < len; i++) {
       this.remove(len - i - 1);
     }
     if (!Array.isArray(val) || val.length === 0) return;
 
-    val.forEach((data, index) => {
-      this.add();
-      Vue.nextTick(() => {
+    val.forEach(() => this.add());
+    Vue.nextTick(() => {
+      val.forEach((data, index) => {
         const ctx = this.state.context.getContext(`${this.id}/${index}`);
-        ctx.restValue(data);
+        ctx.value = data;
       });
     });
+  }
+
+  validate() {
+    return this.state.validate.runValidation(this);
   }
 
   getPathValue(sourceData, path) {
@@ -52,7 +55,6 @@ class ArrayMeta {
       switch (meta.type) {
         case "object":
           obj[key] = {};
-          this.initFormData(obj[key], meta.properties);
           break;
         case "array":
           obj[key] = [];
@@ -65,30 +67,36 @@ class ArrayMeta {
     return obj;
   }
 
+  // 在数组尾添加一个空对象
   add() {
-    // 在最后一项添加
-    const id = `${this.id}/${this.properties.length}`;
+    const id = `${this.id}/${this.ids.length}`;
     const value = this.getEmptyData();
     this.state.updateObjProp(this.state.formData, id, value);
-    this.properties.push({ key: UUID() });
+    this.ids.push({ key: UUID() });
+
+    this.validate();
     return id;
   }
 
   remove(index) {
-    console.time("remove");
-    const props = this.id.split("/").filter((f) => f);
+    // update ids
+    this.ids.splice(index, 1);
+    // update formData
+    const props = this.id.split("/").filter((f) => !!f);
     props.reduce((obj, key, idx) => {
       if (idx === props.length - 1) {
         obj[key].splice(index, 1);
       }
       return obj[key];
     }, this.state.formData);
-    this.properties.splice(index, 1);
-    const keys = Object.keys(this.state.context._map).filter((key) =>
-      new RegExp(`^/?${this.id}/`).test(key)
-    );
-    // update
-    for (let i = index + 1; i < this.properties.length + 1; i++) {
+    // update context
+    const keys = [];
+    for (const key of this.state.context._map.keys()) {
+      if (new RegExp(`^/?${this.id}/`).test(key)) {
+        keys.push(key);
+      }
+    }
+    for (let i = index + 1; i < this.ids.length + 1; i++) {
       const regex = new RegExp(`^(/?${this.id}/)${i}`);
       keys
         .filter((key) => regex.test(key))
@@ -100,7 +108,7 @@ class ArrayMeta {
           ctx.id = newKey;
           // object 的 id 比较特殊,需要重新计算
           if (ctx.childMetaPairs) {
-            const newChildMetaPairs = buildChildMetaPairs(newKey, ctx.meta);
+            const newChildMetaPairs = ctx.buildChildMetaPairs(newKey, ctx.meta);
             ctx.childMetaPairs.forEach((item, idx) => {
               item.key = newChildMetaPairs[idx].key;
             });
@@ -108,15 +116,14 @@ class ArrayMeta {
           this.state.context.addContext(newKey, ctx);
         });
     }
-    // delete
-    const regex = new RegExp(`^/?${this.id}/${this.properties.length}`);
+    const regex = new RegExp(`^/?${this.id}/${this.ids.length}`);
     keys
       .filter((key) => regex.test(key))
       .forEach((key) => {
         this.state.context.removeContext(key);
       });
 
-    console.timeEnd("remove");
+    this.validate();
   }
 }
 

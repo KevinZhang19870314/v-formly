@@ -25,10 +25,6 @@ class StringMeta {
     this.state.updateObjProp(this.state.formData, this.id, val);
     this.state.validate.runValidation(this);
   }
-
-  restValue(value) {
-    this.value = value;
-  }
 }
 
 export { StringMeta };
