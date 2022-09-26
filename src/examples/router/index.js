@@ -6,6 +6,7 @@ import BooleanView from '../views/BooleanView.vue'
 import ObjectView from '../views/ObjectView.vue'
 import ArrayView from '../views/ArrayView.vue'
 import AutoCompleteView from '../views/AutoCompleteView.vue'
+import CheckboxView from '../views/CheckboxView.vue';
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/autoComplete',
     name: 'autoComplete',
     component: AutoCompleteView
+  },
+  {
+    path: '/checkbox',
+    name: 'checkbox',
+    component: CheckboxView
   },
   // {
   //   path: '/about',

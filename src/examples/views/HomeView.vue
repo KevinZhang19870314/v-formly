@@ -236,7 +236,7 @@ export default {
             },
           },
         },
-        // required: ["name", "desc"],
+        required: ["name"],
       },
       data: { showMotto: true },
       result: [],

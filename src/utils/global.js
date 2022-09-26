@@ -1,20 +1,22 @@
 class Global {
   constructor() {
     this._context = null;
-    this._layout = "horizontal";
+    this._layout = 'horizontal';
     this._ajvOptions = {
       allErrors: true,
       strict: false,
+      loopEnum: 50,
     };
     this._formData = null;
     this._schema = {};
     this._ui = {
+      ingoreKeywords: ['type', 'enum'],
       spanLabel: 5,
       spanControl: 19,
       grid: {
         gutter: 36,
         span: 24,
-      },
+      }
     };
     this._validate = null;
   }

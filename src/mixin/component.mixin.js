@@ -31,10 +31,6 @@ export const componentMixin = {
                 return acc[key] || {};
             }, this.state.formData);
 
-            if (this.id === 'showMotto') {
-                console.log('curVal = ', curVal);
-            }
-
             switch (this.meta.type) {
                 case 'boolean':
                     if (typeof curVal === 'boolean') {

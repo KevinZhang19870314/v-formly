@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <a-auto-complete
       :defaultValue="schema.default"
-      :disabled="ui.disabled"
+      :disabled="schema.readOnly"
       :placeholder="ui.placeholder"
       :filterOption="ui.filterOption"
       :backfill="ui.backfill"

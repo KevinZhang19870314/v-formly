@@ -6,7 +6,8 @@
       <router-link to="/boolean">Boolean</router-link> |
       <router-link to="/object">Object</router-link> |
       <router-link to="/array">Array</router-link> |
-      <router-link to="/autoComplete">AutoComplete</router-link>
+      <router-link to="/autoComplete">AutoComplete</router-link> |
+      <router-link to="/checkbox">Checkbox</router-link>
     </nav>
     <router-view />
   </div>

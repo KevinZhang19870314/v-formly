@@ -4,7 +4,7 @@
       :addonAfter="ui.addonAfter"
       :addonBefore="ui.addonBefore"
       :defaultValue="ui.defaultValue"
-      :disabled="ui.disabled"
+      :disabled="schema.readOnly"
       :id="ui.id"
       :maxLength="schema.maxLength"
       :prefix="ui.prefix"

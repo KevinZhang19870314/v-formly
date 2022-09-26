@@ -26,6 +26,7 @@ import VString from "@/components/String.vue";
 import VBoolean from "@/components/Boolean.vue";
 import VArray from "@/components/Array.vue";
 import VAutoComplete from "@/components/AutoComplete.vue";
+import VCheckbox from "@/components/Checkbox.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
@@ -74,6 +75,7 @@ export default {
     Vue.component("v-boolean", VBoolean);
     Vue.component("v-array", VArray);
     Vue.component("v-autocomplete", VAutoComplete);
+    Vue.component("v-checkbox", VCheckbox);
 
     this.globalInstance.schema = this.objectMeta;
     this.globalInstance.formData = this.formData;
@@ -84,7 +86,6 @@ export default {
     this.globalInstance.validate = new ValidateFactory(this.globalInstance);
   },
   mounted() {
-    console.log("formly mounted");
     this.$emit("value-change", this.formData);
   },
   methods: {

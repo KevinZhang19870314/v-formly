@@ -1,0 +1,67 @@
+<template>
+  <v-wrapper :id="id" :meta="meta">
+    <template v-if="!ui.span">
+      <a-checkbox-group
+        class="v__checkbox"
+        v-model="value"
+        :options="schema.enum"
+        @change="change"
+      />
+    </template>
+    <template v-else>
+      <a-checkbox-group v-model="value" @change="change" class="v__checkbox">
+        <a-row>
+          <a-col
+            class="v__text-left"
+            :span="ui.span"
+            v-for="(item, index) in schema.enum"
+            :key="index"
+          >
+            <a-checkbox
+              :value="item.value || item"
+              :disabled="item.disabled || false"
+            >
+              {{ item.label || item }}
+            </a-checkbox>
+          </a-col>
+        </a-row>
+      </a-checkbox-group>
+    </template>
+  </v-wrapper>
+</template>
+<script>
+import VWrapper from "./Wrapper.vue";
+import { CheckboxMeta } from "../meta/checkbox.meta.js";
+import { componentMixin } from "../mixin/component.mixin.js";
+export default {
+  name: "v-checkbox",
+  components: { VWrapper },
+  mixins: [componentMixin],
+  data() {
+    return {
+      context: new CheckboxMeta(this.state, this.id),
+    };
+  },
+  computed: {
+    value: {
+      get: function () {
+        return this.context.value;
+      },
+      set: function (val) {
+        this.context.value = val || undefined;
+      },
+    },
+  },
+  mounted() {
+    this.applyInitValue();
+  },
+  methods: {
+    change() {
+      if (this.ui.change) {
+        this.ui.change(this.value);
+      }
+    },
+  },
+};
+</script>
+<style lang="less" scoped></style>

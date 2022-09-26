@@ -11,6 +11,7 @@ import {
   Switch,
   AutoComplete,
   Select,
+  Checkbox
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -24,3 +25,4 @@ Vue.use(Col);
 Vue.use(Switch);
 Vue.use(AutoComplete);
 Vue.use(Select);
+Vue.use(Checkbox);

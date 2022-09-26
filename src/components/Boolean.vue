@@ -3,7 +3,7 @@
     <a-switch
       class="v__boolean"
       v-model="value"
-      :disabled="ui.disabled"
+      :disabled="schema.readOnly"
       :size="ui.size"
       :checkedChildren="ui.checkedChildren"
       :unCheckedChildren="ui.unCheckedChildren"
