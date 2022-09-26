@@ -1,23 +1,23 @@
 class Global {
-    constructor() {
-        this._context = null;
-        this._layout = 'horizontal';
-        this._ajvOptions = {
-            allErrors: true,
-            strict: false
-        };
-        this._formData = null;
-        this._schema = {};
-        this._ui = {
-            spanLabel: 5,
-            spanControl: 19,
-            grid: {
-                gutter: 36,
-                span: 24,
-            }
-        };
-        this._validate = null;
-    }
+  constructor() {
+    this._context = null;
+    this._layout = "horizontal";
+    this._ajvOptions = {
+      allErrors: true,
+      strict: false,
+    };
+    this._formData = null;
+    this._schema = {};
+    this._ui = {
+      spanLabel: 5,
+      spanControl: 19,
+      grid: {
+        gutter: 36,
+        span: 24,
+      },
+    };
+    this._validate = null;
+  }
 
   get context() {
     return this._context;
@@ -43,17 +43,17 @@ class Global {
     this._ajvOptions = val;
   }
 
-    get formData() {
-        return this._formData;
-    }
+  get formData() {
+    return this._formData;
+  }
 
-    set formData(val) {
-        this._formData = val;
-    }
+  set formData(val) {
+    this._formData = val;
+  }
 
-    get schema() {
-        return this._schema;
-    }
+  get schema() {
+    return this._schema;
+  }
 
   set schema(val) {
     this._schema = val;

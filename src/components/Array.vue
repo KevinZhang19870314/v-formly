@@ -37,7 +37,7 @@
     >
       <div class="ant-form-item-control" :class="{ 'has-error': showError }">
         <a-row class="v__array-container">
-          <template v-for="(p, i) of context.properties">
+          <template v-for="(p, i) of context.ids">
             <a-col :span="arraySpan" class="v__array-item" :key="p.key">
               <a-card>
                 <v-formly-item
@@ -56,22 +56,16 @@
           </template>
         </a-row>
         <!-- 属性目的性解释 -->
-        <!-- <div
+        <div
           v-if="schema.description"
           v-html="schema.description"
           class="ant-form-extra"
-        ></div> -->
-        <!-- 错误信息 -->
-        <div v-if="showError" class="ant-form-explain">
-          {{ error }}
-        </div>
+        ></div>
       </div>
     </a-col>
   </a-form-model-item>
 </template>
 <script>
-import Vue from "vue";
-import { FORM_ERROR_CHANGE } from "@/utils/consts.js";
 import VFormlyItem from "@/FormlyItem.vue";
 import { ArrayMeta } from "../meta/array.meta";
 import { componentMixin } from "../mixin/component.mixin.js";
@@ -82,7 +76,6 @@ export default {
   data() {
     return {
       error: "",
-      value: "",
       addTitle: "",
       addType: "",
       arraySpan: 8,
@@ -93,17 +86,36 @@ export default {
     oh() {
       return Object.assign({}, this.state.ui, this.meta.ui).optionalHelp;
     },
-    grid: function () {
-      return this.state.ui.grid || this.grid || {};
+    value: {
+      get() {
+        return this.context.value;
+      },
+      set(value) {
+        this.context.value = value || [];
+      },
+    },
+    disabled() {
+      return this.schema.readOnly;
     },
     addDisabled() {
-      return false;
-    },
-    showError() {
-      return false;
+      return (
+        this.disabled ||
+        (this.schema.maxItems != null &&
+          this.context.ids.length >= this.schema.maxItems)
+      );
     },
     showRemove() {
+      if (
+        this.disabled ||
+        (this.schema.minItems != null &&
+          this.context.ids.length <= this.schema.minItems)
+      ) {
+        return false;
+      }
       return true;
+    },
+    showError() {
+      return !!this.error;
     },
 
     // TODO: layout
@@ -117,39 +129,24 @@ export default {
     this.addTitle = addTitle;
     this.addType = addType || "dashed";
     this.removeTitle = removable === false ? null : removeTitle;
-
-    Vue.bus.on(FORM_ERROR_CHANGE, (err) => {
-      if (err.id === this.id) {
-        this.error = err.error ? err.error.keyword : undefined;
-        console.log("this.error", this.error);
-      }
-    });
   },
-
   methods: {
     // 生成 itmes properties 的 id
-    getSubItemsKey(index) {
-      return `${this.id}/${index}`;
-    },
-    reValid() {
-      // TODO: minItems / maxItems
+    getSubItemsKey(i) {
+      return `${this.id}/${i}`;
     },
     addItem() {
-      console.log("addItem");
       const id = this.context.add();
-      this.reValid();
       // 添加回调
       if (this.ui.add) {
         this.ui.add(id);
       }
     },
-    removeItem(index) {
-      console.log("removeItem", index);
-      this.context.remove(index);
-      this.reValid();
+    removeItem(i) {
+      this.context.remove(i);
       // 移除回调
       if (this.ui.remove) {
-        this.ui.remove(index);
+        this.ui.remove(i);
       }
     },
   },

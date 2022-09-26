@@ -1,18 +1,18 @@
 class FormItemContext {
   constructor() {
-    this._map = {};
+    this._map = new Map();
   }
 
   addContext(id, instance) {
-    this._map[id] = instance;
+    this._map.set(id, instance);
   }
 
   removeContext(id) {
-    delete this._map[id];
+    this._map.delete(id);
   }
 
   getContext(id) {
-    return this._map[id];
+    return this._map.get(id);
   }
 }
 
