@@ -15,7 +15,21 @@
       <!-- layout content -->
       <a-layout-content class="layout-content">
         <transition name="fade-transform" mode="out-in">
-          <router-view :key="key" />
+          <div class="wrapper">
+            <a-breadcrumb class="breadcrumb" :routes="r">
+              <template slot="itemRender" slot-scope="{ route, routes, paths }">
+                <span v-if="routes.indexOf(route) === routes.length - 1">
+                  {{ route.name }}
+                </span>
+                <router-link v-else :to="`${basePath}/${paths.join('/')}`">
+                  {{ route.name }}
+                </router-link>
+              </template>
+            </a-breadcrumb>
+            <div class="content-wrapper">
+              <router-view :key="key" />
+            </div>
+          </div>
         </transition>
       </a-layout-content>
       <!-- layout footer -->
@@ -34,6 +48,8 @@ export default {
     return {
       collapsed: false,
       menus: [],
+      basePath: ".",
+      r: routes,
     };
   },
   computed: {
@@ -105,6 +121,28 @@ export default {
     position: relative;
     height: 100%;
     margin: 24px 24px 0;
+  }
+
+  .wrapper {
+    height: calc(~"100vh - 165px");
+    .breadcrumb {
+      background: white;
+      padding: 16px;
+    }
+
+    .content-wrapper {
+      height: 100%;
+      background: white;
+      padding: 16px 500px;
+      .btns {
+        display: flex;
+        justify-content: flex-end;
+
+        .ant-btn {
+          margin-right: 8px;
+        }
+      }
+    }
   }
 }
 </style>

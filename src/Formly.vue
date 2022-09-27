@@ -19,7 +19,6 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
 import VFormlyItem from "@/FormlyItem.vue";
 import VObject from "@/components/Object.vue";
 import VString from "@/components/String.vue";
@@ -33,6 +32,7 @@ import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
 import { slotsMixin } from "./mixin/slots.mixin.js";
+import { registerFormComponent } from "./utils/register.factory.js";
 export default {
   name: "v-formly",
   components: { VFormlyItem },
@@ -71,16 +71,7 @@ export default {
     this.objectMeta = Object.assign({}, this.objectMeta, this.schema);
     this.formData = Object.assign({}, this.formData, this.value);
 
-    // TODO: testing, need to split to new rigister factory file
-    Vue.component("v-object", VObject);
-    Vue.component("v-string", VString);
-    Vue.component("v-boolean", VBoolean);
-    Vue.component("v-array", VArray);
-    Vue.component("v-autocomplete", VAutoComplete);
-    Vue.component("v-checkbox", VCheckbox);
-    Vue.component("v-date", VDate);
-    Vue.component("v-number", VNumber);
-    Vue.component("v-integer", VNumber);
+    this.registerBuildInComponents();
 
     this.globalInstance.schema = this.objectMeta;
     this.globalInstance.formData = this.formData;
@@ -116,6 +107,17 @@ export default {
     },
     getContext(id) {
       return this.globalInstance.context.getContext(id);
+    },
+    registerBuildInComponents() {
+      registerFormComponent("v-object", VObject);
+      registerFormComponent("v-string", VString);
+      registerFormComponent("v-boolean", VBoolean);
+      registerFormComponent("v-array", VArray);
+      registerFormComponent("v-autocomplete", VAutoComplete);
+      registerFormComponent("v-checkbox", VCheckbox);
+      registerFormComponent("v-date", VDate);
+      registerFormComponent("v-number", VNumber);
+      registerFormComponent("v-integer", VNumber);
     },
   },
 };

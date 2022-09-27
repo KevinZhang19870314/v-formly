@@ -34,6 +34,7 @@ export const routes = [
         path: "form",
         component: EmptyLayout,
         redirect: "string",
+        name: "form",
         meta: { title: "Components", icon: "form" },
         children: [
           {

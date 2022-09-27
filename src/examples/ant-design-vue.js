@@ -16,6 +16,7 @@ import {
   InputNumber,
   Menu,
   Layout,
+  Breadcrumb
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -33,4 +34,5 @@ Vue.use(Checkbox);
 Vue.use(DatePicker);
 Vue.use(InputNumber);
 Vue.use(Menu);
-Vue.use(Layout,);
+Vue.use(Layout);
+Vue.use(Breadcrumb);

@@ -42,7 +42,7 @@ export default {
             default: 88888.88,
             ui: { prefix: "$" },
           },
-          increace: {
+          increase: {
             type: "number",
             title: "薪资涨幅",
             default: 30,

@@ -1,6 +1,5 @@
 <template>
-  <div class="wrapper">
-    <h1>v-date</h1>
+  <div>
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
@@ -75,16 +74,4 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-.wrapper {
-  padding: 0 500px;
-  .btns {
-    display: flex;
-    justify-content: flex-end;
-
-    .ant-btn {
-      margin-right: 8px;
-    }
-  }
-}
-</style>
+<style lang="less" scoped></style>
