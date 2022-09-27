@@ -27,6 +27,7 @@ export default {
           month: {
             type: "string",
             title: "月份",
+            default: "May",
             ui: {
               component: "date",
               mode: "month",
