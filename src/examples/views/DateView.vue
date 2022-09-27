@@ -24,11 +24,38 @@ export default {
               showRequired: true,
             },
           },
+          month: {
+            type: "string",
+            title: "月份",
+            ui: {
+              component: "date",
+              mode: "month",
+              valueFormat: "MMMM",
+            },
+          },
+          week: {
+            type: "string",
+            title: "周",
+            ui: {
+              component: "date",
+              mode: "week",
+            },
+          },
+          range: {
+            type: "string",
+            title: "日期范围",
+            ui: {
+              component: "date",
+              mode: "range",
+            },
+          },
           date: {
             type: "string",
             title: "日期",
             ui: {
               component: "date",
+              mode: "date",
+              valueFormat: "X",
             },
           },
         },

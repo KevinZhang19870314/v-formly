@@ -4,6 +4,7 @@
       class="v__date"
       v-if="mode === 'month'"
       v-model="value"
+      :valueFormat="ui.valueFormat"
       :disabled="schema.readOnly"
       :size="ui.size"
       :format="ui.format"
@@ -17,9 +18,65 @@
       @openChange="openChange($event)"
       @change="change"
     ></a-month-picker>
-    <a-month-picker class="v__date" v-if="mode === 'week'"></a-month-picker>
-    <a-month-picker class="v__date" v-if="mode === 'range'"></a-month-picker>
-    <a-month-picker class="v__date" v-if="mode === 'date'"></a-month-picker>
+    <a-week-picker
+      class="v__date"
+      v-if="mode === 'week'"
+      v-model="value"
+      :valueFormat="ui.valueFormat"
+      :disabled="schema.readOnly"
+      :size="ui.size"
+      :format="ui.format"
+      :allowClear="ui.allowClear"
+      :disabledDate="ui.disabledDate"
+      :locale="ui.locale"
+      :placeholder="ui.placeholder"
+      :popupStyle="ui.popupStyle"
+      :dropdownClassName="ui.dropdownClassName"
+      :inputReadOnly="ui.inputReadOnly"
+      @openChange="openChange($event)"
+      @change="change"
+    ></a-week-picker>
+    <a-range-picker
+      class="v__date"
+      v-if="mode === 'range'"
+      v-model="value"
+      :valueFormat="ui.valueFormat"
+      :disabled="schema.readOnly"
+      :size="ui.size"
+      :format="ui.format"
+      :allowClear="ui.allowClear"
+      :disabledDate="ui.disabledDate"
+      :locale="ui.locale"
+      :placeholder="ui.placeholder"
+      :popupStyle="ui.popupStyle"
+      :dropdownClassName="ui.dropdownClassName"
+      :inputReadOnly="ui.inputReadOnly"
+      :disabledTime="ui.disabledTime"
+      :ranges="ui.ranges"
+      :showTime="ui.showTime"
+      @openChange="openChange($event)"
+      @change="change"
+    ></a-range-picker>
+    <a-date-picker
+      class="v__date"
+      v-if="mode === 'date'"
+      v-model="value"
+      :valueFormat="ui.valueFormat"
+      :disabled="schema.readOnly"
+      :size="ui.size"
+      :format="ui.format"
+      :allowClear="ui.allowClear"
+      :disabledDate="ui.disabledDate"
+      :locale="ui.locale"
+      :placeholder="ui.placeholder"
+      :popupStyle="ui.popupStyle"
+      :dropdownClassName="ui.dropdownClassName"
+      :inputReadOnly="ui.inputReadOnly"
+      :showToday="ui.showToday"
+      :showTime="ui.showTime"
+      @ok="ok($event)"
+      @change="change"
+    ></a-date-picker>
   </v-wrapper>
 </template>
 <script>
@@ -60,6 +117,11 @@ export default {
     openChange(status) {
       if (this.ui.openChange) {
         this.ui.openChange(status);
+      }
+    },
+    ok(value) {
+      if (this.ui.ok) {
+        this.ui.ok(value);
       }
     },
   },
