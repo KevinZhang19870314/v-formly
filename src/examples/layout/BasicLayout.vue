@@ -133,8 +133,8 @@ export default {
     .content-wrapper {
       height: 100%;
       background: white;
-      padding: 16px 500px;
-      .btns {
+      padding: 16px 500px 0 200px;
+      ::v-deep .btns {
         display: flex;
         justify-content: flex-end;
 
