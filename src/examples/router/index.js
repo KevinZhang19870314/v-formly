@@ -10,60 +10,89 @@ import CheckboxView from '../views/CheckboxView.vue';
 import DateView from '../views/DateView.vue';
 import NumberView from '../views/NumberView.vue';
 
-Vue.use(VueRouter)
+/* Layout */
+import BasicLayout from "../layout/BasicLayout.vue";
+import EmptyLayout from "../layout/EmptyLayout.vue";
 
-const routes = [
+Vue.use(VueRouter);
+
+export const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "index",
+    component: BasicLayout,
+    redirect: "/home",
+    children: [
+      {
+        path: "home",
+        name: "home",
+        component: HomeView,
+        meta: { title: "Home", icon: "dashboard" },
+      },
+      {
+        path: "form",
+        component: EmptyLayout,
+        redirect: "string",
+        meta: { title: "Widgets", icon: "form" },
+        children: [
+          {
+            path: "string",
+            name: "string",
+            component: StringView,
+            meta: { title: "String" },
+          },
+          {
+            path: "boolean",
+            name: "boolean",
+            component: BooleanView,
+            meta: { title: "Boolean" },
+          },
+          {
+            path: "object",
+            name: "object",
+            component: ObjectView,
+            meta: { title: "Object" },
+          },
+          {
+            path: "array",
+            name: "array",
+            component: ArrayView,
+            meta: { title: "Array" },
+          },
+          {
+            path: "autoComplete",
+            name: "autoComplete",
+            component: AutoCompleteView,
+            meta: { title: "AutoComplete" },
+          },
+          {
+            path: "checkbox",
+            name: "checkbox",
+            component: CheckboxView,
+            meta: { title: "Checkbox" },
+          },
+          {
+            path: 'date',
+            name: 'date',
+            component: DateView,
+            meta: { title: "Date" },
+          },
+          {
+            path: 'number',
+            name: 'number',
+            component: NumberView,
+            meta: { title: "Number" },
+          },
+        ],
+      },
+    ],
   },
-  {
-    path: '/string',
-    name: 'string',
-    component: StringView
-  },
-  {
-    path: '/boolean',
-    name: 'boolean',
-    component: BooleanView
-  },
-  {
-    path: '/object',
-    name: 'object',
-    component:ObjectView
-  },
-  {
-    path: '/array',
-    name: 'array',
-    component: ArrayView
-  },
-  {
-    path: '/autoComplete',
-    name: 'autoComplete',
-    component: AutoCompleteView
-  },
-  {
-    path: '/checkbox',
-    name: 'checkbox',
-    component: CheckboxView
-  },
-  {
-    path: '/date',
-    name: 'date',
-    component: DateView
-  },
-  {
-    path: '/number',
-    name: 'number',
-    component: NumberView
-  },
-]
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

@@ -13,7 +13,9 @@ import {
   Select,
   Checkbox,
   DatePicker,
-  InputNumber
+  InputNumber,
+  Menu,
+  Layout,
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -30,3 +32,5 @@ Vue.use(Select);
 Vue.use(Checkbox);
 Vue.use(DatePicker);
 Vue.use(InputNumber);
+Vue.use(Menu);
+Vue.use(Layout,);
