@@ -16,6 +16,7 @@ import EmptyLayout from "../layout/EmptyLayout.vue";
 
 Vue.use(VueRouter);
 
+// 参考 https://pro.antdv.com/docs/router-and-nav
 export const routes = [
   {
     path: "/",
@@ -33,7 +34,7 @@ export const routes = [
         path: "form",
         component: EmptyLayout,
         redirect: "string",
-        meta: { title: "Widgets", icon: "form" },
+        meta: { title: "Components", icon: "form" },
         children: [
           {
             path: "string",

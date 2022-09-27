@@ -3,6 +3,7 @@
     v-model="collapsed"
     :collapsible="collapsible"
     :trigger="null"
+    :theme="theme"
   >
     <s-menu
       :collapsed="collapsed"
@@ -30,7 +31,7 @@ export default {
     theme: {
       type: String,
       required: false,
-      default: "dark",
+      default: "light",
     },
     collapsible: {
       type: Boolean,
