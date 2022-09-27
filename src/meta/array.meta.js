@@ -16,23 +16,27 @@ class ArrayMeta {
   }
 
   set value(val) {
+    // 只允许设置 null / undefined / Array 类型的值
+    if (!Array.isArray(val) && val != null) return;
     const len = this.ids.length;
     // 从后往前删除
     for (let i = 0; i < len; i++) {
       this.remove(len - i - 1);
     }
-    if (!Array.isArray(val) || val.length === 0) return;
-
-    val.forEach(() => this.add());
-    Vue.nextTick(() => {
-      val.forEach((data, index) => {
-        const ctx = this.state.context.getContext(`${this.id}/${index}`);
-        ctx.value = data;
+    if (val.length) {
+      val.forEach(() => this.add({ validate: false }));
+      this.validate();
+      Vue.nextTick(() => {
+        val.forEach((data, index) => {
+          const ctx = this.state.context.getContext(`${this.id}/${index}`);
+          ctx.value = data;
+        });
       });
-    });
+    }
   }
 
   validate() {
+    // 仅对 array 做 minItems/maxItems 校验
     return this.state.validate.runValidation(this);
   }
 
@@ -68,13 +72,13 @@ class ArrayMeta {
   }
 
   // 在数组尾添加一个空对象
-  add() {
+  add({ validate } = { validate: true }) {
     const id = `${this.id}/${this.ids.length}`;
     const value = this.getEmptyData();
     this.state.updateObjProp(this.state.formData, id, value);
     this.ids.push({ key: UUID() });
 
-    this.validate();
+    validate && this.validate();
     return id;
   }
 
