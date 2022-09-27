@@ -1,5 +1,5 @@
 <template>
-  <div class="wapper">
+  <div>
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
@@ -127,17 +127,4 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-.wapper {
-  padding: 0 100px;
-
-  .btns {
-    display: flex;
-    justify-content: flex-end;
-
-    .ant-btn {
-      margin-right: 8px;
-    }
-  }
-}
-</style>
+<style lang="less" scoped></style>
