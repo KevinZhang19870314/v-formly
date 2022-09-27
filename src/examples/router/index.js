@@ -7,6 +7,7 @@ import ObjectView from '../views/ObjectView.vue'
 import ArrayView from '../views/ArrayView.vue'
 import AutoCompleteView from '../views/AutoCompleteView.vue'
 import CheckboxView from '../views/CheckboxView.vue';
+import DateView from '../views/DateView.vue';
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/checkbox',
     name: 'checkbox',
     component: CheckboxView
+  },
+  {
+    path: '/date',
+    name: 'date',
+    component: DateView
   },
   // {
   //   path: '/about',

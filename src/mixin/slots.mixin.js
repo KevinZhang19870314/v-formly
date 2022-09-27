@@ -2,6 +2,7 @@ export const slotsMixin = {
     data() {
         return {
             slotsName: [],
+            slotNameStartWith: "slotName"   // slot name 必须以“slotName”开头，否则搜索不到
         };
     },
     created() {
@@ -25,8 +26,13 @@ export const slotsMixin = {
 
                     break;
                 default:
-                    if (meta.ui && meta.ui.slotName) {
-                        this.slotsName.push(meta.ui.slotName);
+                    if (meta.ui) {
+                        const keys = Object.keys(meta.ui).filter(f => f.startsWith(this.slotNameStartWith));
+                        if (keys && keys.length > 0) {
+                            keys.forEach(key => {
+                                this.slotsName.push(meta.ui[key]);
+                            });
+                        }
                     }
                     break;
             }

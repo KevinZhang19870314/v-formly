@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1>v-checkbox</h1>
+    <h1>v-date</h1>
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
@@ -24,45 +24,11 @@ export default {
               showRequired: true,
             },
           },
-          fruits: {
-            title: "水果",
+          date: {
             type: "string",
-            enum: ["Apple", "Pera", "Orange"],
-            default: ["Orange"],
+            title: "日期",
             ui: {
-              component: "checkbox",
-            },
-          },
-          fruits1: {
-            title: "水果1",
-            type: "string",
-            enum: [
-              { label: "Apple", value: "Apple" },
-              { label: "Pera", value: "Pera" },
-              { label: "Orange", value: "Orange" },
-            ],
-            default: ["Apple"],
-            ui: {
-              component: "checkbox",
-            },
-          },
-          colors: {
-            title: "颜色",
-            type: "string",
-            enum: [
-              "Red",
-              "Orange",
-              "Yellow",
-              "Green",
-              "Blue",
-              "Purple",
-              "White",
-              "Black",
-            ],
-            default: ["Yellow", "White"],
-            ui: {
-              component: "checkbox",
-              span: 4,
+              component: "date",
             },
           },
         },

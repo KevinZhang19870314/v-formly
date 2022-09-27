@@ -46,7 +46,7 @@ export default {
             ui: {
               component: "autocomplete",
               placeholder: "auto complete",
-              slotName: "datasource", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
+              slotNameOfDataSource: "datasource", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
               dataSource: [],
               handleSearch: function (value) {
                 console.log(value);
@@ -63,7 +63,7 @@ export default {
                 ui: {
                   component: "autocomplete",
                   placeholder: "auto complete 1",
-                  slotName: "datasource1", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
+                  slotNameOfDataSource: "datasource1", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
                   dataSource: [],
                   handleSearch: function (value) {
                     console.log(value);
@@ -80,7 +80,7 @@ export default {
                     ui: {
                       component: "autocomplete",
                       placeholder: "auto complete 2",
-                      slotName: "datasource2", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
+                      slotNameOfDataSource: "datasource2", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
                       dataSource: [],
                       handleSearch: function (value) {
                         console.log(value);

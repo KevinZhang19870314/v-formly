@@ -11,7 +11,8 @@ import {
   Switch,
   AutoComplete,
   Select,
-  Checkbox
+  Checkbox,
+  DatePicker
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -26,3 +27,4 @@ Vue.use(Switch);
 Vue.use(AutoComplete);
 Vue.use(Select);
 Vue.use(Checkbox);
+Vue.use(DatePicker);

@@ -7,11 +7,11 @@
       :filterOption="ui.filterOption"
       :backfill="ui.backfill"
       v-model="value"
-      :data-source="ui.slotName ? null : ui.dataSource"
+      :data-source="ui.slotNameOfDataSource ? null : ui.dataSource"
       @search="handleSearch"
     >
-      <template v-if="ui.slotName" v-slot:dataSource>
-        <slot :name="ui.slotName"></slot>
+      <template v-if="ui.slotNameOfDataSource" v-slot:dataSource>
+        <slot :name="ui.slotNameOfDataSource"></slot>
       </template>
     </a-auto-complete>
   </v-wrapper>
