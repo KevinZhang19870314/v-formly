@@ -8,7 +8,8 @@
       <router-link to="/array">Array</router-link> |
       <router-link to="/autoComplete">AutoComplete</router-link> |
       <router-link to="/checkbox">Checkbox</router-link> |
-      <router-link to="/date">Date</router-link>
+      <router-link to="/date">Date</router-link> |
+      <router-link to="/number">Number</router-link>
     </nav>
     <router-view />
   </div>

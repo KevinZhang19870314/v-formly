@@ -28,6 +28,7 @@ import VArray from "@/components/Array.vue";
 import VAutoComplete from "@/components/AutoComplete.vue";
 import VCheckbox from "@/components/Checkbox.vue";
 import VDate from "@/components/Date.vue";
+import VNumber from "@/components/Number.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
@@ -78,6 +79,8 @@ export default {
     Vue.component("v-autocomplete", VAutoComplete);
     Vue.component("v-checkbox", VCheckbox);
     Vue.component("v-date", VDate);
+    Vue.component("v-number", VNumber);
+    Vue.component("v-integer", VNumber);
 
     this.globalInstance.schema = this.objectMeta;
     this.globalInstance.formData = this.formData;

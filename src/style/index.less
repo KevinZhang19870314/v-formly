@@ -63,6 +63,19 @@
       }
     }
 
+    // Number
+    &__number {
+      &.@{ant-prefix}-input-number {
+        width: 100%;
+
+        &@{v-prefix}__input-number-hidden-step {
+          .@{ant-prefix}-input-number-handler-wrap {
+            display: none;
+          }
+        }
+      }
+    }
+
     // Object
     &__object {
       &-card {

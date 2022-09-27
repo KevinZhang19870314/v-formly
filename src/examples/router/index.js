@@ -8,6 +8,7 @@ import ArrayView from '../views/ArrayView.vue'
 import AutoCompleteView from '../views/AutoCompleteView.vue'
 import CheckboxView from '../views/CheckboxView.vue';
 import DateView from '../views/DateView.vue';
+import NumberView from '../views/NumberView.vue';
 
 Vue.use(VueRouter)
 
@@ -52,14 +53,11 @@ const routes = [
     name: 'date',
     component: DateView
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // }
+  {
+    path: '/number',
+    name: 'number',
+    component: NumberView
+  },
 ]
 
 const router = new VueRouter({
