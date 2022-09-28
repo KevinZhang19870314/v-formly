@@ -16,7 +16,8 @@ import {
   InputNumber,
   Menu,
   Layout,
-  Breadcrumb
+  Breadcrumb,
+  TimePicker
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -36,3 +37,4 @@ Vue.use(InputNumber);
 Vue.use(Menu);
 Vue.use(Layout);
 Vue.use(Breadcrumb);
+Vue.use(TimePicker);

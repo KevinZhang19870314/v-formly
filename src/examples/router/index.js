@@ -9,6 +9,7 @@ import AutoCompleteView from '../views/AutoCompleteView.vue'
 import CheckboxView from '../views/CheckboxView.vue';
 import DateView from '../views/DateView.vue';
 import NumberView from '../views/NumberView.vue';
+import TimeView from '../views/TimeView.vue';
 
 /* Layout */
 import BasicLayout from "../layout/BasicLayout.vue";
@@ -84,6 +85,12 @@ export const routes = [
             name: 'number',
             component: NumberView,
             meta: { title: "Number" },
+          },
+          {
+            path: 'time',
+            name: 'time',
+            component: TimeView,
+            meta: { title: "Time" },
           },
         ],
       },

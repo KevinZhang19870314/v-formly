@@ -9,9 +9,9 @@
       }"
     >
       <v-formly-item id="root" :meta="objectMeta">
-        <template v-for="slotName in slotsName" v-slot:[slotName]>
-          <slot :name="slotName">
-            {{ "formly-item inner 123" }}
+        <template v-for="slotName in slotsName" v-slot:[slotName]="{context}">
+          <slot :name="slotName" v-bind:context="context">
+            {{ "formly slot" + JSON.stringify(context) }}
           </slot>
         </template>
       </v-formly-item>
@@ -28,6 +28,7 @@ import VAutoComplete from "@/components/AutoComplete.vue";
 import VCheckbox from "@/components/Checkbox.vue";
 import VDate from "@/components/Date.vue";
 import VNumber from "@/components/Number.vue";
+import VTime from "@/components/Time.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
@@ -118,6 +119,7 @@ export default {
       registerFormComponent("v-date", VDate);
       registerFormComponent("v-number", VNumber);
       registerFormComponent("v-integer", VNumber);
+      registerFormComponent("v-time", VTime);
     },
   },
 };

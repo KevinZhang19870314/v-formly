@@ -13,7 +13,7 @@
       </template>
       <template v-slot:datasource2>
         <a-select-option v-for="email in result2" :key="email">
-          {{ email }}
+          {{ email + '_test' }}
         </a-select-option>
       </template>
     </v-formly>

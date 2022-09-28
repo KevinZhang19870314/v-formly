@@ -13,6 +13,9 @@
       <template v-if="ui.slotNameOfDataSource" v-slot:dataSource>
         <slot :name="ui.slotNameOfDataSource"></slot>
       </template>
+      <template v-if="ui.slotNameOfDefault" v-slot:default>
+        <slot :name="ui.slotNameOfDefault"></slot>
+      </template>
     </a-auto-complete>
   </v-wrapper>
 </template>
