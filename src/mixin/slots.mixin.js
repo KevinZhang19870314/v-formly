@@ -6,6 +6,9 @@ export const slotsMixin = {
         };
     },
     created() {
+        if (this.schema && !this.schema.type) {
+            this.schema.type = 'object';
+        }
         this.getSlotsNameFromMeta(this.meta || this.schema);
     },
     methods: {

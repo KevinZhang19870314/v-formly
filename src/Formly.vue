@@ -29,6 +29,7 @@ import VCheckbox from "@/components/Checkbox.vue";
 import VDate from "@/components/Date.vue";
 import VNumber from "@/components/Number.vue";
 import VTime from "@/components/Time.vue";
+import VText from "@/components/Text.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
@@ -68,7 +69,6 @@ export default {
 
     console.log("formly created");
     this.globalInstance.layout = this.layout;
-    this.schema.type = "object";
     this.objectMeta = Object.assign({}, this.objectMeta, this.schema);
     this.formData = Object.assign({}, this.formData, this.value);
 
@@ -89,6 +89,7 @@ export default {
     initFormData(formData, properties) {
       Object.keys(properties).forEach((key) => {
         const meta = properties[key];
+        if (meta.type === "null") return; 
         switch (meta.type) {
           case "object":
             formData[key] = formData[key] || {};
@@ -120,6 +121,7 @@ export default {
       registerFormComponent("v-number", VNumber);
       registerFormComponent("v-integer", VNumber);
       registerFormComponent("v-time", VTime);
+      registerFormComponent("v-text", VText);
     },
   },
 };

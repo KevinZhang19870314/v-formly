@@ -7,28 +7,16 @@
       <!-- layout header -->
       <a-layout-header class="layout-header">
         <a-icon
-          class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="() => (collapsed = !collapsed)"
         />
+        <a-icon type="reload" @click="reload" />
       </a-layout-header>
       <!-- layout content -->
       <a-layout-content class="layout-content">
         <transition name="fade-transform" mode="out-in">
-          <div class="wrapper">
-            <a-breadcrumb class="breadcrumb" :routes="r">
-              <template slot="itemRender" slot-scope="{ route, routes, paths }">
-                <span v-if="routes.indexOf(route) === routes.length - 1">
-                  {{ route.name }}
-                </span>
-                <router-link v-else :to="`${basePath}/${paths.join('/')}`">
-                  {{ route.name }}
-                </router-link>
-              </template>
-            </a-breadcrumb>
-            <div class="content-wrapper">
-              <router-view :key="key" />
-            </div>
+          <div class="content-wrapper">
+            <router-view :key="key" />
           </div>
         </transition>
       </a-layout-content>
@@ -92,6 +80,12 @@ export default {
 
       return nodes;
     },
+    reload() {
+      const { fullPath } = this.$route;
+      this.$router.replace({
+        path: "/redirect" + fullPath,
+      });
+    },
   },
 };
 </script>
@@ -100,47 +94,38 @@ export default {
 .app-layout {
   min-height: 100vh;
 
-  .trigger {
-    font-size: 18px;
-    padding: 0 24px;
-    cursor: pointer;
-    transition: color 0.3s;
-    &:hover {
-      color: #1890ff;
-    }
-  }
-
   .layout-header {
-    background: #fff;
-    padding: 0;
     display: flex;
     align-items: center;
+    padding: 0 0 0 24px ;
+    background: #fff;
+    i {
+      font-size: 18px;
+      padding-right: 24px;
+      cursor: pointer;
+      transition: color 0.3s;
+      &:hover {
+        color: #1890ff;
+      }
+    }
   }
 
   .layout-content {
     position: relative;
     height: 100%;
-    margin: 24px 24px 0;
+    margin: 24px;
   }
 
-  .wrapper {
-    height: calc(~"100vh - 165px");
-    .breadcrumb {
-      background: white;
-      padding: 16px;
-    }
+  .content-wrapper {
+    height: 100%;
+    background: white;
+    padding: 24px 500px 24px 200px;
+    ::v-deep .btns {
+      display: flex;
+      justify-content: flex-end;
 
-    .content-wrapper {
-      height: 100%;
-      background: white;
-      padding: 16px 500px 0 200px;
-      ::v-deep .btns {
-        display: flex;
-        justify-content: flex-end;
-
-        .ant-btn {
-          margin-right: 8px;
-        }
+      .ant-btn {
+        margin-right: 8px;
       }
     }
   }

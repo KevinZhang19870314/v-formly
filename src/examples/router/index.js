@@ -10,6 +10,8 @@ import CheckboxView from '../views/CheckboxView.vue';
 import DateView from '../views/DateView.vue';
 import NumberView from '../views/NumberView.vue';
 import TimeView from '../views/TimeView.vue';
+import TextView from '../views/TextView.vue';
+import redirect from '../layout/components/redirect.vue';
 
 /* Layout */
 import BasicLayout from "../layout/BasicLayout.vue";
@@ -19,6 +21,16 @@ Vue.use(VueRouter);
 
 // 参考 https://pro.antdv.com/docs/router-and-nav
 export const routes = [
+  {
+    path: '/redirect',
+    component: EmptyLayout,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: redirect
+      }
+    ]
+  },
   {
     path: "/",
     name: "index",
@@ -91,6 +103,12 @@ export const routes = [
             name: 'time',
             component: TimeView,
             meta: { title: "Time" },
+          },
+          {
+            path: 'text',
+            name: 'text',
+            component: TextView,
+            meta: { title: "Text" },
           },
         ],
       },
