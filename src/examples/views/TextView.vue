@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-formly ref="form" v-model="data" :schema="schema" layout="horizontal">
-      <template v-slot:xxx>
-        <h1 style="color: green">I am Text xxx</h1>
+      <template v-slot:testSlot>
+        <h1 style="color: green">I am Text testSlot</h1>
       </template>
     </v-formly>
     <div class="btns">
@@ -57,7 +57,7 @@ export default {
             type: "null",
             ui: {
               component: "text",
-              slotNameOfDefault: "xxx",  // slot
+              slotNameOfDefault: "testSlot",  // slot
               html: `<h1 style="color: red">I am Text</h1>`,
               text: "default text",
               offsetControl: 5,

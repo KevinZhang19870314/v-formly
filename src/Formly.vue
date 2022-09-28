@@ -69,7 +69,6 @@ export default {
 
     console.log("formly created");
     this.globalInstance.layout = this.layout;
-    this.schema.type = "object";
     this.objectMeta = Object.assign({}, this.objectMeta, this.schema);
     this.formData = Object.assign({}, this.formData, this.value);
 
