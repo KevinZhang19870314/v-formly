@@ -1,8 +1,5 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../../assets/logo.png" />
-    <!-- 'horizontal','vertical','inline' -->
-    <h1>horizontal</h1>
+  <div>
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
       <!-- <template v-slot:datasource>
         Auto Complete
@@ -293,20 +290,4 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-.home {
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  padding: 0 500px;
-
-  .btns {
-    display: flex;
-    justify-content: flex-end;
-
-    .ant-btn {
-      margin-right: 8px;
-    }
-  }
-}
-</style>
+<style lang="less" scoped></style>
