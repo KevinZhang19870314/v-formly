@@ -5,6 +5,8 @@ class BaseMeta {
         this.id = id;
         this.state = state;
         this.type = type;
+        // TODO:可能需要一个getter/setter，setter需要判断是否有错误，有错误才设置上去
+        this.error = undefined;
         state.context.addContext(id, this);
         this._value = undefined;
     }

@@ -49,8 +49,9 @@ export default {
   },
   data() {
     return {
-      error: "",
+      // error: "",
       layout: this.state.layout,
+      context: this.state.context.getContext(this.id),
     };
   },
   computed: {
@@ -73,6 +74,14 @@ export default {
       return this.layout === "vertical"
         ? null
         : { span: this.ui.spanControl, offset: this.ui.offsetControl || 0 };
+    },
+    error: {
+      get() {
+        return this.context.error;
+      },
+      set(val) {
+        this.context.error = val;
+      },
     },
   },
   created() {

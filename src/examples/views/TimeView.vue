@@ -11,7 +11,7 @@
       </template>
     </v-formly>
     <div class="btns">
-      <a-button type="primary" @click="printData"> 打印FormData </a-button>
+      <a-button type="primary" @click="printData"> 提交 </a-button>
     </div>
   </div>
 </template>

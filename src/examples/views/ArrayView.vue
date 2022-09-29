@@ -3,7 +3,7 @@
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
-      <a-button type="primary" @click="printData"> 打印FormData </a-button>
+      <a-button type="primary" @click="printData"> 提交 </a-button>
       <a-button type="primary" @click="set(100)"> add more</a-button>
       <a-button type="primary" @click="add"> add one</a-button>
       <a-button type="primary" @click="clear"> clear </a-button>
