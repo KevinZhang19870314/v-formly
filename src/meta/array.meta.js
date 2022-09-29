@@ -37,7 +37,7 @@ class ArrayMeta {
 
   validate() {
     // 仅对 array 做 minItems/maxItems 校验
-    return this.state.validate.runValidation(this);
+    return this.state.validate.runValidationFormItem(this);
   }
 
   getPathValue(sourceData, path) {

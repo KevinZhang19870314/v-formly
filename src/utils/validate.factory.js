@@ -37,7 +37,7 @@ class ValidateFactory {
         return { valid, validate };
     }
 
-    validateForm() {
+    runValidateForm() {
         const { valid, validate } = this._isAjvValid();
         const contexts = this.state.context.getContexts();
         const instances = contexts.values();
@@ -48,7 +48,7 @@ class ValidateFactory {
         return valid;
     }
 
-    runValidation(context) {
+    runValidationFormItem(context) {
         const { valid, validate } = this._isAjvValid();
         this._validation(context, valid, validate);
         return valid;

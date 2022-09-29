@@ -34,7 +34,7 @@ class BaseMeta {
         });
 
         this.state.updateObjProp(this.state.formData, this.id, val);
-        this.state.validate.runValidation(this);
+        this.state.validate.runValidationFormItem(this);
     }
 }
 
