@@ -1,14 +1,16 @@
 import Vue from "vue";
 import { UUID, deepClone } from "@/utils/utils";
+import { BaseMeta } from "./base.meta";
 
-class ArrayMeta {
+class ArrayMeta extends BaseMeta {
   constructor(state, id, meta) {
-    this.state = state;
-    this.id = id;
-    this.meta = meta;
+    super(state, id, meta);
+    // this.state = state;
+    // this.id = id;
+    // this.meta = meta;
     this.ids = [];
 
-    state.context.addContext(id, this);
+    // state.context.addContext(id, this);
   }
 
   get value() {

@@ -3,6 +3,7 @@
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
+      <a-button type="primary" @click="setFormat"> 设置规格 </a-button>
       <a-button type="primary" @click="printData"> 提交 </a-button>
     </div>
   </div>
@@ -95,6 +96,13 @@ export default {
       let valid = this.$refs.form.validate();
       if (valid) {
         console.log(this.data);
+      }
+    },
+    setFormat() {
+      const context = this.$refs.form.getContext("multiple");
+      if (context) {
+        context.ui.options = ["上", "右", "下", "左"];
+        context.value = "下";
       }
     },
   },

@@ -6,6 +6,9 @@ class BaseMeta {
         this.state = state;
         this.meta = meta;
         this.type = type;
+        this.ui = Object.assign({}, this.state.ui, this.meta.ui);
+        this.schema = this.meta || {};
+
         // TODO:可能需要一个getter/setter，setter需要判断是否有错误，有错误才设置上去
         this.error = undefined;
         state.context.addContext(id, this);

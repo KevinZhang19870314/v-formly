@@ -9,7 +9,7 @@
       }"
     >
       <v-formly-item id="root" :meta="objectMeta">
-        <template v-for="slotName in slotsName" v-slot:[slotName]="{context}">
+        <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
           <slot :name="slotName" v-bind:context="context">
             {{ "formly slot" + JSON.stringify(context) }}
           </slot>
@@ -91,7 +91,7 @@ export default {
     initFormData(formData, properties) {
       Object.keys(properties).forEach((key) => {
         const meta = properties[key];
-        if (meta.type === "null") return; 
+        if (meta.type === "null") return;
         switch (meta.type) {
           case "object":
             formData[key] = formData[key] || {};
@@ -112,8 +112,8 @@ export default {
     getContext(id) {
       return this.globalInstance.context.getContext(id);
     },
-    validate() {
-      return this.globalInstance.validate.runValidateForm();
+    async validate() {
+      return await this.globalInstance.validate.runValidateForm();
     },
     registerBuildInComponents() {
       registerFormComponent("v-object", VObject);

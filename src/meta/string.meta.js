@@ -1,9 +1,8 @@
 import { BaseMeta } from "./base.meta";
 class StringMeta extends BaseMeta {
   constructor(state, id, meta) {
-    super(state, id);
+    super(state, id, meta);
 
-    this.meta = meta;
     if (this.meta) {
       this.open = (this.meta.ui && this.meta.ui.open) || false;
     }

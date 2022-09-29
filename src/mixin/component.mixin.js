@@ -9,10 +9,12 @@ export const componentMixin = {
     },
     computed: {
         ui: function () {
-            return Object.assign({}, this.state.ui, this.meta.ui);
+            // return Object.assign({}, this.state.ui, this.meta.ui);
+            return this.context.ui;
         },
         schema: function () {
-            return this.meta || {};
+            // return this.meta || {};
+            return this.context.schema;
         },
     },
     methods: {

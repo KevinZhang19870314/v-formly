@@ -3,6 +3,7 @@
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
+      <a-button type="primary" @click="setName0"> 设置名称0 </a-button>
       <a-button type="primary" @click="printData"> 提交 </a-button>
       <a-button type="primary" @click="set(100)"> add more</a-button>
       <a-button type="primary" @click="add"> add one</a-button>
@@ -95,7 +96,16 @@ export default {
   },
   methods: {
     printData() {
-      console.log(this.data);
+      let valid = this.$refs.form.validate();
+      if (valid) {
+        console.log(this.data);
+      }
+    },
+    setName0() {
+      const context = this.$refs.form.getContext("/product/0/name");
+      if (context) {
+        context.value = "kevin zhang";
+      }
     },
     clear() {
       const ctx = this.$refs.form.getContext("product");

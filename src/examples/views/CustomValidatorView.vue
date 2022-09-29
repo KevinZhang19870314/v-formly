@@ -42,7 +42,7 @@ export default {
               validatorAsync: (val) => {
                 return new Promise((resolve) => {
                   setTimeout(() => {
-                    return resolve(
+                    resolve(
                       !val
                         ? [
                             {
@@ -67,10 +67,10 @@ export default {
     VFormly,
   },
   methods: {
-    printData() {
-      let valid = this.$refs.form.validate();
+    async printData() {
+      const valid = await this.$refs.form.validate();
       if (valid) {
-        console.log(this.data);
+        console.log(valid, this.data);
       }
     },
   },
