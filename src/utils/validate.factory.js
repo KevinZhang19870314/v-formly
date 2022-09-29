@@ -9,6 +9,23 @@ class ValidateFactory {
         this._validate = null;
     }
 
+    async runValidateForm() {
+        const { valid, errors } = this._isAjvValid();
+        const contexts = this.state.context.getContexts();
+        const instances = contexts.values();
+        for (const instance of instances) {
+            await this._validation(instance, valid, errors);
+        }
+
+        return valid;
+    }
+
+    async runValidationFormItem(context) {
+        const { valid, errors } = this._isAjvValid();
+        await this._validation(context, valid, errors);
+        return valid;
+    }
+
     _ajvValidate(schema) {
         if (this._validate) return this._validate;
 
@@ -37,28 +54,13 @@ class ValidateFactory {
         return { valid, errors: validate.errors };
     }
 
-    runValidateForm() {
-        const { valid, errors } = this._isAjvValid();
-        const contexts = this.state.context.getContexts();
-        const instances = contexts.values();
-        for (const instance of instances) {
-            this._validation(instance, valid, errors);
-        }
-
-        return valid;
-    }
-
-    runValidationFormItem(context) {
-        const { valid, errors } = this._isAjvValid();
-        this._validation(context, valid, errors);
-        return valid;
-    }
-
-    _validation(context, valid, errs) {
+    async _validation(context, valid, errs) {
         let errors = [];
         if (!valid) {
             const customErrors = this._getCustomError(context);
-            this._replaceWithCustomErrors(context.id, errs, customErrors);
+            const customAsyncErrors = await this._getCustomAsyncError(context);
+            const cusErrors = [...customErrors, ...customAsyncErrors];
+            this._replaceWithCustomErrors(context.id, errs, cusErrors);
             const ingoreKeywords = this.state.ui.ingoreKeywords || [];
             errors = errs.filter(f => ingoreKeywords.indexOf(f.keyword) === -1);
             const error = this._getAjvError(context.id, errors);
@@ -81,9 +83,11 @@ class ValidateFactory {
         return validator(context.value);
     }
 
-    _getCustomAsyncError(context) {
-        console.log(context);
-        // TODO
+    async _getCustomAsyncError(context) {
+        const validatorAsync = (context.meta.ui && context.meta.ui.validatorAsync);
+        if (!validatorAsync) return [];
+
+        return await validatorAsync(context.value);
     }
 
     _replaceWithCustomErrors(id, errors, customErrors) {

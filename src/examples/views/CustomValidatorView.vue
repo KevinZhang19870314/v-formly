@@ -34,8 +34,31 @@ export default {
                 !val ? [{ keyword: "required", message: "Required desc" }] : [],
             },
           },
+          asyncError: {
+            title: "异步错误（2秒）",
+            type: "string",
+            ui: {
+              showRequired: true,
+              validatorAsync: (val) => {
+                return new Promise((resolve) => {
+                  setTimeout(() => {
+                    return resolve(
+                      !val
+                        ? [
+                            {
+                              keyword: "required",
+                              message: "Required asyncError",
+                            },
+                          ]
+                        : []
+                    );
+                  }, 2000);
+                });
+              },
+            },
+          },
         },
-        required: ["name", "desc"],
+        required: ["name", "desc", "asyncError"],
       },
       data: { name: "kevin zhang" },
     };
