@@ -81,7 +81,7 @@
 </template>
 <script>
 import VWrapper from "./Wrapper.vue";
-import { DateMeta } from "../meta/date.meta.js";
+import { BaseMeta } from "../meta/base.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-date",
@@ -89,7 +89,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new DateMeta(this.state, this.id),
+      context: new BaseMeta(this.state, this.id),
     };
   },
   computed: {

@@ -31,7 +31,7 @@
 </template>
 <script>
 import VWrapper from "./Wrapper.vue";
-import { CheckboxMeta } from "../meta/checkbox.meta.js";
+import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-checkbox",
@@ -39,7 +39,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new CheckboxMeta(this.state, this.id),
+      context: new StringMeta(this.state, this.id),
     };
   },
   computed: {

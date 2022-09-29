@@ -30,8 +30,8 @@
       :use12Hours="ui.use12Hours"
       :valueFormat="ui.valueFormat"
       :value="ui.value"
-      @change="context.change"
-      @openChange="context.openChange"
+      @change="change"
+      @openChange="openChange"
     >
       <template v-if="ui.slotNameOfAddon" v-slot:addon>
         <slot :name="ui.slotNameOfAddon" v-bind:context="context"></slot>
@@ -73,8 +73,8 @@
       :clearIcon="ui.slotNameOfClearIcon ? undefined : ui.clearIcon"
       :use12Hours="ui.use12Hours"
       :valueFormat="ui.valueFormat"
-      @change="context.change"
-      @openChange="context.openChange"
+      @change="change"
+      @openChange="openChange"
     >
       <template v-if="ui.slotNameOfAddon" v-slot:addon>
         <slot :name="ui.slotNameOfAddon" v-bind:context="context"></slot>
@@ -90,7 +90,7 @@
 </template>
 <script>
 import VWrapper from "./Wrapper.vue";
-import { TimeMeta } from "../meta/time.meta.js";
+import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-time",
@@ -98,7 +98,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new TimeMeta(this.state, this.id, this.meta),
+      context: new StringMeta(this.state, this.id, this.meta),
     };
   },
   computed: {
@@ -113,6 +113,20 @@ export default {
   },
   mounted() {
     this.applyInitValue();
+  },
+  methods: {
+    openChange(open) {
+      this.context.open = open;
+
+      if (this.ui && this.ui.openChange) {
+        this.ui.openChange(open);
+      }
+    },
+    change(time, timeString) {
+      if (this.ui && this.ui.change) {
+        this.ui.change(time, timeString);
+      }
+    },
   },
 };
 </script>

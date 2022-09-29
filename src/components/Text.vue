@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import { TextMeta } from "../meta/text.meta.js";
+import { BaseMeta } from "../meta/base.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-text",
@@ -36,7 +36,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new TextMeta(this.state, this.id),
+      context: new BaseMeta(this.state, this.id),
       displayValue: "",
     };
   },

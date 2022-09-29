@@ -21,7 +21,7 @@
 </template>
 <script>
 import VWrapper from "./Wrapper.vue";
-import { AutoCompleteMeta } from "../meta/autocomplete.meta.js";
+import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-autocomplete",
@@ -29,7 +29,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new AutoCompleteMeta(this.state, this.id),
+      context: new StringMeta(this.state, this.id),
     };
   },
   computed: {

@@ -34,6 +34,7 @@ export default {
           time: {
             title: "12小时制",
             type: "string",
+            default: "08:12:12",
             ui: {
               component: "time",
               valueFormat: "hh:mm:ss",
