@@ -34,33 +34,33 @@ class ValidateFactory {
         const validate = this._ajvValidate(this.state.schema);
         const valid = validate(this.state.formData);
 
-        return { valid, validate };
+        return { valid, errors: validate.errors };
     }
 
     runValidateForm() {
-        const { valid, validate } = this._isAjvValid();
+        const { valid, errors } = this._isAjvValid();
         const contexts = this.state.context.getContexts();
         const instances = contexts.values();
         for (const instance of instances) {
-            this._validation(instance, valid, validate);
+            this._validation(instance, valid, errors);
         }
 
         return valid;
     }
 
     runValidationFormItem(context) {
-        const { valid, validate } = this._isAjvValid();
-        this._validation(context, valid, validate);
+        const { valid, errors } = this._isAjvValid();
+        this._validation(context, valid, errors);
         return valid;
     }
 
-    _validation(context, valid, validate) {
+    _validation(context, valid, errs) {
         let errors = [];
         if (!valid) {
             const customErrors = this._getCustomError(context);
-            this._replaceWithCustomErrors(context.id, validate.errors, customErrors);
+            this._replaceWithCustomErrors(context.id, errs, customErrors);
             const ingoreKeywords = this.state.ui.ingoreKeywords || [];
-            errors = validate.errors.filter(f => ingoreKeywords.indexOf(f.keyword) === -1);
+            errors = errs.filter(f => ingoreKeywords.indexOf(f.keyword) === -1);
             const error = this._getAjvError(context.id, errors);
             Vue.bus.emit(FORM_ERROR_CHANGE, {
                 id: context.id,
