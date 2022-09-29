@@ -93,7 +93,7 @@ export default {
   methods: {
     formErrorChangeCallback(err) {
       if (err.id === this.id) {
-        this.error = err.error ? err.error.keyword : undefined;
+        this.error = err.error ? err.error.message : undefined;
       }
     },
   },

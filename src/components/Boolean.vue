@@ -22,7 +22,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new BooleanMeta(this.state, this.id),
+      context: new BooleanMeta(this.state, this.id, this.meta),
     };
   },
   computed: {

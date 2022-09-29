@@ -113,7 +113,7 @@ export default {
       return this.globalInstance.context.getContext(id);
     },
     validate() {
-      return this.globalInstance.validate.validate();
+      return this.globalInstance.validate.validateForm();
     },
     registerBuildInComponents() {
       registerFormComponent("v-object", VObject);

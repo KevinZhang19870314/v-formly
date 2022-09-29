@@ -26,7 +26,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new StringMeta(this.state, this.id),
+      context: new StringMeta(this.state, this.id, this.meta),
       autosize: true,
     };
   },

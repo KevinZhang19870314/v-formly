@@ -1,9 +1,10 @@
 import Vue from "vue";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 class BaseMeta {
-    constructor(state, id, type = '') {
+    constructor(state, id, meta, type = '') {
         this.id = id;
         this.state = state;
+        this.meta = meta;
         this.type = type;
         // TODO:可能需要一个getter/setter，setter需要判断是否有错误，有错误才设置上去
         this.error = undefined;

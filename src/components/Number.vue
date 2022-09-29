@@ -28,7 +28,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new NumberMeta(this.state, this.id),
+      context: new NumberMeta(this.state, this.id, this.meta),
       min: -Infinity,
       max: Infinity,
       step: 1,

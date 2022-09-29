@@ -20,7 +20,7 @@ class ValidateFactory {
         let _error = undefined;
         for (let i = 0; i < errors.length; i++) {
             const error = errors[i];
-            const _id = `${error.instancePath}${error.instancePath ? '/' : ''}${error.params.missingProperty}`;
+            const _id = this._getId(error);
             if (id === _id) {
                 _error = error;
                 break;
@@ -30,39 +30,37 @@ class ValidateFactory {
         return _error;
     }
 
-    // 需要一个全局的formData的validation，提交时触发全部的，在ajv的validate之后
-    // 拿到全局map里面的context，调用getAjvError然后emit错误
-    validate() {
+    _isAjvValid() {
         const validate = this._ajvValidate(this.state.schema);
         const valid = validate(this.state.formData);
-        if (!valid) {
-            const contexts = this.state.context.getContexts();
-            const ids = contexts.keys();
-            for (const id of ids) {
-                const error = this._getAjvError(id, validate.errors);
-                if (error) {
-                    Vue.bus.emit(FORM_ERROR_CHANGE, {
-                        id: id,
-                        error: error,
-                    });
-                } else {
-                    Vue.bus.emit(FORM_ERROR_CHANGE, {
-                        id: id,
-                        error: undefined,
-                    });
-                }
-            }
+
+        return { valid, validate };
+    }
+
+    validateForm() {
+        const { valid, validate } = this._isAjvValid();
+        const contexts = this.state.context.getContexts();
+        const instances = contexts.values();
+        for (const instance of instances) {
+            this._validation(instance, valid, validate);
         }
 
         return valid;
     }
 
     runValidation(context) {
-        const validate = this._ajvValidate(this.state.schema);
-        const valid = validate(this.state.formData);
+        const { valid, validate } = this._isAjvValid();
+        this._validation(context, valid, validate);
+        return valid;
+    }
+
+    _validation(context, valid, validate) {
+        let errors = [];
         if (!valid) {
+            const customErrors = this._getCustomError(context);
+            this._replaceWithCustomErrors(context.id, validate.errors, customErrors);
             const ingoreKeywords = this.state.ui.ingoreKeywords || [];
-            const errors = validate.errors.filter(f => ingoreKeywords.indexOf(f.keyword) === -1);
+            errors = validate.errors.filter(f => ingoreKeywords.indexOf(f.keyword) === -1);
             const error = this._getAjvError(context.id, errors);
             Vue.bus.emit(FORM_ERROR_CHANGE, {
                 id: context.id,
@@ -74,6 +72,32 @@ class ValidateFactory {
                 error: undefined,
             });
         }
+    }
+
+    _getCustomError(context) {
+        const validator = (context.meta.ui && context.meta.ui.validator);
+        if (!validator) return [];
+
+        return validator(context.value);
+    }
+
+    _getCustomAsyncError(context) {
+        console.log(context);
+        // TODO
+    }
+
+    _replaceWithCustomErrors(id, errors, customErrors) {
+        customErrors.forEach(err => {
+            let cur = errors.find(f => f.keyword === err.keyword && this._getId(f) === id);
+            if (cur) {
+                cur.message = err.message;
+            }
+        });
+    }
+
+    _getId(error) {
+        const id = `${error.instancePath}${error.instancePath ? '/' : ''}${error.params.missingProperty}`;
+        return id;
     }
 }
 

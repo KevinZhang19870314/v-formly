@@ -89,7 +89,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new BaseMeta(this.state, this.id),
+      context: new BaseMeta(this.state, this.id, this.meta),
     };
   },
   computed: {

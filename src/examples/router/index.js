@@ -13,6 +13,7 @@ import TimeView from '../views/TimeView.vue';
 import TextView from '../views/TextView.vue';
 import RadioView from '../views/RadioView.vue';
 import TextareaView from '../views/TextareaView.vue';
+import CustomValidatorView from '../views/CustomValidatorView.vue';
 import redirect from '../layout/components/redirect.vue';
 
 /* Layout */
@@ -124,6 +125,21 @@ export const routes = [
             component: TextareaView,
             meta: { title: "Textarea 多行文本框" },
           },
+        ],
+      },
+      {
+        path: "function",
+        component: EmptyLayout,
+        redirect: "custom-validator",
+        name: "function",
+        meta: { title: "Functional 功能性", icon: "control" },
+        children: [
+          {
+            path: "custom-validator",
+            name: "custom-validator",
+            component: CustomValidatorView,
+            meta: { title: "自定义校验" },
+          }
         ],
       },
     ],
