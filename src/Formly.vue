@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="v__formly">
     <a-form-model
       class="v"
       :layout="layout"
@@ -111,6 +111,9 @@ export default {
     },
     getContext(id) {
       return this.globalInstance.context.getContext(id);
+    },
+    validate() {
+      return this.globalInstance.validate.validate();
     },
     registerBuildInComponents() {
       registerFormComponent("v-object", VObject);

@@ -97,7 +97,7 @@ export default {
   .layout-header {
     display: flex;
     align-items: center;
-    padding: 0 0 0 24px ;
+    padding: 0 0 0 24px;
     background: #fff;
     i {
       font-size: 18px;
@@ -114,13 +114,15 @@ export default {
     position: relative;
     height: 100%;
     margin: 24px;
+    background: white;
   }
 
   .content-wrapper {
     height: 100%;
-    background: white;
-    padding: 24px 500px 24px 200px;
-    ::v-deep .btns {
+    padding: 32px;
+    max-width: 800px;
+
+    :deep(.btns) {
       display: flex;
       justify-content: flex-end;
 

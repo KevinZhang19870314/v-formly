@@ -3,7 +3,7 @@
     <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
-      <a-button type="primary" @click="printData"> 打印FormData </a-button>
+      <a-button type="primary" @click="printData"> 提交 </a-button>
     </div>
   </div>
 </template>
@@ -27,6 +27,7 @@ export default {
             title: "基本",
             type: "string",
             ui: {
+              showRequired: true,
               component: "radio",
               options: ["同意"],
             },
@@ -81,7 +82,7 @@ export default {
             },
           },
         },
-        required: ["name"],
+        required: ["name", "single"],
       },
       data: { name: "kevin zhang" },
     };
@@ -91,7 +92,10 @@ export default {
   },
   methods: {
     printData() {
-      console.log(this.data);
+      let valid = this.$refs.form.validate();
+      if (valid) {
+        console.log(this.data);
+      }
     },
   },
 };

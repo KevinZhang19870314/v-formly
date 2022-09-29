@@ -27,6 +27,9 @@ export default {
           name1: {
             title: "姓名",
             type: "string",
+            ui: {
+              showRequired: true,
+            },
           },
           id1: {
             title: "default title",
@@ -85,6 +88,7 @@ export default {
             type: "string",
           },
         },
+        required: ["name1"]
       },
     };
   },

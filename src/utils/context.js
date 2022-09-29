@@ -14,6 +14,10 @@ class FormItemContext {
   getContext(id) {
     return this._map.get(id);
   }
+
+  getContexts() {
+    return this._map;
+  }
 }
 
 export { FormItemContext };

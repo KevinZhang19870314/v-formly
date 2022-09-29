@@ -4,6 +4,7 @@
     :collapsible="collapsible"
     :trigger="null"
     :theme="theme"
+    width="228"
   >
     <s-menu
       :collapsed="collapsed"
