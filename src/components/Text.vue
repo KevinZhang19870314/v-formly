@@ -1,11 +1,11 @@
 <template>
   <div>
     <a-form-model-item :labelCol="labelCol" :wrapperCol="wrapperCol">
-      <template #label>
-        <span v-if="meta.title" class="v__label-text">{{ meta.title }}</span>
+      <!-- label -->
+      <template v-if="meta.title" #label>
+        <span class="v__label-text">{{ meta.title }}</span>
       </template>
-
-      <!-- 内容展示的优先级 slotNameOfDefault/html/text-->
+      <!-- content: 内容展示的优先级 slotNameOfDefault/html/text-->
       <template v-if="ui.slotNameOfDefault">
         <slot :name="ui.slotNameOfDefault"></slot>
       </template>
@@ -13,7 +13,7 @@
         <span v-if="ui.html" v-html="ui.html"></span>
         <span v-else v-text="displayValue"></span>
       </template>
-
+      <!-- description -->
       <template v-if="meta.description">
         <div class="ant-form-extra" v-html="meta.description"></div>
       </template>
@@ -25,14 +25,6 @@ import { BaseMeta } from "../meta/base.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
 export default {
   name: "v-text",
-  inject: ["state"],
-  props: {
-    id: String,
-    meta: {
-      type: Object,
-      default: () => {},
-    },
-  },
   mixins: [componentMixin],
   data() {
     return {
@@ -41,9 +33,6 @@ export default {
     };
   },
   computed: {
-    ui() {
-      return Object.assign({}, this.state.ui, this.meta.ui);
-    },
     labelCol() {
       return this.state.layout === "vertical"
         ? null

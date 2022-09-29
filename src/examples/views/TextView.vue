@@ -2,7 +2,9 @@
   <div>
     <v-formly ref="form" v-model="data" :schema="schema" layout="horizontal">
       <template v-slot:testSlot>
-        <h1 style="color: green">I am Text testSlot</h1>
+        <h1 style="color: green; border: 1px dashed green">
+          I am Text testSlot
+        </h1>
       </template>
     </v-formly>
     <div class="btns">
@@ -57,10 +59,25 @@ export default {
             type: "null",
             ui: {
               component: "text",
-              slotNameOfDefault: "testSlot",  // slot
+              slotNameOfDefault: "testSlot", // slot
               html: `<h1 style="color: red">I am Text</h1>`,
               text: "default text",
               offsetControl: 5,
+            },
+          },
+          id5: {
+            type: "null",
+            ui: {
+              component: "text",
+              text: "default text",
+              offsetControl: 5,
+            },
+          },
+          id6: {
+            type: "null",
+            ui: {
+              component: "text",
+              text: "default text",
             },
           },
           name2: {
