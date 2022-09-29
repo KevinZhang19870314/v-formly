@@ -11,6 +11,7 @@ import DateView from '../views/DateView.vue';
 import NumberView from '../views/NumberView.vue';
 import TimeView from '../views/TimeView.vue';
 import TextView from '../views/TextView.vue';
+import RadioView from '../views/RadioView.vue';
 import redirect from '../layout/components/redirect.vue';
 
 /* Layout */
@@ -109,6 +110,12 @@ export const routes = [
             name: 'text',
             component: TextView,
             meta: { title: "Text" },
+          },
+          {
+            path: 'radio',
+            name: 'radio',
+            component: RadioView,
+            meta: { title: "Radio" },
           },
         ],
       },

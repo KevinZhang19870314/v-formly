@@ -17,7 +17,8 @@ import {
   Menu,
   Layout,
   Breadcrumb,
-  TimePicker
+  TimePicker,
+  Radio
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -38,3 +39,4 @@ Vue.use(Menu);
 Vue.use(Layout);
 Vue.use(Breadcrumb);
 Vue.use(TimePicker);
+Vue.use(Radio);

@@ -30,6 +30,7 @@ import VDate from "@/components/Date.vue";
 import VNumber from "@/components/Number.vue";
 import VTime from "@/components/Time.vue";
 import VText from "@/components/Text.vue";
+import VRadio from "@/components/Radio.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
@@ -122,6 +123,7 @@ export default {
       registerFormComponent("v-integer", VNumber);
       registerFormComponent("v-time", VTime);
       registerFormComponent("v-text", VText);
+      registerFormComponent("v-radio", VRadio);
     },
   },
 };
