@@ -7,6 +7,10 @@ class StringMeta extends BaseMeta {
       this.open = (this.meta.ui && this.meta.ui.open) || false;
     }
   }
+
+  setValue(val) {
+    this._value = val || undefined;
+  }
 }
 
 export { StringMeta };

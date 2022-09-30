@@ -92,8 +92,8 @@ export default {
     VFormly,
   },
   methods: {
-    printData() {
-      let valid = this.$refs.form.validate();
+    async printData() {
+      let valid = await this.$refs.form.validate();
       if (valid) {
         console.log(this.data);
       }

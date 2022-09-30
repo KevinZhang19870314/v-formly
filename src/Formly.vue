@@ -47,6 +47,7 @@ export default {
     prop: "value",
     event: "value-change",
   },
+  // TODO: 定义一个submit emit，解决外部需要写async/await校验的问题
   props: {
     value: Object,
     layout: {
