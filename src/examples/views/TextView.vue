@@ -2,9 +2,7 @@
   <div>
     <v-formly ref="form" v-model="data" :schema="schema" layout="horizontal">
       <template v-slot:testSlot>
-        <h1 style="color: green; border: 1px dashed green">
-          I am Text testSlot
-        </h1>
+        <h1 style="color: green; border: 1px dashed green">slot 类型的 text</h1>
       </template>
     </v-formly>
     <div class="btns">
@@ -24,7 +22,7 @@ export default {
       data: {},
       schema: {
         properties: {
-          name1: {
+          name: {
             title: "姓名",
             type: "string",
             ui: {
@@ -32,28 +30,27 @@ export default {
             },
           },
           id1: {
-            title: "default title",
-            description: "default description",
+            title: "title",
+            description: "description",
             type: "null",
             ui: {
               component: "text",
-              text: "default text", // string | () => string
+              text: "包含 title 和 description 的文本", // string | () => string
             },
           },
           id2: {
-            title: "default title",
             type: "null",
             ui: {
               component: "text",
-              text: () => "default text", // () => string
+              text: () => "() => string 类型的 text", // () => string
+              offsetControl: 5,
             },
           },
           id3: {
-            description: "default description",
             type: "null",
             ui: {
               component: "text",
-              html: `<h1 style="color: red">I am Text</h1>`, // v-html
+              html: `<h1 style="color: red">HTML 类型的 text</h1>`, // v-html
               text: "default text",
               offsetControl: 5,
             },
@@ -72,29 +69,48 @@ export default {
             type: "null",
             ui: {
               component: "text",
-              text: "default text",
-              offsetControl: 5,
+              text: "没有 title 和 offsetControl",
             },
           },
           id6: {
             type: "null",
             ui: {
               component: "text",
-              text: "default text",
+              text: "没有 title, offsetControl = 5",
+              offsetControl: 5,
             },
           },
-          name2: {
-            title: "姓名",
+          id7: {
+            type: "null",
+            ui: {
+              component: "text",
+              text: "没有 title, offsetControl = 4",
+              offsetControl: 4,
+            },
+          },
+          id8: {
+            type: "null",
+            ui: {
+              component: "text",
+              text: "多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本",
+              spanControl: 24,
+            },
+          },
+          address: {
+            title: "地址",
             type: "string",
           },
         },
-        required: ["name1"]
+        required: ["name"],
       },
     };
   },
   methods: {
     printData() {
-      console.log(this.data);
+      let valid = this.$refs.form.validate();
+      if (valid) {
+        console.log(this.data);
+      }
     },
   },
 };

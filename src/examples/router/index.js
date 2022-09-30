@@ -13,6 +13,8 @@ import TimeView from '../views/TimeView.vue';
 import TextView from '../views/TextView.vue';
 import RadioView from '../views/RadioView.vue';
 import TextareaView from '../views/TextareaView.vue';
+import SliderView from '../views/SliderView.vue';
+import RateView from '../views/RateView.vue';
 import CustomValidatorView from '../views/CustomValidatorView.vue';
 import redirect from '../layout/components/redirect.vue';
 
@@ -124,6 +126,18 @@ export const routes = [
             name: 'textarea',
             component: TextareaView,
             meta: { title: "Textarea 多行文本框" },
+          },
+          {
+            path: 'slider',
+            name: 'slider',
+            component: SliderView,
+            meta: { title: "Slider 滑动输入条" },
+          },
+          {
+            path: 'rate',
+            name: 'rate',
+            component: RateView,
+            meta: { title: "Rate 评分" },
           },
         ],
       },
