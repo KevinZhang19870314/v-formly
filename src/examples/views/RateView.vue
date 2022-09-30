@@ -92,7 +92,7 @@ export default {
             title: "自定义字符 slot",
             ui: {
               component: "rate",
-              slotNameOfChaCracter: "testSlot", // slot
+              slotNameOfCharacter: "testSlot", // slot
             },
             default: 1,
           },

@@ -26,8 +26,8 @@
         @change="change"
         @hoverChange="hoverChange"
       >
-        <template v-if="ui.slotNameOfChaCracter" slot="character">
-          <slot :name="ui.slotNameOfChaCracter"></slot>
+        <template v-if="ui.slotNameOfCharacter" slot="character">
+          <slot :name="ui.slotNameOfCharacter"></slot>
         </template>
       </a-rate>
     </template>
@@ -59,7 +59,7 @@ export default {
   },
   created() {
     const { allowClear } = this.ui;
-    this.allowClear = allowClear == null ? true : !!allowClear;
+    this.allowClear = typeof allowClear == 'undefined' ? true : !!allowClear;
   },
   mounted() {
     this.applyInitValue();
