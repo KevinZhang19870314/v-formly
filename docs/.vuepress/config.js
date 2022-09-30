@@ -1,17 +1,15 @@
-const { fs, path } = require('@vuepress/shared-utils')
-
 module.exports = ctx => ({
     dest: 'vuepress',
     locales: {
         '/': {
             lang: 'en-US',
             title: 'v-formly',
-            description: 'v-formly is a dynamic (JSON powered) form library for vue 2.x.'
+            description: 'v-formly is a dynamic (JSON powered) form library for vue.'
         },
         '/zh/': {
             lang: 'zh-CN',
             title: 'v-formly',
-            description: 'v-formly是vue 2.x的动态（JSON驱动）表单库。'
+            description: 'v-formly是vue的动态（JSON驱动）表单库。'
         }
     },
     head: [

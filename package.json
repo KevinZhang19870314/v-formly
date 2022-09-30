@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build-lib": "vue-cli-service build --target lib --name v-formly src/main.js",
+    "build:lib": "vue-cli-service build --target lib --name v-formly src/main.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
