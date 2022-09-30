@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build-lib": "vue-cli-service build --target lib --name v-formly src/main.js"
+    "build-lib": "vue-cli-service build --target lib --name v-formly src/main.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "main": "./dist/v-formly.common.js",
   "dependencies": {
@@ -21,13 +23,18 @@
     "@vue/cli-plugin-eslint": "~4.5.18",
     "@vue/cli-plugin-router": "~4.5.18",
     "@vue/cli-service": "~4.5.18",
+    "@vuepress/plugin-back-to-top": "^1.9.7",
+    "@vuepress/plugin-medium-zoom": "^1.9.7",
+    "@vuepress/plugin-pwa": "^1.9.7",
     "babel-eslint": "^10.1.0",
     "babel-plugin-import": "^1.13.5",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.9.7",
+    "vuepress-plugin-container": "^2.1.5"
   },
   "browserslist": [
     "> 1%",
