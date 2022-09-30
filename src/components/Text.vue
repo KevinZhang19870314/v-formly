@@ -1,6 +1,10 @@
 <template>
   <div>
-    <a-form-model-item :labelCol="labelCol" :wrapperCol="wrapperCol">
+    <a-form-model-item
+      :labelCol="labelCol"
+      :wrapperCol="wrapperCol"
+      :class="{ 'no-label': !meta.title }"
+    >
       <!-- label -->
       <template v-if="meta.title" #label>
         <span class="v__label-text">{{ meta.title }}</span>
@@ -10,8 +14,8 @@
         <slot :name="ui.slotNameOfDefault"></slot>
       </template>
       <template v-else>
-        <span v-if="ui.html" v-html="ui.html"></span>
-        <span v-else v-text="displayValue"></span>
+        <span v-if="ui.html" v-html="ui.html" class="v__content-text"></span>
+        <span v-else v-text="displayValue" class="v__content-text"></span>
       </template>
       <!-- description -->
       <template v-if="meta.description">
@@ -50,4 +54,8 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.no-label :deep(.ant-form-item-control) {
+  line-height: normal;
+}
+</style>

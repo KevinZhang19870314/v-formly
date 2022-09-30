@@ -15,30 +15,35 @@ class BaseMeta {
         this._value = undefined;
     }
 
-    get value() {
-        return this._value;
+  get value() {
+    return this._value;
+  }
+
+  set value(val) {
+    if (this._value === val) return;
+
+    switch (this.type) {
+      case "boolean":
+        this._value = val || false;
+        break;
+      // slider 属于 number 的子类
+      case "slider":
+        this._value =
+          Array.isArray(val) || typeof val == "number" ? val : undefined;
+        break;
+      default:
+        this._value = val || undefined;
+        break;
     }
 
-    set value(val) {
-        if (this._value === val) return;
+    Vue.bus.emit(FORM_VALUE_CHANGE, {
+      id: this.id,
+      value: val,
+    });
 
-        switch (this.type) {
-            case "boolean":
-                this._value = val || false;
-                break;
-            default:
-                this._value = val || undefined;
-                break;
-        }
-
-        Vue.bus.emit(FORM_VALUE_CHANGE, {
-            id: this.id,
-            value: val,
-        });
-
-        this.state.updateObjProp(this.state.formData, this.id, val);
-        this.state.validate.runValidationFormItem(this);
-    }
+    this.state.updateObjProp(this.state.formData, this.id, val);
+    this.state.validate.runValidationFormItem(this);
+  }
 }
 
 export { BaseMeta };
