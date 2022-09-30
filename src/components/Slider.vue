@@ -62,8 +62,8 @@ export default {
     this.step = multipleOf || 1;
 
     const { marks, included } = this.ui;
-    this.marks = marks || undefined;
-    this.included = typeof included === "undefined" ? true : included;
+    this.marks = marks || undefined; // marks 的值不能为 null
+    this.included = typeof included === "undefined" ? true : !!included;
   },
   mounted() {
     this.applyInitValue();
