@@ -11,7 +11,7 @@
       :step="step"
       :marks="marks"
       :included="included"
-      :tipFormatter="hiddenTooltip ? null : _formatter"
+      :tipFormatter="hiddenTooltip ? null : tipFormatter"
       :tooltipVisible="ui.tooltipVisible"
       v-model="value"
       @change="change"
@@ -30,7 +30,7 @@ export default {
   mixins: [componentMixin],
   data() {
     return {
-      context: new NumberMeta(this.state, this.id, this.meta, "slider"),
+      context: new NumberMeta(this.state, this.id, this.meta),
       min: 0,
       max: 100,
       step: 1,
@@ -52,7 +52,7 @@ export default {
       },
     },
     hiddenTooltip() {
-      return this.ui.formatter === null;
+      return this.ui.tipFormatter === null;
     },
   },
   created() {
@@ -69,9 +69,9 @@ export default {
     this.applyInitValue();
   },
   methods: {
-    _formatter(value) {
-      const { formatter } = this.ui;
-      if (formatter) return formatter(value);
+    tipFormatter(value) {
+      const { tipFormatter } = this.ui;
+      if (tipFormatter) return tipFormatter(value);
       return `${value}`;
     },
     change(value) {

@@ -26,8 +26,8 @@
         @change="change"
         @hoverChange="hoverChange"
       >
-        <template v-if="ui.slotNameOfChaCracter" slot="character">
-          <slot :name="ui.slotNameOfChaCracter"></slot>
+        <template v-if="ui.slotNameOfCharacter" slot="character">
+          <slot :name="ui.slotNameOfCharacter"></slot>
         </template>
       </a-rate>
     </template>

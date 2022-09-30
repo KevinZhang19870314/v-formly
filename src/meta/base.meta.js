@@ -1,19 +1,19 @@
 import Vue from "vue";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 class BaseMeta {
-    constructor(state, id, meta, type = '') {
-        this.id = id;
-        this.state = state;
-        this.meta = meta;
-        this.type = type;
-        this.ui = Object.assign({}, this.state.ui, this.meta.ui);
-        this.schema = this.meta || {};
+  constructor(state, id, meta) {
+    this.id = id;
+    this.state = state;
+    this.meta = meta;
+    this.type = (this.meta.ui && this.meta.ui.component) || this.meta.type;
+    this.ui = Object.assign({}, this.state.ui, this.meta.ui);
+    this.schema = this.meta || {};
 
-        // TODO:可能需要一个getter/setter，setter需要判断是否有错误，有错误才设置上去
-        this.error = undefined;
-        state.context.addContext(id, this);
-        this._value = undefined;
-    }
+    // TODO:可能需要一个getter/setter，setter需要判断是否有错误，有错误才设置上去
+    this.error = undefined;
+    state.context.addContext(id, this);
+    this._value = undefined;
+  }
 
   get value() {
     return this._value;
@@ -21,12 +21,10 @@ class BaseMeta {
 
   set value(val) {
     if (this._value === val) return;
-
     switch (this.type) {
       case "boolean":
         this._value = val || false;
         break;
-      // slider 属于 number 的子类
       case "slider":
         this._value =
           Array.isArray(val) || typeof val == "number" ? val : undefined;

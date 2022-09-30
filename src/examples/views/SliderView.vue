@@ -49,10 +49,10 @@ export default {
           },
           count3: {
             type: "number",
-            title: "formatter",
+            title: "tipFormatter",
             ui: {
               component: "slider",
-              formatter: (val) => `${val}%`,
+              tipFormatter: (val) => `${val}%`,
             },
           },
           count4: {
@@ -60,7 +60,7 @@ export default {
             title: "隐藏 Tooltip",
             ui: {
               component: "slider",
-              formatter: null,
+              tipFormatter: null,
             },
           },
           count5: {
