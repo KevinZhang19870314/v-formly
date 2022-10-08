@@ -2,9 +2,9 @@ import Vue from "vue";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 class BaseMeta {
     constructor(state, id, meta) {
-        // if (this.constructor == BaseMeta) {
-        //     throw new Error("Abstract classes can't be instantiated.");
-        // }
+        if (this.constructor == BaseMeta) {
+            throw new Error("Abstract classes can't be instantiated.");
+        }
 
         this.id = id;
         this.state = state;

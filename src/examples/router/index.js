@@ -15,6 +15,8 @@ import RadioView from '../views/RadioView.vue';
 import TextareaView from '../views/TextareaView.vue';
 import SliderView from '../views/SliderView.vue';
 import RateView from '../views/RateView.vue';
+import SelectView from '../views/SelectView.vue';
+
 import CustomValidatorView from '../views/CustomValidatorView.vue';
 import redirect from '../layout/components/redirect.vue';
 
@@ -138,6 +140,12 @@ export const routes = [
             name: 'rate',
             component: RateView,
             meta: { title: "Rate 评分" },
+          },
+          {
+            path: 'select',
+            name: 'select',
+            component: SelectView,
+            meta: { title: "Select 选择器" },
           },
         ],
       },

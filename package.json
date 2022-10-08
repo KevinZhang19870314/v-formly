@@ -32,6 +32,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
+    "lodash": "^4.17.21",
     "vue-template-compiler": "^2.6.11",
     "vuepress": "^1.9.7",
     "vuepress-plugin-container": "^2.1.5"

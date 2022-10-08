@@ -8,7 +8,7 @@
     >
       <template v-for="slotName in slotsName" v-slot:[slotName]="{context}">
         <slot :name="slotName" v-bind:context="context">
-          {{ "formly-item slot" + JSON.stringify(context) }}
+          {{ "formly-item slot" }}
         </slot>
       </template>
     </component>

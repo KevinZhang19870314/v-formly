@@ -13,17 +13,18 @@ class ValidateFactory {
         const { valid, errors } = this._isAjvValid();
         const contexts = this.state.context.getContexts();
         const instances = contexts.values();
+        let isValid = true;
         for (const instance of instances) {
-            await this._validation(instance, valid, errors);
+            isValid = isValid && await this._validation(instance, valid, errors);
         }
 
-        return valid;
+        return isValid;
     }
 
     async runValidationFormItem(context) {
         const { valid, errors } = this._isAjvValid();
-        await this._validation(context, valid, errors);
-        return valid;
+        let isValid = await this._validation(context, valid, errors);
+        return isValid;
     }
 
     _ajvValidate(schema) {
@@ -68,11 +69,15 @@ class ValidateFactory {
                 id: context.id,
                 error: error,
             });
+
+            return error ? false : true;
         } else {
             Vue.bus.emit(FORM_ERROR_CHANGE, {
                 id: context.id,
                 error: undefined,
             });
+
+            return true;
         }
     }
 

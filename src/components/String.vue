@@ -3,7 +3,7 @@
     <a-input
       :addonAfter="ui.addonAfter"
       :addonBefore="ui.addonBefore"
-      :defaultValue="ui.defaultValue"
+      :defaultValue="schema.defaultValue"
       :disabled="schema.readOnly"
       :id="ui.id"
       :maxLength="schema.maxLength"

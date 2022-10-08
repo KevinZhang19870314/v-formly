@@ -19,7 +19,7 @@
       >
         <template v-for="slotName in slotsName" v-slot:[slotName]="{context}">
           <slot :name="slotName" v-bind:context="context">
-            {{ "object slot" + JSON.stringify(context) }}
+            {{ "object slot" }}
           </slot>
         </template>
       </v-formly-item>

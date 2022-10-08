@@ -21,6 +21,7 @@ import {
   Radio,
   Rate,
   Slider,
+  Spin
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -44,3 +45,4 @@ Vue.use(TimePicker);
 Vue.use(Radio);
 Vue.use(Slider);
 Vue.use(Rate);
+Vue.use(Spin);
