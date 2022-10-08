@@ -50,7 +50,7 @@ class ValidateFactory {
 
     _isAjvValid() {
         const validate = this._ajvValidate(this.state.schema);
-        const valid = validate(this.state.formData);
+        const valid = validate(this.state.formData || {});
 
         return { valid, errors: validate.errors };
     }

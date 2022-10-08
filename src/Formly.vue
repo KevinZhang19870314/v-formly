@@ -91,6 +91,22 @@ export default {
   mounted() {
     this.$emit("value-change", this.formData);
   },
+  watch: {
+    value: {
+      handler: function (val, oldVal) {
+        if (JSON.stringify(val) === JSON.stringify(oldVal)) return;
+
+        this.applyFormData(
+          this.formData,
+          val || {},
+          this.schema.properties,
+          "root"
+        );
+        this.$emit("value-change", this.formData);
+      },
+      deep: false,
+    },
+  },
   methods: {
     initFormData(formData, properties) {
       Object.keys(properties).forEach((key) => {
@@ -110,6 +126,38 @@ export default {
           default:
             formData[key] = formData[key] || undefined;
             break;
+        }
+      });
+    },
+    applyFormData(formData, newData, properties, property) {
+      Object.keys(properties).forEach((key) => {
+        const meta = properties[key];
+        if (meta.type === "null") return;
+        let context = this.globalInstance.context.getContext(
+          `${property}`.endsWith(key) ? property : key
+        );
+        switch (meta.type) {
+          case "object":
+            this.applyFormData(
+              formData[key],
+              newData[key],
+              meta.properties,
+              `${key}/`
+            );
+            break;
+          case "array":
+            formData[key] = newData[key] || [];
+            break;
+          case "boolean":
+            formData[key] = newData[key] || false;
+            break;
+          default:
+            formData[key] = newData[key] || undefined;
+            break;
+        }
+
+        if (context && context.setValue) {
+          context.setValue(formData[key]);
         }
       });
     },
