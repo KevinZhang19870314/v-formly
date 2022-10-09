@@ -148,7 +148,8 @@ function getGuideSidebar(groupA, groupB) {
             collapsable: false,
             sidebarDepth: 2,
             children: [
-                ''
+                '',
+                'meta'
             ]
         },
         {

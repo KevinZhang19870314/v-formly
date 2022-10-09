@@ -22,21 +22,21 @@ v-formly 除了支持标准的[JSON Schema](https://js-schema.org/)和[Ajv](http
 
 ```js {8,10-13}
 schema: {
-    type: "object",
-    properties: {
-        name: {
-            title: "姓名",
-            type: "string",
-            default: "kevin",
-            ui: {
-                showRequired: true,
-                errors: {
-                    "required": "请输入姓名"
-                }
-            },
-        },
+  type: "object",
+  properties: {
+    name: {
+      title: "姓名",
+      type: "string",
+      default: "kevin",
+      ui: {
+        showRequired: true,
+        errors: {
+            "required": "请输入姓名"
+        }
+      },
     },
-    required: ["name"],
+  },
+  required: ["name"],
 }
 ```
 
@@ -48,19 +48,19 @@ schema: {
 
 ```js {8,10-11}
 schema: {
-    type: "object",
-    properties: {
-        name: {
-            title: "姓名",
-            type: "string",
-            default: "kevin",
-            ui: {
-                showRequired: true,
-                validator: (val) => !val ? [{ keyword: "required", message: "Required name" }] : [],
-            },
-        },
+  type: "object",
+  properties: {
+    name: {
+      title: "姓名",
+      type: "string",
+      default: "kevin",
+      ui: {
+        showRequired: true,
+        validator: (val) => !val ? [{ keyword: "required", message: "Required name" }] : [],
+      },
     },
-    required: ["name"],
+  },
+  required: ["name"],
 },
 ```
 
@@ -68,25 +68,25 @@ schema: {
 
 ```js {7,9-17}
 schema: {
-    type: "object",
-    properties: {
-        asyncError: {
-            title: "异步错误（2秒）",
-            type: "string",
-            ui: {
-                showRequired: true,
-                validatorAsync: (val) => {
-                    return new Promise((resolve) => {
-                        setTimeout(() => {
-                            resolve(
-                                !val ? [{ keyword: "required", message: "Required asyncError",}] : []
-                            );
-                        }, 2000);
-                    });
-                },
-            },
-        },
+  type: "object",
+  properties: {
+    asyncError: {
+    title: "异步错误（2秒）",
+    type: "string",
+    ui: {
+    showRequired: true,
+    validatorAsync: (val) => {
+    return new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(
+            !val ? [{ keyword: "required", message: "Required asyncError",}] : []
+        );
+    }, 2000);
+    });
     },
-    required: ["asyncError"],
+    },
+    },
+  },
+  required: ["asyncError"],
 },
 ```
