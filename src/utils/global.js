@@ -16,6 +16,9 @@ class Global {
       grid: {
         gutter: 36,
         span: 24,
+      },
+      errors: {
+        'required': '必填项'
       }
     };
     this._validate = null;
@@ -66,7 +69,7 @@ class Global {
   }
 
   set ui(val) {
-    this._ui = val;
+    this._ui = Object.assign({}, this._ui, val);
   }
 
   get validate() {

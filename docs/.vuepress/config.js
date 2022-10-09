@@ -150,7 +150,9 @@ function getGuideSidebar(groupA, groupB) {
         {
             title: groupB,
             collapsable: false,
+            sidebarDepth: 2,
             children: [
+                'custom-validator'
                 // 'frontmatter',
                 // 'permalinks',
                 // 'markdown-slot',

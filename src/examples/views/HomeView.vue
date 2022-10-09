@@ -23,6 +23,9 @@ export default {
             default: "kevin",
             ui: {
               showRequired: true,
+              errors: {
+                "required": "请输入姓名"
+              }
             },
           },
           desc: {

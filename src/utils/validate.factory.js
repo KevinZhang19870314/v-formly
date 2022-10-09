@@ -61,6 +61,7 @@ class ValidateFactory {
             const customErrors = this._getCustomError(context);
             const customAsyncErrors = await this._getCustomAsyncError(context);
             const cusErrors = [...customErrors, ...customAsyncErrors];
+            this._replaceWithDefaultErrors(context, errs);
             this._replaceWithCustomErrors(context.id, errs, cusErrors);
             const ingoreKeywords = this.state.ui.ingoreKeywords || [];
             errors = errs.filter(f => ingoreKeywords.indexOf(f.keyword) === -1);
@@ -93,6 +94,22 @@ class ValidateFactory {
         if (!validatorAsync) return [];
 
         return await validatorAsync(context.value);
+    }
+
+    _replaceWithDefaultErrors(context, errors) {
+        if (!errors || errors.length === 0) return;
+
+        const localErrors = (context.meta.ui && context.meta.ui.errors) || {};
+        const globalErrors = Object.assign({}, this.state.ui.errors, localErrors);
+        const keywords = Object.keys(globalErrors);
+        if (keywords && keywords.length > 0) {
+            keywords.forEach(keyword => {
+                let cur = errors.find(f => f.keyword === keyword);
+                if (cur) {
+                    cur.message = globalErrors[keyword];
+                }
+            });
+        }
     }
 
     _replaceWithCustomErrors(id, errors, customErrors) {
