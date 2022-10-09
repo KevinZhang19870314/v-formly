@@ -51,6 +51,7 @@ export default {
   methods: {
     clear() {
       this.data = null;
+      // this.$refs.form.reset(null);
     },
     async submit() {
       let valid = await this.$refs.form.validate();

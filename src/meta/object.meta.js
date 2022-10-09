@@ -11,7 +11,7 @@ class ObjectMeta {
   set value(val) {
     this.childMetaPairs.forEach(({ key, propertyName }) => {
       const ctx = this.state.context.getContext(key);
-      ctx.value = val[propertyName];
+      ctx.value = (val|| {})[propertyName];
     });
   }
 

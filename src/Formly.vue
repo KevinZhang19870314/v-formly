@@ -96,13 +96,7 @@ export default {
       handler: function (val, oldVal) {
         if (JSON.stringify(val) === JSON.stringify(oldVal)) return;
 
-        this.applyFormData(
-          this.formData,
-          val || {},
-          this.schema.properties,
-          "root"
-        );
-        this.$emit("value-change", this.formData);
+        this.reset(val);
       },
       deep: false,
     },
@@ -129,28 +123,6 @@ export default {
         }
       });
     },
-    applyFormData(formData, newData, properties, property) {
-      Object.keys(properties).forEach((key) => {
-        const meta = properties[key];
-        if (meta.type === "null") return;
-        let context = this.globalInstance.context.getContext(
-          `${property}`.endsWith(key) ? property : key
-        );
-
-        if (meta.type === "object") {
-          this.applyFormData(
-            formData[key],
-            newData[key],
-            meta.properties,
-            `${key}/`
-          );
-        }
-
-        if (context && context.setValue) {
-          context.value = newData[key];
-        }
-      });
-    },
     getContext(id) {
       return this.globalInstance.context.getContext(id);
     },
@@ -174,6 +146,13 @@ export default {
       registerFormComponent("v-slider", VSlider);
       registerFormComponent("v-rate", VRate);
       registerFormComponent("v-select", VSelect);
+    },
+    reset(data) {
+      const context = this.globalInstance.context.getContext("root");
+      if (context) {
+        context.value = data;
+        this.$emit("value-change", this.formData);
+      }
     },
   },
 };
