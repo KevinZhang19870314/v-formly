@@ -136,28 +136,18 @@ export default {
         let context = this.globalInstance.context.getContext(
           `${property}`.endsWith(key) ? property : key
         );
-        switch (meta.type) {
-          case "object":
-            this.applyFormData(
-              formData[key],
-              newData[key],
-              meta.properties,
-              `${key}/`
-            );
-            break;
-          case "array":
-            formData[key] = newData[key] || [];
-            break;
-          case "boolean":
-            formData[key] = newData[key] || false;
-            break;
-          default:
-            formData[key] = newData[key] || undefined;
-            break;
+
+        if (meta.type === "object") {
+          this.applyFormData(
+            formData[key],
+            newData[key],
+            meta.properties,
+            `${key}/`
+          );
         }
 
         if (context && context.setValue) {
-          context.setValue(formData[key]);
+          context.value = newData[key];
         }
       });
     },
