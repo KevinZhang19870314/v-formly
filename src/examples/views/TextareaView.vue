@@ -92,8 +92,8 @@ export default {
     };
   },
   methods: {
-    printData() {
-      let valid = this.$refs.form.validate();
+    async printData() {
+      const valid = await this.$refs.form.validate();
       if (valid) {
         console.log(this.data);
       }

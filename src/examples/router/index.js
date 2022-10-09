@@ -15,6 +15,7 @@ import RadioView from '../views/RadioView.vue';
 import TextareaView from '../views/TextareaView.vue';
 import SliderView from '../views/SliderView.vue';
 import RateView from '../views/RateView.vue';
+import TagView from '../views/TagView.vue';
 import SelectView from '../views/SelectView.vue';
 
 import CustomValidatorView from '../views/CustomValidatorView.vue';
@@ -146,6 +147,12 @@ export const routes = [
             name: 'select',
             component: SelectView,
             meta: { title: "Select 选择器" },
+          },
+          {
+            path: 'tag',
+            name: 'tag',
+            component: TagView,
+            meta: { title: "Tag 标签" },
           },
         ],
       },

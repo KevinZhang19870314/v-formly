@@ -20,6 +20,7 @@ import {
   TimePicker,
   Radio,
   Rate,
+  Tag,
   Slider,
   Spin
 } from "ant-design-vue";
@@ -45,4 +46,5 @@ Vue.use(TimePicker);
 Vue.use(Radio);
 Vue.use(Slider);
 Vue.use(Rate);
+Vue.use(Tag);
 Vue.use(Spin);

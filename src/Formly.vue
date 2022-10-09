@@ -34,6 +34,7 @@ import VRadio from "@/components/Radio.vue";
 import VTextarea from "@/components/Textarea.vue";
 import VSlider from "@/components/Slider.vue";
 import VRate from "@/components/Rate.vue";
+import VTag from "@/components/Tag.vue";
 import VSelect from "@/components/Select.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
@@ -145,6 +146,7 @@ export default {
       registerFormComponent("v-textarea", VTextarea);
       registerFormComponent("v-slider", VSlider);
       registerFormComponent("v-rate", VRate);
+      registerFormComponent("v-tag", VTag);
       registerFormComponent("v-select", VSelect);
     },
     reset(data) {
