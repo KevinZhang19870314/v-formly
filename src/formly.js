@@ -9,9 +9,12 @@ const Formly = {
     // eslint-disable-next-line no-unused-vars
     install(Vue, options) {
         Vue.use(EventBus);
-        Object.values(components).forEach((component) => {
+        components.forEach(component => {
             Vue.component(component.name, component);
-        })
+        });
+
+        // 传入自定义options
+        Vue.prototype.$VFORMLY_OPTIONS = options;
     },
 }
 

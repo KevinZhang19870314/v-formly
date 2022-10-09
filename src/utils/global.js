@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 class Global {
   constructor() {
     this._context = null;
@@ -22,6 +24,8 @@ class Global {
       }
     };
     this._validate = null;
+
+    this._applyUseOptions();
   }
 
   get context() {
@@ -90,6 +94,13 @@ class Global {
         obj[head] = value;
       }
     }
+  }
+
+  _applyUseOptions() {
+    const options = Vue.prototype.$VFORMLY_OPTIONS;
+    if (!options || typeof options !== 'object') return;
+
+    this.ui = options.ui;
   }
 }
 
