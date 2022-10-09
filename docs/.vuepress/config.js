@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = ctx => ({
     dest: 'vuepress',
     locales: {
@@ -101,7 +103,18 @@ module.exports = ctx => ({
             before: info => `<UpgradePath title="${info}">`,
             after: '</UpgradePath>'
         }],
+        ['demo-container']
     ],
+    chainWebpack: config => {
+        config.resolve.alias.set('core-js/library/fn', 'core-js/features')
+    },
+    configureWebpack: {
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, '../../src/'),
+            }
+        }
+    }
     // extraWatchFiles: [
     //     '.vuepress/nav/en.js',
     //     '.vuepress/nav/zh.js'
