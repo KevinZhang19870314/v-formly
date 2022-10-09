@@ -40,14 +40,7 @@ export default {
   },
   watch: {
     "schema.enum": {
-      handler: function (val) {
-        this.applyInitValue();
-        this.tags = this.getEnum(
-          cloneDeep(val),
-          this.value,
-          this.schema.readOnly
-        );
-      },
+      handler: "updateTags",
       immediate: true,
     },
   },
@@ -55,26 +48,29 @@ export default {
     handleChange(tag, checked) {
       if (tag.disabled) return;
       tag.checked = checked;
+      this.updateValue();
+      if (this.ui.checkedChange) this.ui.checkedChange(checked);
+      if (this.ui.change) this.ui.change(this.value);
+    },
+    updateValue() {
       const value = this.tags.filter((t) => t.checked).map((t) => t.value);
       this.value = value.length ? value : undefined;
-      if (this.ui.checkedChange) this.ui.checkedChange(checked);
     },
-    getEnum(list, formData = [], readOnly = false) {
-      if (list == null || !Array.isArray(list) || list.length === 0) return [];
-      // init
-      if (typeof list[0] !== "object") {
-        list = list.map((item) => ({ label: item, value: item }));
+    updateTags(val) {
+      this.applyInitValue();
+      let tags = cloneDeep(val);
+      if (tags == null || !Array.isArray(tags) || tags.length === 0) return;
+      // set label
+      if (typeof tags[0] !== "object") {
+        tags = tags.map((item) => ({ label: item, value: item }));
       }
-      // formData
-      if (formData) {
-        if (!Array.isArray(formData)) formData = [formData];
-        list.forEach((item) => {
-          item.checked = formData.indexOf(item.value) > -1;
-        });
-      }
-      // disabled
-      list.forEach((item) => (item.disabled = !!readOnly));
-      return list;
+      // set checked
+      tags.forEach((item) => {
+        item.checked = (this.value || []).indexOf(item.value) > -1;
+      });
+      // set disabled
+      tags.forEach((item) => (item.disabled = !!this.schema.readOnly));
+      this.tags = tags;
     },
   },
 };

@@ -35,6 +35,7 @@ export default {
                 required: "请至少选择一项",
               },
               checkedChange: (checked) => console.log("checkedChange", checked),
+              change: (value) => console.log("change", value),
             },
           },
           like2: {
@@ -71,8 +72,8 @@ export default {
         ];
       }
     },
-    printData() {
-      let valid = this.$refs.form.validate();
+    async printData() {
+      const valid = await this.$refs.form.validate();
       if (valid) {
         console.log(this.data);
       }
