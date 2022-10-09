@@ -74,8 +74,11 @@ export default {
     VFormly,
   },
   methods: {
-    printData() {
-      console.log(this.data);
+    async printData() {
+      const valid = await this.$refs.form.validate();
+      if (valid) {
+        console.log(this.data);
+      }
     },
   },
 };

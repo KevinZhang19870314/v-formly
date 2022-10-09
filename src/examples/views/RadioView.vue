@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     async printData() {
-      let valid = await this.$refs.form.validate();
+      const valid = await this.$refs.form.validate();
       if (valid) {
         console.log(this.data);
       }
