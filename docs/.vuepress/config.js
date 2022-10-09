@@ -46,7 +46,6 @@ module.exports = ctx => ({
                 ariaLabel: 'Select language',
                 editLinkText: 'Edit this page on GitHub',
                 lastUpdated: 'Last Updated',
-                // nav: require('./nav/en'),
                 nav: [
                     {
                         text: 'Guide',
@@ -54,12 +53,12 @@ module.exports = ctx => ({
                     },
                     {
                         text: 'Config Reference',
-                        link: '/config/'
+                        link: '/components/'
                     }
                 ],
                 sidebar: {
                     '/guide/': getGuideSidebar('Guide', 'Advanced'),
-                    '/config/': getConfigSidebar(),
+                    '/components/': getComponentsSidebar('Components', 'Advanced'),
                 }
             },
             '/zh/': {
@@ -68,20 +67,19 @@ module.exports = ctx => ({
                 ariaLabel: '选择语言',
                 editLinkText: '在 GitHub 上编辑此页',
                 lastUpdated: '上次更新',
-                // nav: require('./nav/zh'),
                 nav: [
                     {
                         text: '指南',
                         link: '/zh/guide/'
                     },
                     {
-                        text: '配置',
-                        link: '/zh/config/'
+                        text: '组件',
+                        link: '/zh/components/'
                     }
                 ],
                 sidebar: {
                     '/zh/guide/': getGuideSidebar('指南', '深入'),
-                    '/zh/config/': getConfigSidebar(),
+                    '/zh/components/': getComponentsSidebar('组件', '高级'),
                 }
             }
         }
@@ -121,10 +119,25 @@ module.exports = ctx => ({
     // ]
 })
 
-function getConfigSidebar() {
+function getComponentsSidebar(groupA, groupB) {
     return [
-        'cli',
-        'node'
+        {
+            title: groupA,
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                'string',
+                'boolean'
+            ]
+        },
+        {
+            title: groupB,
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                ''
+            ]
+        }
     ]
 }
 
@@ -136,15 +149,6 @@ function getGuideSidebar(groupA, groupB) {
             sidebarDepth: 2,
             children: [
                 ''
-                // '',
-                // 'getting-started',
-                // 'directory-structure',
-                // 'basic-config',
-                // 'assets',
-                // 'markdown',
-                // 'using-vue',
-                // 'i18n',
-                // 'deploy'
             ]
         },
         {
@@ -153,10 +157,6 @@ function getGuideSidebar(groupA, groupB) {
             sidebarDepth: 2,
             children: [
                 'custom-validator'
-                // 'frontmatter',
-                // 'permalinks',
-                // 'markdown-slot',
-                // 'global-computed'
             ]
         }
     ]
