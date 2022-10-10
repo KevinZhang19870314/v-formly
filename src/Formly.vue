@@ -136,6 +136,11 @@ export default {
       },
       deep: false,
     },
+    layout: function (val, oldVal) {
+      if (val === oldVal) return;
+
+      this.globalInstance.layout = val;
+    },
   },
   methods: {
     initFormData(formData, properties) {

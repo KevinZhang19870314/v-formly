@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{ display: layout === 'inline' ? 'inline-block' : 'block' }">
     <component
       v-bind:is="currentComponent"
       :id="id"
@@ -43,6 +43,9 @@ export default {
     currentComponent() {
       const type = (this.meta.ui && this.meta.ui.component) || this.meta.type;
       return `v-${type}`;
+    },
+    layout: function () {
+      return this.state.layout;
     },
   },
   mounted() {

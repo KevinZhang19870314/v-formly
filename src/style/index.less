@@ -39,7 +39,7 @@
     &__boolean {
       &.@{ant-prefix}-switch {
         display: block;
-        margin-top: 4px;
+        margin-top: 8px;
       }
     }
 
@@ -188,6 +188,22 @@
     }
   
     &__inline {
+      .@{ant-prefix}-form-item {
+        display: inline-block;
+        margin-right: 16px;
+        margin-bottom: 0;
+
+        .@{ant-prefix}-form-item-label {
+          display: inline-block;
+          vertical-align: top;
+        }
+
+        .@{ant-prefix}-form-item-control-wrapper {
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+
       @{v-prefix}__item {
         display: inline-block;
         margin-bottom: 8px;
@@ -236,6 +252,14 @@
       @{v-prefix}__label-text {
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+    }
+
+    &.@{ant-prefix}-form-vertical {
+      @{v-prefix}__boolean {
+        &.@{ant-prefix}-switch {
+          margin-top: 0px !important;
+        }
       }
     }
   

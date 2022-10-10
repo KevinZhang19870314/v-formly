@@ -154,7 +154,8 @@ function getGuideSidebar(groupA, groupB) {
             collapsable: false,
             sidebarDepth: 2,
             children: [
-                'custom-validator'
+                'custom-validator',
+                'layout'
             ]
         }
     ]

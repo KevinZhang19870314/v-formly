@@ -11,13 +11,14 @@
       :lg="grid(item).lg"
       :xl="grid(item).xl"
       :xxl="grid(item).xxl"
+      :style="{ display: layout === 'inline' ? 'inline-block' : 'block' }"
     >
       <v-formly-item
         :id="item.key"
         :meta="item.meta"
         :show="visible(item.meta)"
       >
-        <template v-for="slotName in slotsName" v-slot:[slotName]="{context}">
+        <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
           <slot :name="slotName" v-bind:context="context">
             {{ "object slot" }}
           </slot>
@@ -25,6 +26,21 @@
       </v-formly-item>
     </a-col>
   </a-row>
+  <!-- <div v-else style="display: inline-block">
+    <v-formly-item
+      v-for="(item, index) in childMetaPairs"
+      :key="index"
+      :id="item.key"
+      :meta="item.meta"
+      :show="visible(item.meta)"
+    >
+      <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
+        <slot :name="slotName" v-bind:context="context">
+          {{ "object slot" }}
+        </slot>
+      </template>
+    </v-formly-item>
+  </div> -->
 </template>
 <script>
 import { ObjectMeta } from "../meta/object.meta.js";
@@ -54,12 +70,16 @@ export default {
     gutter: function () {
       return Object.assign({}, this.state.ui.grid, this.ui.grid).gutter;
     },
+    layout: function () {
+      return this.state.layout;
+    },
   },
   methods: {
     visible(meta) {
       return meta.ui && !meta.ui.hidden;
     },
     grid(item) {
+      if (this.layout === "inline") return {};
       const grid = (item.meta.ui && item.meta.ui.grid) || {};
       return Object.assign({}, this.state.ui.grid, this.ui.grid, grid);
     },
