@@ -135,7 +135,7 @@ function getComponentsSidebar(groupA, groupB) {
             collapsable: false,
             sidebarDepth: 2,
             children: [
-                ''
+                'advanced'
             ]
         }
     ]

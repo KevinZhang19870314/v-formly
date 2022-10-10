@@ -59,6 +59,7 @@ export default {
               errors: {
                 required: "请输入",
               },
+              change: (val) => console.log(val),
             },
           },
           string2_1: {
