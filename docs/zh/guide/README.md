@@ -84,7 +84,7 @@ export default {
 
    c. `enable`为一个简单的 AntDv 的`Switch`组件。
 
-通过上述简单的表单示例，我们大概了解了如何开始使用 v-formly，更多内容请查看[组件](TODO)。
+通过上述简单的表单示例，我们大概了解了如何开始使用 v-formly，更多内容请查看[组件](/zh/components/)。
 
 ## 快速开始
 

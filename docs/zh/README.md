@@ -2,7 +2,7 @@
 home: true
 heroImage: /hero.png
 actionText: 快速上手 →
-actionLink: /guide/getting-started.html
+actionLink: /zh/guide/
 footer: MIT Licensed | Copyright © 2022-present v-formly
 ---
 

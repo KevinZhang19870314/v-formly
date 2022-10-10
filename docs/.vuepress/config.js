@@ -113,10 +113,6 @@ module.exports = ctx => ({
             }
         }
     }
-    // extraWatchFiles: [
-    //     '.vuepress/nav/en.js',
-    //     '.vuepress/nav/zh.js'
-    // ]
 })
 
 function getComponentsSidebar(groupA, groupB) {
@@ -126,6 +122,7 @@ function getComponentsSidebar(groupA, groupB) {
             collapsable: false,
             sidebarDepth: 2,
             children: [
+                '',
                 'string',
                 'boolean'
             ]
