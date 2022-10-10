@@ -49,8 +49,6 @@ export default {
   },
   data() {
     return {
-      // error: "",
-      layout: this.state.layout,
       context: this.state.context.getContext(this.id),
     };
   },
@@ -68,11 +66,13 @@ export default {
       return this.state.ui.grid || this.grid || {};
     },
     labelCol: function () {
-      return this.layout === "vertical" ? null : { span: this.ui.spanLabel };
+      return this.state.layout === "vertical" || this.state.layout === "inline"
+        ? undefined
+        : { span: this.ui.spanLabel };
     },
     wrapperCol: function () {
-      return this.layout === "vertical"
-        ? null
+      return this.state.layout === "vertical" || this.state.layout === "inline"
+        ? undefined
         : { span: this.ui.spanControl, offset: this.ui.offsetControl || 0 };
     },
     error: {

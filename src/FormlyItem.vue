@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div :style="{ display: layout === 'inline' ? 'inline-block' : 'block' }">
     <component
       v-bind:is="currentComponent"
       :id="id"
       :meta="meta"
       v-if="visible"
     >
-      <template v-for="slotName in slotsName" v-slot:[slotName]="{context}">
+      <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
         <slot :name="slotName" v-bind:context="context">
           {{ "formly-item slot" }}
         </slot>
@@ -43,6 +43,9 @@ export default {
     currentComponent: function () {
       const type = (this.meta.ui && this.meta.ui.component) || this.meta.type;
       return `v-${type}`;
+    },
+    layout: function () {
+      return this.state.layout;
     },
   },
   mounted() {
