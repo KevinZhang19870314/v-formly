@@ -36,7 +36,7 @@
       </template>
     </v-formly>
     <div class="btns">
-      <a-button type="danger" @click="clear"> 清除 </a-button>
+      <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
     </div>
   </div>
@@ -56,6 +56,9 @@ export default {
             ui: {
               showRequired: true,
               placeholder: "Basic usage",
+              errors: {
+                required: "请输入",
+              },
             },
           },
           string2_1: {
@@ -147,9 +150,12 @@ export default {
           string7: {
             title: "正则表达式",
             type: "string",
-            pattern: "[abc]+",
+            pattern: "^[abc]+$",
             ui: {
               placeholder: "^[abc]+$",
+              errors: {
+                pattern: "数据格式不正确",
+              },
             },
           },
         },
@@ -173,7 +179,7 @@ export default {
     },
     string6SuffixClick() {
       this.visibilityToggle = !this.visibilityToggle;
-      const context = this.$refs.form.getContext("string6");
+      const context = this.$refs.form.getContext("/string6");
       context.ui.type = this.visibilityToggle ? "text" : "password";
     },
   },

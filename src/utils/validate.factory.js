@@ -9,13 +9,14 @@ class ValidateFactory {
         this._validate = null;
     }
 
+    // TODO 提交表单时，界面应该抛出所有错误
     async runValidateForm() {
         const { valid, errors } = this._isAjvValid();
         const contexts = this.state.context.getContexts();
         const instances = contexts.values();
         let isValid = true;
         for (const instance of instances) {
-            isValid = isValid && await this._validation(instance, valid, errors);
+            isValid = await this._validation(instance, valid, errors) && isValid;
         }
 
         return isValid;
@@ -103,10 +104,9 @@ class ValidateFactory {
         const globalErrors = Object.assign({}, this.state.ui.errors, localErrors);
         const keywords = Object.keys(globalErrors);
         if (keywords && keywords.length > 0) {
-            keywords.forEach(keyword => {
-                let cur = errors.find(f => f.keyword === keyword);
-                if (cur) {
-                    cur.message = globalErrors[keyword];
+            errors.forEach(error => {
+                if (keywords.indexOf(error.keyword) > -1) {
+                    error.message = globalErrors[error.keyword];
                 }
             });
         }
@@ -122,8 +122,12 @@ class ValidateFactory {
     }
 
     _getId(error) {
-        const id = `${error.instancePath}${error.instancePath ? '/' : ''}${error.params.missingProperty}`;
-        return id;
+        const hasMissingProperty = error.params && error.params.missingProperty;
+        if (hasMissingProperty) {
+            return `${error.instancePath}/${error.params.missingProperty}`;
+        }
+
+        return `${error.instancePath}`;
     }
 }
 

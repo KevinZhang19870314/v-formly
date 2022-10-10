@@ -13,7 +13,7 @@ v-formly 内置封装了所有的在 Ant Design of Vue 中的`Data Entry`下面�
   <div>
     <v-formly ref="form" v-model="data" :schema="schema"> </v-formly>
     <div style="display: flex; justify-content: flex-end;">
-      <a-button type="danger" @click="clear"> 清除 </a-button>&nbsp;&nbsp;
+      <a-button type="danger" @click="clear"> 重置 </a-button>&nbsp;&nbsp;
       <a-button type="primary" @click="submit"> 提交 </a-button>
     </div>
   </div>

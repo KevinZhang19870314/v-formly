@@ -11,7 +11,7 @@ class ObjectMeta {
   set value(val) {
     this.childMetaPairs.forEach(({ key, propertyName }) => {
       const ctx = this.state.context.getContext(key);
-      ctx.value = (val|| {})[propertyName];
+      ctx.value = (val || {})[propertyName];
     });
   }
 
@@ -24,8 +24,7 @@ class ObjectMeta {
   buildChildMetaPairs(id, meta) {
     let results = [];
     for (let [key, value] of Object.entries(meta.properties || {})) {
-      const idStartWithSlash = id && `${id}`.indexOf("/") === 0 ? id : `/${id}`;
-      let keyVal = id === "root" ? key : `${idStartWithSlash}/${key}`;
+      let keyVal = id === "/" ? `/${key}` : `${id}/${key}`;
       results.push({ key: keyVal, propertyName: key, meta: value });
     }
 

@@ -2,7 +2,7 @@
   <div>
     <v-formly ref="form" v-model="data" :schema="schema"> </v-formly>
     <div class="btns">
-      <a-button type="danger" @click="clear"> 清除 </a-button>
+      <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
     </div>
   </div>

@@ -8,7 +8,7 @@
         v__horizontal: layout === 'horizontal',
       }"
     >
-      <v-formly-item id="root" :meta="objectMeta">
+      <v-formly-item id="/" :meta="objectMeta">
         <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
           <slot :name="slotName" v-bind:context="context">
             {{ "formly slot" }}
@@ -150,7 +150,7 @@ export default {
       registerFormComponent("v-select", VSelect);
     },
     reset(data) {
-      const context = this.globalInstance.context.getContext("root");
+      const context = this.globalInstance.context.getContext("/");
       if (context) {
         context.value = data;
         this.$emit("value-change", this.formData);

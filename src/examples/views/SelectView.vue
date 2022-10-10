@@ -182,7 +182,7 @@ export default {
                 span: 12,
               },
               change: (val) => {
-                const context = this.$refs.form.getContext("select4_2");
+                const context = this.$refs.form.getContext("/select4_2");
                 context.value = null;
                 context.ui.options = cityData[val];
               },
@@ -212,7 +212,7 @@ export default {
               filterOption: false,
               notFoundContent: null,
               change: (val) => {
-                const context = this.$refs.form.getContext("select5");
+                const context = this.$refs.form.getContext("/select5");
                 context.value = val;
                 select5Fetch(val, (data) => {
                   context.ui.options = data;
@@ -220,7 +220,7 @@ export default {
               },
               search: (value) => {
                 select5Fetch(value, (data) => {
-                  const context = this.$refs.form.getContext("select5");
+                  const context = this.$refs.form.getContext("/select5");
                   context.ui.options = data;
                 });
               },
@@ -249,7 +249,7 @@ export default {
               placeholder: "Inserted are removed",
               options: select7Options,
               change: (val) => {
-                const context = this.$refs.form.getContext("select7");
+                const context = this.$refs.form.getContext("/select7");
                 context.ui.options = select7Options.filter(
                   (f) => !val.includes(f.value)
                 );
@@ -292,7 +292,7 @@ export default {
     },
     select6FetchUser(value) {
       console.log("fetching user", value);
-      const context = this.$refs.form.getContext("select6");
+      const context = this.$refs.form.getContext("/select6");
       this.lastFetchId += 1;
       const fetchId = this.lastFetchId;
       fetch("/api/?results=5")

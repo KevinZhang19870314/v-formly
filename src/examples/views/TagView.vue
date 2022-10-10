@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     changeEnum() {
-      const ctx = this.$refs.form.getContext("like1");
+      const ctx = this.$refs.form.getContext("/like1");
       if (ctx) {
         ctx.meta.enum = [
           { value: 1, label: "new 电影" },

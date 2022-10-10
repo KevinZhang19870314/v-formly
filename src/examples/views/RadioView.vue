@@ -99,7 +99,7 @@ export default {
       }
     },
     setFormat() {
-      const context = this.$refs.form.getContext("multiple");
+      const context = this.$refs.form.getContext("/multiple");
       if (context) {
         context.ui.options = ["上", "右", "下", "左"];
         context.value = "下";

@@ -108,12 +108,12 @@ export default {
       }
     },
     clear() {
-      const ctx = this.$refs.form.getContext("product");
+      const ctx = this.$refs.form.getContext("/product");
       console.log(ctx.value);
       ctx.value = [];
     },
     set(number) {
-      const ctx = this.$refs.form.getContext("product");
+      const ctx = this.$refs.form.getContext("/product");
       console.log(ctx.value);
       const arr = [];
       for (let i = 0; i < number; i++) {
@@ -131,7 +131,7 @@ export default {
       ctx.value = arr;
     },
     add() {
-      const ctx = this.$refs.form.getContext("product");
+      const ctx = this.$refs.form.getContext("/product");
       ctx.add();
     },
   },
