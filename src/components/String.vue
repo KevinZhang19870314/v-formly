@@ -1,20 +1,36 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-input
-      :addonAfter="ui.addonAfter"
-      :addonBefore="ui.addonBefore"
+      :addonBefore="ui.slotNameOfAddonBefore ? undefined : ui.addonBefore"
+      :addonAfter="ui.slotNameOfAddonAfter ? undefined : ui.addonAfter"
       :defaultValue="schema.defaultValue"
       :disabled="schema.readOnly"
       :id="ui.id"
       :maxLength="schema.maxLength"
-      :prefix="ui.prefix"
+      :prefix="ui.slotNameOfPrefix ? undefined : ui.prefix"
       :size="ui.size"
-      :suffix="ui.suffix"
+      :suffix="ui.slotNameOfSuffix ? undefined : ui.suffix"
       :allowClear="ui.allowClear"
       :placeholder="ui.placeholder"
+      :type="ui.type"
       v-model="value"
       @change="change"
     >
+      <!-- prefix & suffix -->
+      <template v-if="ui.slotNameOfPrefix" v-slot:prefix>
+        <slot :name="ui.slotNameOfPrefix"></slot>
+      </template>
+      <template v-if="ui.slotNameOfSuffix" v-slot:suffix>
+        <slot :name="ui.slotNameOfSuffix"></slot>
+      </template>
+
+      <!-- addonBefore & addonAfter -->
+      <template v-if="ui.slotNameOfAddonBefore" v-slot:addonBefore>
+        <slot :name="ui.slotNameOfAddonBefore"></slot>
+      </template>
+      <template v-if="ui.slotNameOfAddonAfter" v-slot:addonAfter>
+        <slot :name="ui.slotNameOfAddonAfter"></slot>
+      </template>
     </a-input>
   </v-wrapper>
 </template>
