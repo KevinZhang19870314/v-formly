@@ -76,7 +76,9 @@ export default {
 
 1. v-formly 支持 v-model 双向绑定，可通过修改 data 来随时改变 form 表单数据；
 
-2. 以上表单包括两个`string`类型和一个`boolean`类型的内置`component`.
+2. 传入的 schema 是`JSON-Schema`结构 + 嵌套`ui`的组合，v-formly 使用 schema 来解析并渲染表单页面；
+
+3. 以上表单包括两个`string`类型和一个`boolean`类型的内置`component`.
 
    a. 其中`name`为必填项（`required: ["name"]`体现出来），且默认内容为“kevin”，其中`ui.showRequired`为 true 会添加 label 前面的红色星号；
 
