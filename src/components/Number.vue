@@ -4,7 +4,7 @@
       class="v__number"
       :id="id"
       v-model="value"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :size="ui.size"
       :min="min"
       :max="max"
@@ -44,7 +44,7 @@ export default {
       exclusiveMaximum,
       multipleOf,
       type,
-    } = this.schema;
+    } = this.meta;
     this.step = multipleOf || 1;
     if (typeof minimum !== "undefined") {
       this.min = exclusiveMinimum ? minimum + this.step : minimum;
@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     change(val) {
-      this.value = this.schema.type === "integer" ? Math.floor(val) : val;
+      this.value = this.meta.type === "integer" ? Math.floor(val) : val;
 
       if (this.ui.change) {
         this.ui.change(this.value);

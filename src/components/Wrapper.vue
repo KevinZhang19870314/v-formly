@@ -6,7 +6,7 @@
     :class="{ 'has-error': error }"
   >
     <template #label>
-      <span class="v__label-text">{{ schema.title }}</span>
+      <span class="v__label-text">{{ meta.title }}</span>
       <span v-if="ui.optional || oh" class="v__optional">
         {{ ui.optional }}
         <a-tooltip
@@ -25,9 +25,9 @@
     </template>
     <slot></slot>
     <div
-      v-if="schema.description"
+      v-if="meta.description"
       class="ant-form-extra"
-      v-html="schema.description"
+      v-html="meta.description"
     ></div>
     <div v-if="error" class="ant-form-explain">
       {{ error }}
@@ -55,22 +55,19 @@ export default {
     };
   },
   computed: {
-    schema: function () {
-      return this.meta;
-    },
-    ui: function () {
+    ui() {
       return Object.assign({}, this.state.ui, this.meta.ui);
     },
-    oh: function () {
+    oh() {
       return Object.assign({}, this.state.ui, this.meta.ui).optionalHelp;
     },
-    grid: function () {
+    grid() {
       return this.state.ui.grid || this.grid || {};
     },
-    labelCol: function () {
+    labelCol() {
       return this.layout === "vertical" ? null : { span: this.ui.spanLabel };
     },
-    wrapperCol: function () {
+    wrapperCol() {
       return this.layout === "vertical"
         ? null
         : { span: this.ui.spanControl, offset: this.ui.offsetControl || 0 };
@@ -85,10 +82,16 @@ export default {
     },
   },
   created() {
-    Vue.bus.on(FORM_ERROR_CHANGE, this.formErrorChangeCallback);
+    Vue.bus.on(
+      `${FORM_ERROR_CHANGE}-${this.state._id}`,
+      this.formErrorChangeCallback
+    );
   },
   beforeDestroy() {
-    Vue.bus.off(FORM_ERROR_CHANGE, this.formErrorChangeCallback);
+    Vue.bus.off(
+      `${FORM_ERROR_CHANGE}-${this.state._id}`,
+      this.formErrorChangeCallback
+    );
   },
   methods: {
     formErrorChangeCallback(err) {

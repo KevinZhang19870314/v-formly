@@ -39,7 +39,7 @@ export default {
     },
   },
   watch: {
-    "schema.enum": {
+    "meta.enum": {
       handler: "updateTags",
       immediate: true,
     },
@@ -69,7 +69,7 @@ export default {
         item.checked = (this.value || []).indexOf(item.value) > -1;
       });
       // set disabled
-      tags.forEach((item) => (item.disabled = !!this.schema.readOnly));
+      tags.forEach((item) => (item.disabled = !!this.meta.readOnly));
       this.tags = tags;
     },
   },

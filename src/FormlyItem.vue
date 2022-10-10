@@ -6,7 +6,7 @@
       :meta="meta"
       v-if="visible"
     >
-      <template v-for="slotName in slotsName" v-slot:[slotName]="{context}">
+      <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
         <slot :name="slotName" v-bind:context="context">
           {{ "formly-item slot" }}
         </slot>
@@ -40,7 +40,7 @@ export default {
     };
   },
   computed: {
-    currentComponent: function () {
+    currentComponent() {
       const type = (this.meta.ui && this.meta.ui.component) || this.meta.type;
       return `v-${type}`;
     },
@@ -53,7 +53,7 @@ export default {
 
     this.visible = this.show;
 
-    Vue.bus.on(FORM_VALUE_CHANGE, (change) => {
+    Vue.bus.on(`${FORM_VALUE_CHANGE}-${this.state._id}`, (change) => {
       this.visible = this.visibleIf(
         this.state.context,
         this.meta,

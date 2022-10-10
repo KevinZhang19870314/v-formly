@@ -3,10 +3,10 @@
     <a-input
       :addonBefore="ui.slotNameOfAddonBefore ? undefined : ui.addonBefore"
       :addonAfter="ui.slotNameOfAddonAfter ? undefined : ui.addonAfter"
-      :defaultValue="schema.defaultValue"
-      :disabled="schema.readOnly"
+      :defaultValue="meta.defaultValue"
+      :disabled="meta.readOnly"
       :id="ui.id"
-      :maxLength="schema.maxLength"
+      :maxLength="meta.maxLength"
       :prefix="ui.slotNameOfPrefix ? undefined : ui.prefix"
       :size="ui.size"
       :suffix="ui.slotNameOfSuffix ? undefined : ui.suffix"
@@ -52,10 +52,10 @@ export default {
   },
   computed: {
     value: {
-      get: function () {
+      get() {
         return this.context.value;
       },
-      set: function (val) {
+      set(val) {
         this.context.value = val || undefined;
       },
     },

@@ -1,9 +1,9 @@
 <!-- 创建对象数组 -->
 <template>
   <a-form-model-item>
-    <a-col class="ant-form-item-label" v-if="schema.title" :span="ui.spanLabel">
+    <a-col class="ant-form-item-label" v-if="meta.title" :span="ui.spanLabel">
       <label :class="{ 'ant-form-item-required': ui.required }">
-        {{ schema.title }}
+        {{ meta.title }}
         <span class="v__optional">
           {{ ui.optional }}
           <a-tooltip
@@ -57,8 +57,8 @@
         </a-row>
         <!-- 属性目的性解释 -->
         <div
-          v-if="schema.description"
-          v-html="schema.description"
+          v-if="meta.description"
+          v-html="meta.description"
           class="ant-form-extra"
         ></div>
       </div>
@@ -95,20 +95,20 @@ export default {
       },
     },
     disabled() {
-      return this.schema.readOnly;
+      return this.meta.readOnly;
     },
     addDisabled() {
       return (
         this.disabled ||
-        (this.schema.maxItems != null &&
-          this.context.ids.length >= this.schema.maxItems)
+        (this.meta.maxItems != null &&
+          this.context.ids.length >= this.meta.maxItems)
       );
     },
     showRemove() {
       if (
         this.disabled ||
-        (this.schema.minItems != null &&
-          this.context.ids.length <= this.schema.minItems)
+        (this.meta.minItems != null &&
+          this.context.ids.length <= this.meta.minItems)
       ) {
         return false;
       }
