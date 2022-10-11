@@ -18,7 +18,7 @@
 
       <!-- submit button -->
       <template v-if="button === 'default'">
-        <a-form-model-item :wrapperCol="wrapperCol">
+        <a-form-model-item :wrapperCol="wrapperCol" class="v__default-submit-button">
           <a-space>
             <a-button type="danger" @click="clearForm"> 重置 </a-button>
             <a-button type="primary" @click="submitForm" :loading="loading">
