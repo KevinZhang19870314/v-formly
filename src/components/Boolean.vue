@@ -3,12 +3,25 @@
     <a-switch
       class="v__boolean"
       v-model="value"
+      :autoFocus="ui.autoFocus"
+      :defaultChecked="ui.defaultChecked"
       :disabled="meta.readOnly"
       :size="ui.size"
-      :checkedChildren="ui.checkedChildren"
-      :unCheckedChildren="ui.unCheckedChildren"
+      :loading="ui.loading"
+      :checkedChildren="
+        ui.slotNameOfCheckedChildren ? undefined : ui.checkedChildren
+      "
+      :unCheckedChildren="
+        ui.slotNameOfUnCheckedChildren ? undefined : ui.unCheckedChildren
+      "
       @change="change"
     >
+      <template v-if="ui.slotNameOfCheckedChildren" v-slot:checkedChildren>
+        <slot :name="ui.slotNameOfCheckedChildren"></slot>
+      </template>
+      <template v-if="ui.slotNameOfUnCheckedChildren" v-slot:unCheckedChildren>
+        <slot :name="ui.slotNameOfUnCheckedChildren"></slot>
+      </template>
     </a-switch>
   </v-wrapper>
 </template>
@@ -39,9 +52,9 @@ export default {
     this.applyInitValue();
   },
   methods: {
-    change() {
+    change(checked, event) {
       if (this.ui.change) {
-        this.ui.change(this.value);
+        this.ui.change(this.value, event);
       }
     },
   },

@@ -151,9 +151,10 @@ export default {
           case "array":
             formData[key] = formData[key] || [];
             break;
-          case "boolean":
-            formData[key] = formData[key] || false;
-            break;
+          // 这里如果设置为false，则default value不起作用
+          // case "boolean":
+          //   formData[key] = formData[key] || false;
+          //   break;
           default:
             formData[key] = formData[key] || undefined;
             break;
