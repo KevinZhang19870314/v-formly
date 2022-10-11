@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
+    <v-formly ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
       <template v-slot:datasource>
         <a-select-option v-for="email in result" :key="email">
           {{ email }}
@@ -28,7 +28,7 @@ export default {
   data: function () {
     let self = this;
     return {
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {

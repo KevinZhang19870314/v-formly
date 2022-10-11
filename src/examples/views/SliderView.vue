@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" layout="horizontal" />
+    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal" />
     <div class="btns">
       <a-button type="primary" @click="printData"> 提交 </a-button>
     </div>
@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       data: {},
-      schema: {
+      meta: {
         properties: {
           count: {
             type: "number",

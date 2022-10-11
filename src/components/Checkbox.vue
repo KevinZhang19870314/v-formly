@@ -4,7 +4,7 @@
       <a-checkbox-group
         class="v__checkbox"
         v-model="value"
-        :options="schema.enum"
+        :options="meta.enum"
         @change="change"
       />
     </template>
@@ -14,7 +14,7 @@
           <a-col
             class="v__text-left"
             :span="ui.span"
-            v-for="(item, index) in schema.enum"
+            v-for="(item, index) in meta.enum"
             :key="index"
           >
             <a-checkbox
@@ -44,10 +44,10 @@ export default {
   },
   computed: {
     value: {
-      get: function () {
+      get() {
         return this.context.value;
       },
-      set: function (val) {
+      set(val) {
         this.context.value = val || undefined;
       },
     },

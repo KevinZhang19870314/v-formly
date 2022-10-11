@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
+    <v-formly ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
       <a-button type="primary" @click="setName0"> 设置名称0 </a-button>
@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {

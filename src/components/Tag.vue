@@ -17,7 +17,7 @@
 import VWrapper from "./Wrapper.vue";
 import { NumberMeta } from "../meta/number.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
-import cloneDeep from "lodash/cloneDeep";
+import { deepClone } from "@/utils/utils";
 export default {
   name: "v-tag",
   components: { VWrapper },
@@ -39,7 +39,7 @@ export default {
     },
   },
   watch: {
-    "schema.enum": {
+    "meta.enum": {
       handler: "updateTags",
       immediate: true,
     },
@@ -58,7 +58,7 @@ export default {
     },
     updateTags(val) {
       this.applyInitValue();
-      let tags = cloneDeep(val);
+      let tags = deepClone(val);
       if (tags == null || !Array.isArray(tags) || tags.length === 0) return;
       // set label
       if (typeof tags[0] !== "object") {
@@ -69,7 +69,7 @@ export default {
         item.checked = (this.value || []).indexOf(item.value) > -1;
       });
       // set disabled
-      tags.forEach((item) => (item.disabled = !!this.schema.readOnly));
+      tags.forEach((item) => (item.disabled = !!this.meta.readOnly));
       this.tags = tags;
     },
   },

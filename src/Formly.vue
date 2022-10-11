@@ -15,6 +15,27 @@
           </slot>
         </template>
       </v-formly-item>
+
+      <!-- submit button -->
+      <template v-if="button === 'default'">
+        <a-form-model-item :wrapperCol="wrapperCol">
+          <a-space>
+            <a-button type="danger" @click="clearForm"> 重置 </a-button>
+            <a-button type="primary" @click="submitForm" :loading="loading">
+              提交
+            </a-button>
+          </a-space>
+        </a-form-model-item>
+      </template>
+      <template v-else-if="button === 'custom'">
+        <slot
+          name="button"
+          v-bind:loading="loading"
+          v-bind:clearForm="clearForm"
+          v-bind:submitForm="submitForm"
+        ></slot>
+      </template>
+      <template v-else></template>
     </a-form-model>
   </div>
 </template>
@@ -41,6 +62,7 @@ import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
 import { slotsMixin } from "./mixin/slots.mixin.js";
 import { registerFormComponent } from "./utils/register.factory.js";
+import { deepClone } from "@/utils/utils";
 export default {
   name: "v-formly",
   components: { VFormlyItem },
@@ -49,20 +71,21 @@ export default {
     prop: "value",
     event: "value-change",
   },
-  // TODO: 定义一个submit emit，解决外部需要写async/await校验的问题
   props: {
     value: Object,
     layout: {
       type: String,
       default: "horizontal",
     },
-    schema: {},
+    button: String,
+    meta: {},
   },
   data() {
     return {
       objectMeta: {},
       formData: {},
       globalInstance: new Global(),
+      loading: false,
     };
   },
   provide() {
@@ -70,20 +93,28 @@ export default {
       state: this.globalInstance,
     };
   },
+  computed: {
+    wrapperCol() {
+      const ui = Object.assign({}, this.globalInstance.ui);
+      return this.layout === "vertical"
+        ? null
+        : { span: ui.spanControl, offset: ui.spanLabel };
+    },
+  },
   created() {
-    if (!this.schema || typeof this.schema.properties === "undefined")
+    if (!this.meta || typeof this.meta.properties === "undefined")
       throw new Error(`Invalid Schema`);
 
     console.log("formly created");
     this.globalInstance.layout = this.layout;
-    this.objectMeta = Object.assign({}, this.objectMeta, this.schema);
+    this.objectMeta = Object.assign({}, this.objectMeta, this.meta);
     this.formData = Object.assign({}, this.formData, this.value);
 
     this.registerBuildInComponents();
 
-    this.globalInstance.schema = this.objectMeta;
+    this.globalInstance.meta = this.objectMeta;
     this.globalInstance.formData = this.formData;
-    this.initFormData(this.globalInstance.formData, this.schema.properties);
+    this.initFormData(this.globalInstance.formData, this.meta.properties);
 
     this.globalInstance.context = new FormItemContext();
 
@@ -160,6 +191,19 @@ export default {
         context.value = data;
         this.$emit("value-change", this.formData);
       }
+    },
+    clearForm() {
+      this.$emit("form-reset", deepClone(this.globalInstance.formData));
+      this.reset({});
+    },
+    async submitForm() {
+      this.loading = true;
+      const valid = await this.validate();
+      this.loading = false;
+      this.$emit("form-submit", {
+        valid,
+        data: valid ? deepClone(this.globalInstance.formData) : undefined,
+      });
     },
   },
 };

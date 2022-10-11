@@ -3,7 +3,7 @@
     <a-switch
       class="v__boolean"
       v-model="value"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :size="ui.size"
       :checkedChildren="ui.checkedChildren"
       :unCheckedChildren="ui.unCheckedChildren"
@@ -27,10 +27,10 @@ export default {
   },
   computed: {
     value: {
-      get: function () {
+      get() {
         return this.context.value;
       },
-      set: function (val) {
+      set(val) {
         this.context.value = val || false;
       },
     },

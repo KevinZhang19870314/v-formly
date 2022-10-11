@@ -3,11 +3,11 @@
     <template v-if="ui.character">
       <a-rate
         :id="ui.id"
-        :disabled="schema.readOnly"
+        :disabled="meta.readOnly"
         :allowClear="allowClear"
         :allowHalf="!!ui.allowHalf"
         :tooltips="ui.tooltips || []"
-        :count="schema.maximum || 5"
+        :count="meta.maximum || 5"
         :character="ui.character"
         v-model="value"
         @change="change"
@@ -17,11 +17,11 @@
     <template v-else>
       <a-rate
         :id="ui.id"
-        :disabled="schema.readOnly"
+        :disabled="meta.readOnly"
         :allowClear="allowClear"
         :allowHalf="!!ui.allowHalf"
         :tooltips="ui.tooltips || []"
-        :count="schema.maximum || 5"
+        :count="meta.maximum || 5"
         v-model="value"
         @change="change"
         @hoverChange="hoverChange"

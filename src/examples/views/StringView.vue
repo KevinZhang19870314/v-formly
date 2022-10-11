@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="formData" :schema="schema">
+    <v-formly ref="form" v-model="formData" :meta="meta">
       <!-- string2_x -->
       <template v-slot:string2_2_prefix>
         <a-icon type="user" />
@@ -47,7 +47,7 @@ export default {
   name: "StringView",
   data: function () {
     return {
-      schema: {
+      meta: {
         type: "object",
         properties: {
           string1: {

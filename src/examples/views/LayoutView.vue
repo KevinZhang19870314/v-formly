@@ -8,7 +8,7 @@
       <a-radio-button value="vertical"> 垂直 </a-radio-button>
       <a-radio-button value="inline"> 行内 </a-radio-button>
     </a-radio-group>
-    <v-formly ref="form" v-model="data" :schema="schema" :layout="mode"> </v-formly>
+    <v-formly ref="form" v-model="data" :meta="meta" :layout="mode"> </v-formly>
   </div>
 </template>
 <script>
@@ -17,7 +17,7 @@ export default {
   data: () => {
     return {
       mode: "inline",
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {

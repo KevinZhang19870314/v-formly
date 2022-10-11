@@ -20,6 +20,7 @@ import SelectView from "../views/SelectView.vue";
 import LayoutView from "../views/LayoutView.vue";
 
 import CustomValidatorView from "../views/CustomValidatorView.vue";
+import SubmitButtonView from '../views/SubmitButtonView.vue';
 import redirect from "../layout/components/redirect.vue";
 
 /* Layout */
@@ -169,6 +170,12 @@ export const routes = [
             name: "custom-validator",
             component: CustomValidatorView,
             meta: { title: "自定义校验" },
+          },
+          {
+            path: "custom-submit-button",
+            name: "custom-submit-button",
+            component: SubmitButtonView,
+            meta: { title: "自定义提交按钮" },
           },
           {
             path: "layout",

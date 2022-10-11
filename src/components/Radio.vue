@@ -4,7 +4,7 @@
       :class="{ 'v__radio-vertical': ui.direction === 'vertical' }"
       v-if="ui.radioType === 'button'"
       v-model="value"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :name="ui.name"
       :size="ui.size"
       :buttonStyle="ui.buttonStyle"
@@ -23,7 +23,7 @@
       :class="{ 'v__radio-vertical': ui.direction === 'vertical' }"
       v-else
       v-model="value"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :name="ui.name"
       :options="ui.options"
       :size="ui.size"

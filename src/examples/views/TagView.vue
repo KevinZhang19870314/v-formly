@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" layout="horizontal">
+    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
     </v-formly>
     <div class="btns">
       <a-button type="primary" @click="changeEnum"> change enum </a-button>
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       data: {},
-      schema: {
+      meta: {
         properties: {
           like1: {
             type: "number",
