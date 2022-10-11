@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" layout="horizontal">
+    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
       <template v-slot:testSlot>
         <a-icon slot="character" type="heart" />
       </template>
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       data: {},
-      schema: {
+      meta: {
         properties: {
           rate: {
             type: "number",

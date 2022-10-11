@@ -83,13 +83,13 @@ export default {
   },
   created() {
     Vue.bus.on(
-      `${FORM_ERROR_CHANGE}-${this.state._id}`,
+      `${FORM_ERROR_CHANGE}-${this.state._formId}`,
       this.formErrorChangeCallback
     );
   },
   beforeDestroy() {
     Vue.bus.off(
-      `${FORM_ERROR_CHANGE}-${this.state._id}`,
+      `${FORM_ERROR_CHANGE}-${this.state._formId}`,
       this.formErrorChangeCallback
     );
   },

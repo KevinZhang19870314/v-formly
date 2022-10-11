@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" :layout="'horizontal'">
+    <v-formly ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
       <a-button type="primary" @click="printData"> 提交 </a-button>
@@ -12,7 +12,7 @@ import VFormly from "@/Formly.vue";
 export default {
   data: function () {
     return {
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {

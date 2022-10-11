@@ -28,7 +28,7 @@ class BaseMeta {
 
     this.setValue(val);
 
-    Vue.bus.emit(`${FORM_VALUE_CHANGE}-${this.state._id}`, {
+    Vue.bus.emit(`${FORM_VALUE_CHANGE}-${this.state._formId}`, {
       id: this.id,
       value: this._value,
     });

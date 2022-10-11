@@ -56,7 +56,7 @@ export default {
 
     this.visible = this.show;
 
-    Vue.bus.on(`${FORM_VALUE_CHANGE}-${this.state._id}`, (change) => {
+    Vue.bus.on(`${FORM_VALUE_CHANGE}-${this.state._formId}`, (change) => {
       this.visible = this.visibleIf(
         this.state.context,
         this.meta,

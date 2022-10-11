@@ -18,19 +18,18 @@
 
       <!-- submit button -->
       <template v-if="button === 'default'">
-        <slot>
-          <a-form-model-item :wrapperCol="wrapperCol">
-            <a-space>
-              <a-button type="danger" @click="clearForm"> 重置 </a-button>
-              <a-button type="primary" @click="submitForm" :loading="loading">
-                提交
-              </a-button>
-            </a-space>
-          </a-form-model-item>
-        </slot>
+        <a-form-model-item :wrapperCol="wrapperCol">
+          <a-space>
+            <a-button type="danger" @click="clearForm"> 重置 </a-button>
+            <a-button type="primary" @click="submitForm" :loading="loading">
+              提交
+            </a-button>
+          </a-space>
+        </a-form-model-item>
       </template>
       <template v-else-if="button === 'custom'">
         <slot
+          name="button"
           v-bind:loading="loading"
           v-bind:clearForm="clearForm"
           v-bind:submitForm="submitForm"
@@ -63,7 +62,7 @@ import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
 import { slotsMixin } from "./mixin/slots.mixin.js";
 import { registerFormComponent } from "./utils/register.factory.js";
-import cloneDeep from "lodash/cloneDeep";
+import { deepClone } from "@/utils/utils";
 export default {
   name: "v-formly",
   components: { VFormlyItem },
@@ -79,7 +78,7 @@ export default {
       default: "horizontal",
     },
     button: String,
-    schema: {},
+    meta: {},
   },
   data() {
     return {
@@ -95,9 +94,6 @@ export default {
     };
   },
   computed: {
-    meta() {
-      return this.schema || {};
-    },
     wrapperCol() {
       const ui = Object.assign({}, this.globalInstance.ui);
       return this.layout === "vertical"
@@ -197,15 +193,17 @@ export default {
       }
     },
     clearForm() {
+      this.$emit("form-reset", deepClone(this.globalInstance.formData));
       this.reset({});
     },
     async submitForm() {
       this.loading = true;
       const valid = await this.validate();
       this.loading = false;
-      if (valid) {
-        this.$emit("form-submit", cloneDeep(this.globalInstance.formData));
-      }
+      this.$emit("form-submit", {
+        valid,
+        data: valid ? deepClone(this.globalInstance.formData) : undefined,
+      });
     },
   },
 };

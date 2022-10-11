@@ -3,7 +3,7 @@ import { UUID } from "@/utils/utils";
 
 class Global {
   constructor() {
-    this._id = UUID(4);
+    this._formId = UUID(4);
     this._context = null;
     this._layout = "horizontal";
     this._ajvOptions = {

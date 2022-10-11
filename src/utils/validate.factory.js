@@ -58,7 +58,7 @@ class ValidateFactory {
 
   async _validation(context, valid, errs) {
     let errors = [];
-    const ERROR_CHANGE = `${FORM_ERROR_CHANGE}-${this.state._id}`;
+    const ERROR_CHANGE = `${FORM_ERROR_CHANGE}-${this.state._formId}`;
     if (!valid) {
       const customErrors = this._getCustomError(context);
       const customAsyncErrors = await this._getCustomAsyncError(context);

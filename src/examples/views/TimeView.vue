@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" :layout="'vertical'">
+    <v-formly ref="form" v-model="data" :meta="meta" :layout="'vertical'">
       <template v-slot:suffixIcon3>
         <a-icon type="smile" />
       </template>
@@ -20,7 +20,7 @@ import VFormly from "@/Formly.vue";
 export default {
   data: function () {
     return {
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {
