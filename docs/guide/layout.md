@@ -17,7 +17,7 @@ v-formly 表单支持三种布局，水平`horizontal`,垂直`vertical`,行内`i
       <a-radio-button value="vertical"> 垂直 </a-radio-button>
       <a-radio-button value="inline"> 行内 </a-radio-button>
     </a-radio-group>
-    <v-formly ref="form" v-model="data" :schema="schema" :layout="mode">
+    <v-formly ref="form" v-model="data" :meta="meta" :layout="mode">
     </v-formly>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
   data: () => {
     return {
       mode: "inline",
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {

@@ -11,7 +11,7 @@ v-formly 内置封装了所有的在 Ant Design of Vue 中的`Data Entry`下面�
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema"> </v-formly>
+    <v-formly ref="form" v-model="data" :meta="meta"> </v-formly>
     <div style="display: flex; justify-content: flex-end;">
       <a-button type="danger" @click="clear"> 重置 </a-button>&nbsp;&nbsp;
       <a-button type="primary" @click="submit"> 提交 </a-button>
@@ -24,7 +24,7 @@ export default {
   name: "BaseForm",
   data: function () {
     return {
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {

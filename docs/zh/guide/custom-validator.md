@@ -18,10 +18,10 @@ v-formly 除了支持标准的[JSON Schema](https://js-schema.org/)和[Ajv](http
 
 ### 局部更改
 
-局部更改即在编写某个表单的 schema 时候覆盖某个属性的`ui.errors`。
+局部更改即在编写某个表单的 meta 时候覆盖某个属性的`ui.errors`。
 
 ```js {8,10-13}
-schema: {
+meta: {
   type: "object",
   properties: {
     name: {
@@ -47,7 +47,7 @@ schema: {
 ### 同步校验
 
 ```js {8,10-11}
-schema: {
+meta: {
   type: "object",
   properties: {
     name: {
@@ -67,7 +67,7 @@ schema: {
 ### 异步校验
 
 ```js {7,9-17}
-schema: {
+meta: {
   type: "object",
   properties: {
     asyncError: {

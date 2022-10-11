@@ -19,7 +19,7 @@ v-formly 表单支持三种布局，水平`horizontal`，垂直`vertical`，行�
       <a-radio-button value="vertical"> 垂直 </a-radio-button>
       <a-radio-button value="inline"> 行内 </a-radio-button>
     </a-radio-group>
-    <v-formly ref="form" v-model="data" :schema="schema" :layout="mode">
+    <v-formly ref="form" v-model="data" :meta="meta" :layout="mode">
     </v-formly>
     <div style="display: flex; justify-content: flex-end;">
       <a-button type="danger" @click="clear"> 重置 </a-button>&nbsp;&nbsp;
@@ -33,7 +33,7 @@ export default {
   data: () => {
     return {
       mode: "horizontal",
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {
@@ -100,7 +100,7 @@ export default {
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" :layout="'vertical'">
+    <v-formly ref="form" v-model="data" :meta="meta" :layout="'vertical'">
     </v-formly>
     <div style="display: flex; justify-content: flex-end;">
       <a-button type="danger" @click="clear"> 重置 </a-button>&nbsp;&nbsp;
@@ -113,7 +113,7 @@ export default {
   name: "LayoutView",
   data: () => {
     return {
-      schema: {
+      meta: {
         type: "object",
         properties: {
           name: {
