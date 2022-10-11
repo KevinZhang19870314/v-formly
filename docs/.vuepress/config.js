@@ -166,7 +166,7 @@ function getComponentsSidebar(groupA, groupB) {
       title: groupA,
       collapsable: false,
       sidebarDepth: 2,
-      children: ["", "string", "boolean"],
+      children: ["", "autocomplete", "string", "boolean"],
     },
     {
       title: groupB,

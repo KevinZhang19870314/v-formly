@@ -211,18 +211,22 @@ export default {
 
 ### meta.ui 属性
 
-| 成员             | 说明                                                                       | 类型          | 默认值    |
-| ---------------- | -------------------------------------------------------------------------- | ------------- | --------- |
-| `[addOnAfter]`   | 带标签的 input，设置后置标签                                               | `string,slot` | -         |
-| `[addOnBefore]`  | 带标签的 input，设置前置标签                                               | `string,slot` | -         |
-| `[defaultValue]` | 输入框默认内容                                                             | `string`      | -         |
-| `[disabled]`     | 是否禁用状态，默认为 false                                                 | `boolean`     | false     |
-| `[id]`           | 输入框的 id                                                                | `string`      | -         |
-| `[maxLength]`    | 最大长度                                                                   | `number`      | -         |
-| `[placeholder]`  | 在文字框中显示提示讯息                                                     | `string`      | -         |
-| `[prefix]`       | 带有前缀图标的 input                                                       | `string,slot` | -         |
-| `[size]`         | 控件大小。注：标准表单内的输入框大小限制为 large。可选 large default small | `string`      | `default` |
-| `[suffix]`       | 带有后缀图标的 input                                                       | `string,slot` | -         |
-| `[type]`         | 等同 input 的 `type` 值，例如：`password`                                  | `string`      | -         |
-| `[allowClear]`   | 可以点击清除图标删除内容                                                   | `boolean`     | -         |
-| `[change]`       | 输入框内容变化时的回调                                                     | `function(e)` | -         |
+| 成员                      | 说明                                                                       | 类型          | 默认值    |
+| ------------------------- | -------------------------------------------------------------------------- | ------------- | --------- |
+| `[addOnAfter]`            | 带标签的 input，设置后置标签                                               | `string`      | -         |
+| `[slotNameOfAddonAfter]`  | 带标签的 input，设置后置标签，slot 名称                                    | `string`      | -         |
+| `[addOnBefore]`           | 带标签的 input，设置前置标签                                               | `string`      | -         |
+| `[slotNameOfAddonBefore]` | 带标签的 input，设置前置标签，slot 名称                                    | `string`      | -         |
+| `[defaultValue]`          | 输入框默认内容                                                             | `string`      | -         |
+| `[disabled]`              | 是否禁用状态，默认为 false                                                 | `boolean`     | false     |
+| `[id]`                    | 输入框的 id                                                                | `string`      | -         |
+| `[maxLength]`             | 最大长度                                                                   | `number`      | -         |
+| `[placeholder]`           | 在文字框中显示提示讯息                                                     | `string`      | -         |
+| `[prefix]`                | 带有前缀图标的 input                                                       | `string`      | -         |
+| `[slotNameOfPrefix]`      | 带有前缀图标的 input，slot 名称                                            | `string`      | -         |
+| `[size]`                  | 控件大小。注：标准表单内的输入框大小限制为 large。可选 large default small | `string`      | `default` |
+| `[suffix]`                | 带有后缀图标的 input                                                       | `string`      | -         |
+| `[slotNameOfSuffix]`      | 带有后缀图标的 input，slot 名称                                            | `string`      | -         |
+| `[type]`                  | 等同 input 的 `type` 值，例如：`password`                                  | `string`      | -         |
+| `[allowClear]`            | 可以点击清除图标删除内容                                                   | `boolean`     | -         |
+| `(change)`                | 输入框内容变化时的回调                                                     | `function(e)` | -         |

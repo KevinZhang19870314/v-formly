@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import VFormly from "@/Formly.vue";
 export default {
   name: "BooleanView",
   data: function () {
@@ -86,9 +85,6 @@ export default {
       },
       data: {},
     };
-  },
-  components: {
-    VFormly,
   },
   methods: {
     clear() {

@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import VFormly from "@/Formly.vue";
 export default {
   name: "HomeView",
   data: function () {
@@ -47,9 +46,6 @@ export default {
       },
       data: { enable: true },
     };
-  },
-  components: {
-    VFormly,
   },
   methods: {
     clear() {

@@ -1,14 +1,21 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-auto-complete
+      :allowClear="ui.allowClear"
+      :autoFocus="ui.autoFocus"
+      :backfill="ui.backfill"
+      :data-source="ui.slotNameOfDataSource ? null : ui.dataSource"
+      :dropdownMenuStyle="ui.dropdownMenuStyle"
+      :defaultActiveFirstOption="ui.defaultActiveFirstOption"
       :defaultValue="meta.default"
       :disabled="meta.readOnly"
-      :placeholder="ui.placeholder"
       :filterOption="ui.filterOption"
-      :backfill="ui.backfill"
+      :optionLabelProp="ui.optionLabelProp"
+      :placeholder="ui.placeholder"
       v-model="value"
-      :data-source="ui.slotNameOfDataSource ? null : ui.dataSource"
-      @search="handleSearch"
+      @change="change"
+      @search="search"
+      @select="select"
     >
       <template v-if="ui.slotNameOfDataSource" v-slot:dataSource>
         <slot :name="ui.slotNameOfDataSource"></slot>
@@ -43,9 +50,19 @@ export default {
     },
   },
   methods: {
-    handleSearch(value) {
-      if (this.meta.ui && this.meta.ui.handleSearch) {
-        this.meta.ui.handleSearch(value);
+    change(value) {
+      if (this.meta.ui && this.meta.ui.change) {
+        this.meta.ui.change(value);
+      }
+    },
+    search(value) {
+      if (this.meta.ui && this.meta.ui.search) {
+        this.meta.ui.search(value);
+      }
+    },
+    select(value, option) {
+      if (this.meta.ui && this.meta.ui.search) {
+        this.meta.ui.search(value, option);
       }
     },
   },
