@@ -32,9 +32,9 @@ v-formly 提交表单的三种方式。
       @form-submit="submit"
     >
       <template v-slot:button="{ loading, clearForm, submitForm }">
-        <div style="display: flex; justify-content: flex-end;">
+        <div class="btns">
           <a-button type="danger" @click="clearForm"> 重置 </a-button
-          >&nbsp;&nbsp;
+          >
           <a-button type="primary" @click="submitForm" :loading="loading">
             提交
           </a-button>
@@ -43,8 +43,8 @@ v-formly 提交表单的三种方式。
     </v-formly>
     <a-divider>3. 使用 ref 获取 form 实例</a-divider>
     <v-formly ref="form" layout="horizontal" v-model="data3" :meta="meta" />
-    <div style="display: flex; justify-content: flex-end;">
-      <a-button type="danger" @click="clear"> 重置 </a-button>&nbsp;&nbsp;
+    <div class="btns">
+      <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="printData" :loading="formLoading">
         提交
       </a-button>

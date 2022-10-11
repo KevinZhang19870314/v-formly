@@ -4,12 +4,19 @@
       <a-checkbox-group
         class="v__checkbox"
         v-model="value"
+        :disabled="meta.readOnly"
+        :name="ui.name"
         :options="meta.enum"
         @change="change"
       />
     </template>
     <template v-else>
-      <a-checkbox-group v-model="value" @change="change" class="v__checkbox">
+      <a-checkbox-group
+        v-model="value"
+        :disabled="meta.readOnly"
+        @change="change"
+        class="v__checkbox"
+      >
         <a-row>
           <a-col
             class="v__text-left"

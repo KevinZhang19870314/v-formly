@@ -18,8 +18,8 @@
         <a-icon type="close" />
       </template>
     </v-formly>
-    <div style="display: flex; justify-content: flex-end;">
-      <a-button type="danger" @click="clear"> 重置 </a-button>&nbsp;&nbsp;
+    <div class="btns">
+      <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
     </div>
   </div>
@@ -120,18 +120,18 @@ export default {
 
 | 成员         | 说明     | 类型      | 默认值 |
 | ------------ | -------- | --------- | ------ |
-| `[readOnly]` | 禁用状态 | `boolean` | -      |
+| `:readOnly` | 禁用状态 | `boolean` | -      |
 
 ### meta.ui 属性
 
 | 成员                            | 说明                            | 类型                                      | 默认值    |
 | ------------------------------- | ------------------------------- | ----------------------------------------- | --------- |
-| `[checkedChildren]`             | 选中时的内容                    | `string`                                  | -         |
-| `[slotNameOfCheckedChildren]`   | 选中时的内容，slot 名称         | `string`                                  | -         |
-| `[defaultChecked]`              | 初始是否选中                    | `boolean`                                 | `false`   |
-| `[disabled]`                    | 是否禁用                        | `boolean`                                 | `false`   |
-| `[loading]`                     | 加载中的开关                    | `boolean`                                 | `false`   |
-| `[size]`                        | 开关大小，可选值：default small | `default,small`                           | `default` |
-| `[unCheckedChildren]`           | 非选中时的内容                  | `string`                                  | -         |
-| `[slotNameOfUnCheckedChildren]` | 非选中时的内容，slot 名称       | `string`                                  | -         |
-| `(change)`                      | 输入框内容变化时的回调          | `Function(checked:Boolean, event: Event)` | -         |
+| `:checkedChildren`             | 选中时的内容                    | `string`                                  | -         |
+| `:slotNameOfCheckedChildren`   | 选中时的内容，slot 名称         | `string`                                  | -         |
+| `:defaultChecked`              | 初始是否选中                    | `boolean`                                 | `false`   |
+| `:disabled`                    | 是否禁用                        | `boolean`                                 | `false`   |
+| `:loading`                     | 加载中的开关                    | `boolean`                                 | `false`   |
+| `:size`                        | 开关大小，可选值：default small | `default,small`                           | `default` |
+| `:unCheckedChildren`           | 非选中时的内容                  | `string`                                  | -         |
+| `:slotNameOfUnCheckedChildren` | 非选中时的内容，slot 名称       | `string`                                  | -         |
+| `@change`                      | 输入框内容变化时的回调          | `Function(checked:Boolean, event: Event)` | -         |

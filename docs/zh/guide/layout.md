@@ -21,8 +21,8 @@ v-formly 表单支持三种布局，水平`horizontal`，垂直`vertical`，行�
     </a-radio-group>
     <v-formly ref="form" v-model="data" :meta="meta" :layout="mode">
     </v-formly>
-    <div style="display: flex; justify-content: flex-end;">
-      <a-button type="danger" @click="clear"> 重置 </a-button>&nbsp;&nbsp;
+    <div class="btns">
+      <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
     </div>
   </div>
@@ -102,8 +102,8 @@ export default {
   <div>
     <v-formly ref="form" v-model="data" :meta="meta" :layout="'vertical'">
     </v-formly>
-    <div style="display: flex; justify-content: flex-end;">
-      <a-button type="danger" @click="clear"> 重置 </a-button>&nbsp;&nbsp;
+    <div class="btns">
+      <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
     </div>
   </div>

@@ -1,3 +1,12 @@
+# Checkbox 多选框
+
+多选框
+
+## 代码演示
+
+::: demo
+
+```vue
 <template>
   <div>
     <v-formly ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
@@ -15,14 +24,6 @@ export default {
       meta: {
         type: "object",
         properties: {
-          name: {
-            title: "姓名",
-            type: "string",
-            default: "kevin",
-            ui: {
-              showRequired: true,
-            },
-          },
           fruits: {
             title: "水果",
             type: "string",
@@ -85,3 +86,22 @@ export default {
 };
 </script>
 <style lang="less" scoped></style>
+```
+
+:::
+
+## API
+
+### meta 属性
+
+| 成员         | 说明                                 | 类型      | 默认值                                                                                                   |
+| ------------ | ------------------------------------ | --------- | -------------------------------------------------------------------------------------------------------- | --- |
+| `:enum`     | 数据源，当数据源存在于表示一组多选框 | `string[] | Array<{ label: string value: string disabled?: boolean, indeterminate?: boolean, onChange?: function }>` | -   |
+| `:readOnly` | 禁用状态                             | `boolean` | -                                                                                                        |
+
+### meta.ui 属性
+
+| 成员       | 说明                                                     | 类型                     | 默认值 |
+| ---------- | -------------------------------------------------------- | ------------------------ | ------ |
+| `:name`   | CheckboxGroup 下所有 input[type="checkbox"] 的 name 属性 | `string`                 | -      |
+| `@change` | 变化时回调函数                                           | `Function(checkedValue)` | -      |

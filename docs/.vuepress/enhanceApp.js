@@ -1,5 +1,6 @@
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import "@/style/index.less";
 
 import VFormly from "@/formly.js";
 
