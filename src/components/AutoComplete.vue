@@ -1,8 +1,8 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-auto-complete
-      :defaultValue="schema.default"
-      :disabled="schema.readOnly"
+      :defaultValue="meta.default"
+      :disabled="meta.readOnly"
       :placeholder="ui.placeholder"
       :filterOption="ui.filterOption"
       :backfill="ui.backfill"
@@ -34,10 +34,10 @@ export default {
   },
   computed: {
     value: {
-      get: function () {
+      get() {
         return this.context.value;
       },
-      set: function (val) {
+      set(val) {
         this.context.value = val || undefined;
       },
     },

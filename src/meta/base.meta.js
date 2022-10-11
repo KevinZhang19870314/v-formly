@@ -1,5 +1,6 @@
 import Vue from "vue";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
+
 class BaseMeta {
   constructor(state, id, meta) {
     if (this.constructor == BaseMeta) {
@@ -11,7 +12,6 @@ class BaseMeta {
     this.meta = meta;
     this.type = (this.meta.ui && this.meta.ui.component) || this.meta.type;
     this.ui = Object.assign({}, this.state.ui, this.meta.ui);
-    this.schema = this.meta || {};
 
     // TODO:可能需要一个getter/setter，setter需要判断是否有错误，有错误才设置上去
     this.error = undefined;
@@ -28,7 +28,7 @@ class BaseMeta {
 
     this.setValue(val);
 
-    Vue.bus.emit(FORM_VALUE_CHANGE, {
+    Vue.bus.emit(`${FORM_VALUE_CHANGE}-${this.state._formId}`, {
       id: this.id,
       value: this._value,
     });

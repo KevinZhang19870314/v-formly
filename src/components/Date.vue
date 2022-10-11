@@ -5,7 +5,7 @@
       v-if="mode === 'month'"
       v-model="value"
       :valueFormat="ui.valueFormat"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :size="ui.size"
       :format="ui.format"
       :allowClear="ui.allowClear"
@@ -23,7 +23,7 @@
       v-if="mode === 'week'"
       v-model="value"
       :valueFormat="ui.valueFormat"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :size="ui.size"
       :format="ui.format"
       :allowClear="ui.allowClear"
@@ -41,7 +41,7 @@
       v-if="mode === 'range'"
       v-model="value"
       :valueFormat="ui.valueFormat"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :size="ui.size"
       :format="ui.format"
       :allowClear="ui.allowClear"
@@ -62,7 +62,7 @@
       v-if="mode === 'date'"
       v-model="value"
       :valueFormat="ui.valueFormat"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :size="ui.size"
       :format="ui.format"
       :allowClear="ui.allowClear"
@@ -93,14 +93,14 @@ export default {
     };
   },
   computed: {
-    mode: function () {
+    mode() {
       return this.ui.mode || "date";
     },
     value: {
-      get: function () {
+      get() {
         return this.context.value;
       },
-      set: function (val) {
+      set(val) {
         this.context.value = val || undefined;
       },
     },

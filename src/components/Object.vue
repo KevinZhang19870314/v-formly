@@ -67,9 +67,6 @@ export default {
     ui: function () {
       return this.meta.ui || {};
     },
-    schema: function () {
-      return this.meta || {};
-    },
     gutter: function () {
       return Object.assign({}, this.state.ui.grid, this.ui.grid).gutter;
     },

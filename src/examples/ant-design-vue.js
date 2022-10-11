@@ -22,7 +22,9 @@ import {
   Rate,
   Tag,
   Slider,
-  Spin
+  Space,
+  Divider,
+  Spin,
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -48,3 +50,5 @@ Vue.use(Slider);
 Vue.use(Rate);
 Vue.use(Tag);
 Vue.use(Spin);
+Vue.use(Space);
+Vue.use(Divider);

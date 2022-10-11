@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <a-slider
       :id="ui.id"
-      :disabled="!!schema.readOnly"
+      :disabled="!!meta.readOnly"
       :range="!!ui.range"
       :vertical="!!ui.vertical"
       :dots="!!ui.dots"
@@ -56,7 +56,7 @@ export default {
     },
   },
   created() {
-    const { minimum, maximum, multipleOf } = this.schema;
+    const { minimum, maximum, multipleOf } = this.meta;
     this.min = minimum || 0;
     this.max = maximum || 100;
     this.step = multipleOf || 1;

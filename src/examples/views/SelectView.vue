@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" layout="horizontal">
+    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
       <template v-slot:select6>
         <a-spin slot="notFoundContent" size="small" />
       </template>
@@ -105,7 +105,7 @@ export default {
     this.select6FetchUser = debounce(this.select6FetchUser, 800);
     return {
       data: {},
-      schema: {
+      meta: {
         properties: {
           select: {
             type: "string",

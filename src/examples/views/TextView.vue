@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :schema="schema" layout="horizontal">
+    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
       <template v-slot:testSlot>
         <h1 style="color: green; border: 1px dashed green">slot 类型的 text</h1>
       </template>
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       data: {},
-      schema: {
+      meta: {
         properties: {
           name: {
             title: "姓名",

@@ -2,10 +2,10 @@
   <v-wrapper :id="id" :meta="meta">
     <a-textarea
       :id="ui.id"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :placeholder="ui.placeholder"
       :auto-size="autosize"
-      :maxLength="schema.maxLength || null"
+      :maxLength="meta.maxLength || null"
       :allowClear="ui.allowClear"
       v-model="value"
       @change="change"

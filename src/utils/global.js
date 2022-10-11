@@ -1,18 +1,20 @@
 import Vue from "vue";
+import { UUID } from "@/utils/utils";
 
 class Global {
   constructor() {
+    this._formId = UUID(4);
     this._context = null;
-    this._layout = 'horizontal';
+    this._layout = "horizontal";
     this._ajvOptions = {
       allErrors: true,
       strict: false,
       loopEnum: 50,
     };
     this._formData = null;
-    this._schema = {};
+    this._meta = {};
     this._ui = {
-      ingoreKeywords: ['type', 'enum'],
+      ingoreKeywords: ["type", "enum"],
       spanLabel: 5,
       spanControl: 19,
       grid: {
@@ -20,8 +22,8 @@ class Global {
         span: 24,
       },
       errors: {
-        'required': '必填项'
-      }
+        required: "必填项",
+      },
     };
     this._validate = null;
 
@@ -60,12 +62,12 @@ class Global {
     this._formData = val;
   }
 
-  get schema() {
-    return this._schema;
+  get meta() {
+    return this._meta;
   }
 
-  set schema(val) {
-    this._schema = val;
+  set meta(val) {
+    this._meta = val;
   }
 
   get ui() {
@@ -98,7 +100,7 @@ class Global {
 
   _applyUseOptions() {
     const options = Vue.prototype.$VFORMLY_OPTIONS;
-    if (!options || typeof options !== 'object') return;
+    if (!options || typeof options !== "object") return;
 
     this.ui = options.ui;
   }
