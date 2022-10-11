@@ -146,7 +146,8 @@ function getGuideSidebar(groupA, groupB) {
             sidebarDepth: 2,
             children: [
                 '',
-                'meta'
+                'meta',
+                'terms'
             ]
         },
         {
@@ -155,7 +156,8 @@ function getGuideSidebar(groupA, groupB) {
             sidebarDepth: 2,
             children: [
                 'custom-validator',
-                'layout'
+                'layout',
+                'form-submit'
             ]
         }
     ]
