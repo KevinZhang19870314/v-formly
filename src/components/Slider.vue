@@ -1,18 +1,14 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-slider
-      :id="ui.id"
+      v-bind="ui"
       :disabled="!!meta.readOnly"
-      :range="!!ui.range"
-      :vertical="!!ui.vertical"
-      :dots="!!ui.dots"
       :min="min"
       :max="max"
       :step="step"
       :marks="marks"
       :included="included"
       :tipFormatter="hiddenTooltip ? null : tipFormatter"
-      :tooltipVisible="ui.tooltipVisible"
       v-model="value"
       @change="change"
       @afterChange="afterChange"

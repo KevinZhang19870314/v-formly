@@ -1,17 +1,9 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-auto-complete
-      :allowClear="ui.allowClear"
-      :autoFocus="ui.autoFocus"
-      :backfill="ui.backfill"
-      :data-source="ui.slotNameOfDataSource ? null : ui.dataSource"
-      :dropdownMenuStyle="ui.dropdownMenuStyle"
-      :defaultActiveFirstOption="ui.defaultActiveFirstOption"
+      v-bind="ui"
       :defaultValue="meta.default"
       :disabled="meta.readOnly"
-      :filterOption="ui.filterOption"
-      :optionLabelProp="ui.optionLabelProp"
-      :placeholder="ui.placeholder"
       v-model="value"
       @change="change"
       @search="search"

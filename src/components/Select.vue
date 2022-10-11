@@ -2,43 +2,9 @@
   <v-wrapper :id="id" :meta="meta">
     <a-select
       v-model="value"
-      :allowClear="ui.allowClear"
-      :autoClearSearchValue="ui.autoClearSearchValue"
-      :autoFocus="ui.autoFocus"
-      :defaultActiveFirstOption="ui.defaultActiveFirstOption"
+      v-bind="ui"
       :defaultValue="meta.defaultValue"
       :disabled="meta.readOnly"
-      :dropdownClassName="ui.dropdownClassName"
-      :dropdownMatchSelectWidth="ui.dropdownMatchSelectWidth"
-      :dropdownRender="ui.dropdownRender"
-      :dropdownStyle="ui.dropdownStyle"
-      :dropdownMenuStyle="ui.dropdownMenuStyle"
-      :filterOption="ui.filterOption"
-      :firstActiveValue="ui.firstActiveValue"
-      :getPopupContainer="ui.getPopupContainer"
-      :labelInValue="ui.labelInValue"
-      :loading="ui.loading"
-      :maxTagCount="ui.maxTagCount"
-      :maxTagPlaceholder="ui.maxTagPlaceholder"
-      :maxTagTextLength="ui.maxTagTextLength"
-      :mode="ui.mode"
-      :notFoundContent="
-        ui.slotNameOfNotFoundContent ? undefined : ui.notFoundContent
-      "
-      :optionFilterProp="ui.optionFilterProp"
-      :optionLabelProp="ui.optionLabelProp"
-      :placeholder="ui.placeholder"
-      :showSearch="ui.showSearch"
-      :showArrow="ui.showArrow"
-      :size="ui.size"
-      :suffixIcon="ui.slotNameOfSuffixIcon ? undefined : ui.suffixIcon"
-      :removeIcon="ui.slotNameOfRemoveIcon ? undefined : ui.removeIcon"
-      :clearIcon="ui.slotNameOfClearIcon ? undefined : ui.clearIcon"
-      :menuItemSelectedIcon="
-        ui.slotNameOfMenuItemSelectedIcon ? undefined : ui.menuItemSelectedIcon
-      "
-      :tokenSeparators="ui.tokenSeparators"
-      :options="ui.options"
       @blur="blur"
       @deselect="deselect"
       @focus="focus"
@@ -51,7 +17,10 @@
       @dropdownVisibleChange="dropdownVisibleChange"
       @change="change"
     >
-      <slot v-if="ui.slotNameOfSelectDefault" :name="ui.slotNameOfSelectDefault"></slot>
+      <slot
+        v-if="ui.slotNameOfSelectDefault"
+        :name="ui.slotNameOfSelectDefault"
+      ></slot>
       <template v-if="ui.slotNameOfNotFoundContent" v-slot:notFoundContent>
         <slot :name="ui.slotNameOfNotFoundContent"></slot>
       </template>

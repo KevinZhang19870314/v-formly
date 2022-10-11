@@ -23,7 +23,7 @@
       :class="{ 'v__radio-vertical': ui.direction === 'vertical' }"
       v-else
       v-model="value"
-      :disabled="meta.readOnly"
+      :disabled="schema.readOnly"
       :name="ui.name"
       :options="ui.options"
       :size="ui.size"

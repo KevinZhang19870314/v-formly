@@ -4,8 +4,8 @@
       <a-checkbox-group
         class="v__checkbox"
         v-model="value"
+        v-bind="ui"
         :disabled="meta.readOnly"
-        :name="ui.name"
         :options="meta.enum"
         @change="change"
       />

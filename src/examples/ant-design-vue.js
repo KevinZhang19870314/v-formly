@@ -25,6 +25,7 @@ import {
   Space,
   Divider,
   Spin,
+  Upload
 } from "ant-design-vue";
 
 Vue.use(Card);
@@ -52,3 +53,4 @@ Vue.use(Tag);
 Vue.use(Spin);
 Vue.use(Space);
 Vue.use(Divider);
+Vue.use(Upload);

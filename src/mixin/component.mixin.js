@@ -9,7 +9,6 @@ export const componentMixin = {
   },
   computed: {
     ui() {
-      // return Object.assign({}, this.state.ui, this.meta.ui);
       return this.context.ui;
     },
   },

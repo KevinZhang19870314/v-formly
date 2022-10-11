@@ -33,11 +33,11 @@ export default {
           },
           remark6: {
             type: "string",
-            title: "指定 autosize",
+            title: "指定 autoSize",
             ui: {
               component: "textarea",
               placeholder: "{ minRows: 2, maxRows: 6 }",
-              autosize: { minRows: 2, maxRows: 6 },
+              autoSize: { minRows: 2, maxRows: 6 },
             },
           },
           remark1: {
@@ -56,7 +56,7 @@ export default {
               "content content content content content content content content content content content content content content content content content content content content content content content content",
             ui: {
               component: "textarea",
-              autosize: false,
+              autoSize: false,
             },
           },
           remark3: {

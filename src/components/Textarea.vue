@@ -1,13 +1,11 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-textarea
-      :id="ui.id"
-      :disabled="meta.readOnly"
-      :placeholder="ui.placeholder"
-      :auto-size="autosize"
-      :maxLength="meta.maxLength || null"
-      :allowClear="ui.allowClear"
       v-model="value"
+      v-bind="ui"
+      :disabled="meta.readOnly"
+      :autoSize="autoSize"
+      :maxLength="meta.maxLength || null"
       @change="change"
       @focus="focus($event)"
       @blur="blur($event)"
@@ -27,7 +25,7 @@ export default {
   data() {
     return {
       context: new StringMeta(this.state, this.id, this.meta),
-      autosize: true,
+      autoSize: true,
     };
   },
   computed: {
@@ -41,9 +39,9 @@ export default {
     },
   },
   created() {
-    const { autosize } = this.ui;
-    if (autosize != null) {
-      this.autosize = autosize;
+    const { autoSize } = this.ui;
+    if (autoSize != null) {
+      this.autoSize = autoSize;
     }
   },
   mounted() {

@@ -3,17 +3,8 @@
     <a-switch
       class="v__boolean"
       v-model="value"
-      :autoFocus="ui.autoFocus"
-      :defaultChecked="ui.defaultChecked"
+      v-bind="ui"
       :disabled="meta.readOnly"
-      :size="ui.size"
-      :loading="ui.loading"
-      :checkedChildren="
-        ui.slotNameOfCheckedChildren ? undefined : ui.checkedChildren
-      "
-      :unCheckedChildren="
-        ui.slotNameOfUnCheckedChildren ? undefined : ui.unCheckedChildren
-      "
       @change="change"
     >
       <template v-if="ui.slotNameOfCheckedChildren" v-slot:checkedChildren>

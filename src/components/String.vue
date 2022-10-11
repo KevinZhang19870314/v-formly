@@ -1,18 +1,10 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-input
-      :addonBefore="ui.slotNameOfAddonBefore ? undefined : ui.addonBefore"
-      :addonAfter="ui.slotNameOfAddonAfter ? undefined : ui.addonAfter"
+      v-bind="ui"
       :defaultValue="meta.defaultValue"
       :disabled="meta.readOnly"
-      :id="ui.id"
       :maxLength="meta.maxLength"
-      :prefix="ui.slotNameOfPrefix ? undefined : ui.prefix"
-      :size="ui.size"
-      :suffix="ui.slotNameOfSuffix ? undefined : ui.suffix"
-      :allowClear="ui.allowClear"
-      :placeholder="ui.placeholder"
-      :type="ui.type"
       v-model="value"
       @change="change"
     >
