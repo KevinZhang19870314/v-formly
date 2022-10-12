@@ -1,3 +1,12 @@
+# Textarea 多行文本框
+
+一般用于多行字符串。
+
+## 代码演示
+
+::: demo
+
+```vue
 <template>
   <div>
     <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
@@ -91,10 +100,33 @@ export default {
     async printData() {
       const valid = await this.$refs.form.validate();
       if (valid) {
-        console.log(this.data);
+        this.$message.info(JSON.stringify(this.data));
       }
     },
   },
 };
 </script>
-<style lang="less" scoped></style>
+```
+
+:::
+
+## API
+
+### meta 属性
+
+| 成员         | 说明     | 类型      | 默认值 |
+| ------------ | -------- | --------- | ------ |
+| `:maxLength` | 最大长度 | `number`  | -      |
+| `:readOnly`  | 禁用状态 | `boolean` | -      |
+
+### meta.ui 属性
+
+| 成员           | 说明                          | 类型                                     | 默认值   |
+| -------------- | ----------------------------- | ---------------------------------------- | -------- | ------- | ---- |
+| `:autosize`    | 自适应内容高度，可设置为`true | false`或对象：{ minRows: 2, maxRows: 6 } | `boolean | object` | true |
+| `:placeholder` | 默认文字                      | `string`                                 | -        |
+| `:allowClear`  | 可以点击清除图标删除内容      | `boolean`                                | -        |
+| `@change`      | 内容变更事件                  | `function(value)`                        | -        |
+| `@focus`       | 焦点事件                      | `function(e)`                            | -        |
+| `@blur`        | 失焦事件                      | `function(e)`                            | -        |
+| `@pressEnter`  | 按下回车事件                  | `function(e)`                            | -        |

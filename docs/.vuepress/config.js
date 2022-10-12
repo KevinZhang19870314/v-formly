@@ -179,6 +179,9 @@ function getComponentsSidebar(groupA, groupB) {
         "boolean",
         "time",
         "object",
+        "tag",
+        "text",
+        "textarea"
       ],
     },
     {

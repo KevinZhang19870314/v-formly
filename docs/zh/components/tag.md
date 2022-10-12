@@ -1,9 +1,18 @@
+# Tag 标签
+
+进行标记和分类的小标签，注： 只支持 checkable 标签模式。
+
+## 代码演示
+
+::: demo
+
+```vue
 <template>
   <div>
     <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
     </v-formly>
     <div class="btns">
-      <a-button type="primary" @click="changeEnum"> change enum </a-button>
+      <a-button type="primary" @click="changeEnum"> 修改标签 </a-button>
       <a-button type="primary" @click="printData"> 提交 </a-button>
     </div>
   </div>
@@ -71,10 +80,28 @@ export default {
     async printData() {
       const valid = await this.$refs.form.validate();
       if (valid) {
-        console.log(this.data);
+        this.$message.info(JSON.stringify(this.data));
       }
     },
   },
 };
 </script>
-<style lang="less" scoped></style>
+```
+
+:::
+
+## API
+
+### meta 属性
+
+| 成员        | 说明     | 类型      | 默认值                |
+| ----------- | -------- | --------- | --------------------- | --- |
+| `:enum`     | 数据源   | `any[]    | array<{value, label>` | -   |
+| `:readOnly` | 禁用状态 | `boolean` | -                     |
+
+### meta.ui 属性
+
+| 成员             | 说明                     | 类型                | 默认值 |
+| ---------------- | ------------------------ | ------------------- | ------ |
+| `@change`        | 点击标签时触发的回调     | `function(value)`   | -      |
+| `@checkedChange` | 设置标签的选中状态的回调 | `function(checked)` | -      |
