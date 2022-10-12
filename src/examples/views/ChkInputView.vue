@@ -17,31 +17,39 @@ export default {
         type: "object",
         properties: {
           name: {
-            title: "用户名",
+            title: "姓名",
             type: "string",
             default: "kevin",
             ui: {
               showRequired: true,
               errors: {
-                required: "请输入用户名",
+                required: "请输入姓名",
               },
             },
           },
           favLanguage: {
-            title: "密码",
+            title: "喜欢的前端框架",
             type: "string",
             enum: ["VueJs", "Angular", "React", "Others"],
-            default: ["VueJs", "NestJs"],
+            // default: {
+            //   options: ["VueJs", "Angular", "Others"],
+            //   others: "NestJs",
+            // },
             ui: {
               component: "chkinput",
-              showOthers: false,
               showRequired: true,
             },
           },
         },
         required: ["name", "favLanguage"],
       },
-      data: { name: "Jack123", favLanguage: ["Angular"] },
+      data: {
+        name: "Jack",
+        favLanguage: {
+          options: ["VueJs", "Angular", "Others"],
+          others: "NestJs",
+        },
+      },
     };
   },
   methods: {

@@ -25,6 +25,7 @@ export default {
               errors: {
                 required: "请输入姓名",
               },
+              change: (val) => console.log(val),
             },
           },
           desc: {

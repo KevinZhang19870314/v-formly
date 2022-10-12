@@ -8,7 +8,7 @@
       :options="meta.enum"
       @change="change"
     />
-    <a-input v-model="othersValue" v-show="ui.showOthers" @change="change" />
+    <a-input v-model="othersValue" v-show="showOthers" @change="change" />
   </v-wrapper>
 </template>
 <script>
@@ -17,7 +17,7 @@ import { componentMixin } from "@/formly.js";
 export default {
   name: "v-chk-input",
   mixins: [componentMixin],
-  data() {
+  data: function () {
     return {
       context: new ChkInputMeta(this.state, this.id, this.meta),
     };
@@ -47,12 +47,14 @@ export default {
         this.context.othersValue = val;
       },
     },
+    showOthers() {
+      if (!this.value) return false;
+
+      return !!this.value.others || this.value.options.indexOf("Others") > -1;
+    },
   },
   methods: {
     change() {
-      console.log(this.value);
-      this.ui.showOthers = (this.value || []).indexOf("Others") > -1;
-
       if (this.ui.change) {
         this.ui.change(this.value);
       }
