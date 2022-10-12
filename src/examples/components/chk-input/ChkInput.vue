@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <a-checkbox-group
       class="v__checkbox"
-      v-model="context.chkVal"
+      v-model="context.optionsValue"
       v-bind="ui"
       :disabled="meta.readOnly"
       :options="meta.enum"
@@ -27,24 +27,16 @@ export default {
     };
   },
   computed: {
-    value: {
-      get() {
-        return this.context.value;
-      },
-      set(val) {
-        this.context.value = val || undefined;
-      },
-    },
     showOthers() {
-      if (!this.value) return false;
+      if (!this.context.value) return false;
 
-      return (this.value.options || []).indexOf("Others") > -1;
+      return (this.context.value.options || []).indexOf("Others") > -1;
     },
   },
   methods: {
     change() {
       if (this.ui.change) {
-        this.ui.change(this.value);
+        this.ui.change(this.context.value);
       }
     },
   },

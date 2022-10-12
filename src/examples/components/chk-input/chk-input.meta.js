@@ -3,7 +3,7 @@ class ChkInputMeta extends BaseMeta {
   constructor(state, id, meta) {
     super(state, id, meta);
 
-    this._chkVal = [];
+    this._optionsValue = [];
     this._othersValue = undefined;
 
     this.initValue();
@@ -17,17 +17,17 @@ class ChkInputMeta extends BaseMeta {
   setValue(val) {
     this._value = val || undefined;
 
-    this._chkVal = (val && val.options) || [];
+    this._optionsValue = (val && val.options) || [];
     this._othersValue = (val && val.others) || undefined;
   }
 
-  get chkVal() {
-    return this._chkVal;
+  get optionsValue() {
+    return this._optionsValue;
   }
 
-  set chkVal(val) {
-    this._chkVal = val;
-    this._applyToValue(this._chkVal, this._othersValue);
+  set optionsValue(val) {
+    this._optionsValue = val;
+    this._applyToValue(this._optionsValue, this._othersValue);
   }
 
   get othersValue() {
@@ -36,7 +36,7 @@ class ChkInputMeta extends BaseMeta {
 
   set othersValue(val) {
     this._othersValue = val;
-    this._applyToValue(this._chkVal, this._othersValue);
+    this._applyToValue(this._optionsValue, this._othersValue);
   }
 
   _applyToValue(options, others) {
