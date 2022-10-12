@@ -35,22 +35,6 @@ export default {
         this.context.value = val || undefined;
       },
     },
-    chkVal: {
-      get() {
-        return this.context.chkVal;
-      },
-      set(val) {
-        this.context.chkVal = val;
-      },
-    },
-    othersValue: {
-      get() {
-        return this.context.othersValue;
-      },
-      set(val) {
-        this.context.othersValue = val;
-      },
-    },
     showOthers() {
       if (!this.value) return false;
 
