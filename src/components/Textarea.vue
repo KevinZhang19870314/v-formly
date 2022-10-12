@@ -44,9 +44,6 @@ export default {
       this.autoSize = autoSize;
     }
   },
-  mounted() {
-    this.applyInitValue();
-  },
   methods: {
     change() {
       if (this.ui.change) this.ui.change(this.value);

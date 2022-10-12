@@ -10,42 +10,38 @@
 
 <script>
 export default {
-  name: "HomeView",
+  name: "ChkInputView",
   data: function () {
     return {
       meta: {
         type: "object",
         properties: {
           name: {
-            title: "姓名",
+            title: "用户名",
             type: "string",
             default: "kevin",
             ui: {
               showRequired: true,
               errors: {
-                required: "请输入姓名",
+                required: "请输入用户名",
               },
             },
           },
-          desc: {
-            title: "描述",
+          favLanguage: {
+            title: "密码",
             type: "string",
-            default: "Base on technical, but not limited on it!",
+            enum: ["VueJs", "Angular", "React", "Others"],
+            default: ["VueJs", "NestJs"],
             ui: {
-              change: (val) => {
-                console.log("val = ", val);
-              },
+              component: "chkinput",
+              showOthers: false,
+              showRequired: true,
             },
-          },
-          enable: {
-            title: "启用",
-            type: "boolean",
-            default: true,
           },
         },
-        required: ["name"],
+        required: ["name", "favLanguage"],
       },
-      data: { enable: false },
+      data: { name: "Jack123", favLanguage: ["Angular"] },
     };
   },
   methods: {

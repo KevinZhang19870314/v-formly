@@ -39,9 +39,6 @@ export default {
       },
     },
   },
-  mounted() {
-    this.applyInitValue();
-  },
   methods: {
     change(checked, event) {
       if (this.ui.change) {

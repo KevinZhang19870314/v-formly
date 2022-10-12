@@ -45,9 +45,6 @@ export default {
       context: new StringMeta(this.state, this.id, this.meta),
     };
   },
-  mounted() {
-    this.applyInitValue();
-  },
   computed: {
     value: {
       get: function () {

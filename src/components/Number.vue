@@ -70,9 +70,6 @@ export default {
     if (ui.formatter) this.formatter = ui.formatter;
     if (ui.parser) this.parser = ui.parser;
   },
-  mounted() {
-    this.applyInitValue();
-  },
   computed: {
     value: {
       get: function () {

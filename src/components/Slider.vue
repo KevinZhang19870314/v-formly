@@ -61,9 +61,6 @@ export default {
     this.marks = marks || undefined; // marks 的值不能为 null
     this.included = typeof included === "undefined" ? true : !!included;
   },
-  mounted() {
-    this.applyInitValue();
-  },
   methods: {
     tipFormatter(value) {
       const { tipFormatter } = this.ui;

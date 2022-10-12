@@ -57,7 +57,7 @@ export default {
       this.value = value.length ? value : undefined;
     },
     updateTags(val) {
-      this.applyInitValue();
+      // TODO: 是否可以删掉applyInitValue
       let tags = deepClone(val);
       if (tags == null || !Array.isArray(tags) || tags.length === 0) return;
       // set label

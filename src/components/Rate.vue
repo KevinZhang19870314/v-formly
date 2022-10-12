@@ -61,9 +61,6 @@ export default {
     const { allowClear } = this.ui;
     this.allowClear = typeof allowClear == 'undefined' ? true : !!allowClear;
   },
-  mounted() {
-    this.applyInitValue();
-  },
   methods: {
     change(value) {
       if (this.ui.change) this.ui.change(value);

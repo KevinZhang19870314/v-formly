@@ -10,42 +10,39 @@
 
 <script>
 export default {
-  name: "HomeView",
+  name: "PasswordView",
   data: function () {
     return {
       meta: {
         type: "object",
         properties: {
           name: {
-            title: "姓名",
+            title: "用户名",
             type: "string",
             default: "kevin",
             ui: {
               showRequired: true,
               errors: {
-                required: "请输入姓名",
+                required: "请输入用户名",
               },
             },
           },
-          desc: {
-            title: "描述",
+          password: {
+            title: "密码",
             type: "string",
-            default: "Base on technical, but not limited on it!",
+            default: "123456",
             ui: {
-              change: (val) => {
-                console.log("val = ", val);
+              component: "password",
+              showRequired: true,
+              errors: {
+                required: "请输入密码",
               },
             },
-          },
-          enable: {
-            title: "启用",
-            type: "boolean",
-            default: true,
           },
         },
-        required: ["name"],
+        required: ["name", "password"],
       },
-      data: { enable: false },
+      data: {},
     };
   },
   methods: {

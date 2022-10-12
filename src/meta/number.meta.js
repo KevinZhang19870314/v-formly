@@ -4,6 +4,14 @@ class NumberMeta extends BaseMeta {
     super(state, id, meta);
   }
 
+  initValue() {
+    if (this._initMetaValue) {
+      this.value = this._initMetaValue;
+    } else if (this.meta.default) {
+      this.value = this.meta.default;
+    }
+  }
+
   setValue(val) {
     switch (this.type) {
       case "slider":

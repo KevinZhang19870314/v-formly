@@ -18,6 +18,8 @@ import RateView from "../views/RateView.vue";
 import TagView from "../views/TagView.vue";
 import SelectView from "../views/SelectView.vue";
 import LayoutView from "../views/LayoutView.vue";
+import PasswordView from "../views/PasswordView.vue";
+import ChkInputView from "../views/ChkInputView.vue";
 
 import CustomValidatorView from "../views/CustomValidatorView.vue";
 import SubmitButtonView from '../views/SubmitButtonView.vue';
@@ -182,6 +184,18 @@ export const routes = [
             name: "layout",
             component: LayoutView,
             meta: { title: "表单布局" },
+          },
+          {
+            path: "password",
+            name: "password",
+            component: PasswordView,
+            meta: { title: "自定义密码框组件" },
+          },
+          {
+            path: "chkinput",
+            name: "chkinput",
+            component: ChkInputView,
+            meta: { title: "自定义选择输入框组件" },
           },
         ],
       },

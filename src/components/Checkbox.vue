@@ -59,9 +59,6 @@ export default {
       },
     },
   },
-  mounted() {
-    this.applyInitValue();
-  },
   methods: {
     change() {
       if (this.ui.change) {

@@ -17,6 +17,21 @@ class BaseMeta {
     this.error = undefined;
     state.context.addContext(id, this);
     this._value = undefined;
+
+    this._initMetaValue = this.getInitMetaValue();
+    this.initValue();
+  }
+
+  initValue() {
+    if (this._initMetaValue) {
+      this.value = this._initMetaValue;
+    } else if (this.meta.default) {
+      this.value = this.meta.default;
+    }
+  }
+
+  setValue(val) {
+    this._value = val || undefined;
   }
 
   get value() {
@@ -35,6 +50,24 @@ class BaseMeta {
 
     this.state.updateObjProp(this.state.formData, this.id, this._value);
     this.state.validate.runValidationFormItem(this);
+  }
+
+  /**
+   * v-formly 中通过v-model传入的组件初始值
+   * @returns 组件初始值
+   */
+  getInitMetaValue() {
+    const props = this.id.split("/").filter((f) => f);
+    let curVal = "";
+    props.reduce((acc, key, idx) => {
+      if (idx === props.length - 1) {
+        curVal = acc[key];
+      }
+
+      return acc[key] || {};
+    }, this.state.formData);
+
+    return curVal;
   }
 }
 

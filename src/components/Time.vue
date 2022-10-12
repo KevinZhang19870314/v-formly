@@ -68,9 +68,6 @@ export default {
       },
     },
   },
-  mounted() {
-    this.applyInitValue();
-  },
   methods: {
     openChange(open) {
       this.context.open = open;

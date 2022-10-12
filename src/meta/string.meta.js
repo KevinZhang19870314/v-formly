@@ -8,6 +8,14 @@ class StringMeta extends BaseMeta {
     }
   }
 
+  initValue() {
+    if (this._initMetaValue) {
+      this.value = this._initMetaValue;
+    } else if (this.meta.default) {
+      this.value = this.meta.default;
+    }
+  }
+
   setValue(val) {
     this._value = val || undefined;
   }
