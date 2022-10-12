@@ -1,3 +1,12 @@
+# Text 文本
+
+一般用于直接显示文本。
+
+## 代码演示
+
+::: demo
+
+```vue
 <template>
   <div>
     <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
@@ -31,7 +40,7 @@ export default {
             type: "null",
             ui: {
               component: "text",
-              text: "包含 title 和 description 的文本", // string | () => string
+              text: "包含 title 和 description 的文本", // string
             },
           },
           id2: {
@@ -105,10 +114,28 @@ export default {
     async printData() {
       const valid = await this.$refs.form.validate();
       if (valid) {
-        console.log(this.data);
+        this.$message.info(JSON.stringify(this.data));
       }
     },
   },
 };
 </script>
-<style lang="less" scoped></style>
+```
+
+:::
+
+## API
+
+### meta.ui 属性
+
+| 成员                 | 说明          | 类型     | 默认值        |
+| -------------------- | ------------- | -------- | ------------- | --- |
+| `:text`              | 指定的 `text` | `string  | () => string` |     |
+| `:html`              | 指定的 `html` | `HTML`   | -             |
+| `:slotNameOfDefault` | 指定的 `slot` | `string` | -             |
+
+::: tip
+
+文本显示的优先级 slot > html > text
+
+:::

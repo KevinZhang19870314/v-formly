@@ -32,6 +32,12 @@ v-formly 中的内置组件为了保证与原生 AntDv 组件的功能保持一�
 
 [Object 对象](/zh/components/object.html)
 
+[Tag 标签](/zh/components/tag.html) -> [Tag 标签](https://1x.antdv.com/components/tag-cn/)
+
+[Text 文本](/zh/components/text.html)
+
+[Textarea 多行文本框](/zh/components/textarea.html) -> [Input 输入框](https://1x.antdv.com/components/input-cn/#components-input-demo-textarea)
+
 :::
 
 ## 关于`slot`的传递
