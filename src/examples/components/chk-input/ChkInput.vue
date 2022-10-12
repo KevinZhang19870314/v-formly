@@ -2,13 +2,17 @@
   <v-wrapper :id="id" :meta="meta">
     <a-checkbox-group
       class="v__checkbox"
-      v-model="chkVal"
+      v-model="context.chkVal"
       v-bind="ui"
       :disabled="meta.readOnly"
       :options="meta.enum"
       @change="change"
     />
-    <a-input v-model="othersValue" v-show="showOthers" @change="change" />
+    <a-input
+      v-model="context.othersValue"
+      v-show="showOthers"
+      @change="change"
+    />
   </v-wrapper>
 </template>
 <script>
@@ -50,7 +54,7 @@ export default {
     showOthers() {
       if (!this.value) return false;
 
-      return !!this.value.others || this.value.options.indexOf("Others") > -1;
+      return (this.value.options || []).indexOf("Others") > -1;
     },
   },
   methods: {

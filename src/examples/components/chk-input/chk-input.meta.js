@@ -40,6 +40,11 @@ class ChkInputMeta extends BaseMeta {
   }
 
   _applyToValue(options, others) {
+    if ((!options || options.length === 0) && !others) {
+      this.value = undefined;
+      return;
+    }
+
     this.value = { options, others };
   }
 }
