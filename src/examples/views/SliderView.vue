@@ -166,7 +166,7 @@ export default {
                 }),
               },
             },
-            default: 37,
+            default: 0,
             multipleOf: 10,
           },
           range6: {
@@ -177,7 +177,7 @@ export default {
               dots: true,
             },
             multipleOf: 10,
-            default: 37,
+            default: 40,
           },
         },
       },
