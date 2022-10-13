@@ -134,8 +134,6 @@ export default {
 | `:html`              | 指定的 `html` | `HTML`   | -             |
 | `:slotNameOfDefault` | 指定的 `slot` | `string` | -             |
 
-::: tip
-
-文本显示的优先级 slot > html > text
-
+::: tip  注意
+文本显示的优先级：slot > html > text
 :::

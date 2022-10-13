@@ -8,11 +8,7 @@
 </template>
 
 <script>
-import VFormly from "@/Formly.vue";
 export default {
-  components: {
-    VFormly,
-  },
   data() {
     return {
       data: {},

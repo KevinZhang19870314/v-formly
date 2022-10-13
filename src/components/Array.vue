@@ -126,7 +126,7 @@ export default {
       this.arraySpan = grid.arraySpan;
     }
 
-    this.addTitle = addTitle;
+    this.addTitle = addTitle || '添加';
     this.addType = addType || "dashed";
     this.removeTitle = removable === false ? null : removeTitle;
   },
