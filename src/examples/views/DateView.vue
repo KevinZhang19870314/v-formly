@@ -1,6 +1,9 @@
 <template>
   <div>
     <v-formly ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
+      <template v-slot:custom_suffix>
+        <a-icon slot="suffixIcon" type="smile" />
+      </template>
     </v-formly>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
@@ -29,8 +32,9 @@ export default {
             default: "May",
             ui: {
               component: "date",
-              mode: "month",
+              type: "month",
               valueFormat: "MMMM",
+              slotNameOfSuffixIcon: "custom_suffix",
             },
           },
           week: {
@@ -38,7 +42,7 @@ export default {
             title: "周",
             ui: {
               component: "date",
-              mode: "week",
+              type: "week",
             },
           },
           range: {
@@ -46,7 +50,8 @@ export default {
             title: "日期范围",
             ui: {
               component: "date",
-              mode: "range",
+              type: "range",
+              slotNameOfSuffixIcon: "custom_suffix",
             },
           },
           date: {
@@ -54,7 +59,7 @@ export default {
             title: "日期",
             ui: {
               component: "date",
-              mode: "date",
+              type: "date",
               valueFormat: "X",
             },
           },

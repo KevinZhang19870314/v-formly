@@ -2,40 +2,56 @@
   <v-wrapper :id="id" :meta="meta">
     <a-month-picker
       class="v__date"
-      v-if="mode === 'month'"
+      v-if="type === 'month'"
       v-model="value"
       v-bind="ui"
       :disabled="meta.readOnly"
       @openChange="openChange($event)"
       @change="change"
-    ></a-month-picker>
+    >
+      <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
+        <slot :name="ui.slotNameOfSuffixIcon"></slot>
+      </template>
+    </a-month-picker>
     <a-week-picker
       class="v__date"
-      v-if="mode === 'week'"
+      v-if="type === 'week'"
       v-model="value"
       v-bind="ui"
       :disabled="meta.readOnly"
       @openChange="openChange($event)"
       @change="change"
-    ></a-week-picker>
+    >
+      <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
+        <slot :name="ui.slotNameOfSuffixIcon"></slot>
+      </template>
+    </a-week-picker>
     <a-range-picker
       class="v__date"
-      v-if="mode === 'range'"
+      v-if="type === 'range'"
       v-model="value"
       v-bind="ui"
       :disabled="meta.readOnly"
       @openChange="openChange($event)"
       @change="change"
-    ></a-range-picker>
+    >
+      <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
+        <slot :name="ui.slotNameOfSuffixIcon"></slot>
+      </template>
+    </a-range-picker>
     <a-date-picker
       class="v__date"
-      v-if="mode === 'date'"
+      v-if="type === 'date'"
       v-model="value"
       v-bind="ui"
       :disabled="meta.readOnly"
       @ok="ok($event)"
       @change="change"
-    ></a-date-picker>
+    >
+      <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
+        <slot :name="ui.slotNameOfSuffixIcon"></slot>
+      </template>
+    </a-date-picker>
   </v-wrapper>
 </template>
 <script>
@@ -52,8 +68,8 @@ export default {
     };
   },
   computed: {
-    mode() {
-      return this.ui.mode || "date";
+    type() {
+      return this.ui.type || "date";
     },
     value: {
       get() {

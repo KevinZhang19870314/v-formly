@@ -1,8 +1,8 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-radio-group
-      :class="{ 'v__radio-vertical': ui.direction === 'vertical' }"
       v-if="ui.radioType === 'button'"
+      :class="{ 'v__radio-vertical': ui.direction === 'vertical' }"
       v-model="value"
       :disabled="meta.readOnly"
       :name="ui.name"
@@ -20,10 +20,10 @@
       </a-radio-button>
     </a-radio-group>
     <a-radio-group
-      :class="{ 'v__radio-vertical': ui.direction === 'vertical' }"
       v-else
+      :class="{ 'v__radio-vertical': ui.direction === 'vertical' }"
       v-model="value"
-      :disabled="schema.readOnly"
+      :disabled="meta.readOnly"
       :name="ui.name"
       :options="ui.options"
       :size="ui.size"

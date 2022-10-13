@@ -86,6 +86,8 @@ export default {
 
 ## API
 
+**我们只列出属性中不一致的或新添加的，一致的地方请参考 AntDv 文档**
+
 ### meta 属性
 
 | 成员        | 说明     | 类型      | 默认值 |
@@ -94,15 +96,7 @@ export default {
 
 ### meta.ui 属性
 
-// TODO:一下为copy过来的需要更新
-| 成员                           | 说明                            | 类型                                      | 默认值    |
-| ------------------------------ | ------------------------------- | ----------------------------------------- | --------- |
-| `:checkedChildren`             | 选中时的内容                    | `string`                                  | -         |
-| `:slotNameOfCheckedChildren`   | 选中时的内容，slot 名称         | `string`                                  | -         |
-| `:defaultChecked`              | 初始是否选中                    | `boolean`                                 | `false`   |
-| `:disabled`                    | 是否禁用                        | `boolean`                                 | `false`   |
-| `:loading`                     | 加载中的开关                    | `boolean`                                 | `false`   |
-| `:size`                        | 开关大小，可选值：default small | `default,small`                           | `default` |
-| `:unCheckedChildren`           | 非选中时的内容                  | `string`                                  | -         |
-| `:slotNameOfUnCheckedChildren` | 非选中时的内容，slot 名称       | `string`                                  | -         |
-| `@change`                      | 输入框内容变化时的回调          | `Function(checked:Boolean, event: Event)` | -         |
+| 成员                    | 说明                              | 类型                                      | 默认值    |
+| ----------------------- | --------------------------------- | ----------------------------------------- | --------- |
+| `:slotNameOfSuffixIcon` | 自定义的选择框后缀图标，slot 名称 | `string`                                  | -         |
+| `@change`               | 输入框内容变化时的回调            | `Function(checked:Boolean, event: Event)` | -         |
