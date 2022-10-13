@@ -5,6 +5,7 @@ import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import alias from "@rollup/plugin-alias";
 import postcss from "rollup-plugin-postcss";
+import { uglify } from "rollup-plugin-uglify";
 
 const config = {
   input: "./src/formly.js",
@@ -32,6 +33,7 @@ const config = {
       babelHelpers: "runtime",
     }),
     commonjs(),
+    uglify(),
   ],
 };
 
