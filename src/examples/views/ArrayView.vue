@@ -12,12 +12,8 @@
   </div>
 </template>
 <script>
-import VFormly from "@/Formly.vue";
 export default {
   name: "ArrayView",
-  components: {
-    VFormly,
-  },
   data() {
     return {
       meta: {

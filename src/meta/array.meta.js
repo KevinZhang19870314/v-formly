@@ -5,12 +5,12 @@ import { BaseMeta } from "./base.meta";
 class ArrayMeta extends BaseMeta {
   constructor(state, id, meta) {
     super(state, id, meta);
-    // this.state = state;
-    // this.id = id;
-    // this.meta = meta;
+    
     this.ids = [];
+  }
 
-    // state.context.addContext(id, this);
+  initValue() {
+    // 覆盖 BaseMeta 的 initValue 逻辑，这里不需要设置 value
   }
 
   get value() {
