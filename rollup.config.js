@@ -10,7 +10,7 @@ import { uglify } from "rollup-plugin-uglify";
 const config = {
   input: "./src/formly.js",
   output: {
-    file: "./dist/v-formly-umd.js",
+    file: "./lib/v-formly.umd.js",
     exports: "named",
     format: "umd",
     name: "v-formly",
