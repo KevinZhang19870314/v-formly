@@ -1,6 +1,6 @@
 {
   "name": "v-formly",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
