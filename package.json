@@ -9,7 +9,7 @@
     "build": "rollup -c",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "gh-pages": "node ./publish-gh-pages.js"
+    "gh-pages": "git gh-deploy vuepress"
   },
   "author": "KevinZhang19870314",
   "license": "MIT",
