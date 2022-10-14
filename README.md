@@ -25,8 +25,6 @@
 
 ### 安装
 
-<br />
-
 使用`yarn`安装`v-formly`：
 
 ```sh
@@ -41,8 +39,6 @@ npm i v-formly --save
 
 ### 使用
 
-<br />
-
 ```js
 import VFormly from "v-formly";
 
@@ -50,5 +46,11 @@ import VFormly from "v-formly";
 Vue.use(VFormly);
 // ...
 ```
+
+## 其他
+
+不论是学习还是使用 v-formly，有任何问题可以添加 QQ 群：610930944，我们为你解答关于使用 v-formly 过程中的的任何疑难杂症！
+
+<img src="https://github.com/KevinZhang19870314/v-formly/blob/main/public/qq.jpg" />
 
 MIT Licensed | Copyright © 2022-present v-formly
