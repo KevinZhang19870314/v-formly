@@ -40,6 +40,8 @@ npm i v-formly --save
 ### 使用
 
 ```js
+// 别忘了引入Ant Design of Vue 1.7.8，v-formly当前只支持这个版本。
+
 import VFormly from "v-formly";
 
 // ...
@@ -53,6 +55,6 @@ Vue.use(VFormly);
 
 暗号：v-formly
 
-<img src="https://github.com/KevinZhang19870314/v-formly/blob/main/public/qq.png" />
+<img src="https://github.com/KevinZhang19870314/v-formly/blob/main/public/qq.jpg" />
 
 MIT Licensed | Copyright © 2022-present v-formly
