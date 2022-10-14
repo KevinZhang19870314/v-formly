@@ -19,9 +19,7 @@
 
 ## 快速开始
 
-### 文档 & Demo
-
-[v-formly](https://kevinzhang19870314.github.io/v-formly/zh/)
+### [文档 & Demo](https://kevinzhang19870314.github.io/v-formly/zh/)
 
 ### 安装
 
