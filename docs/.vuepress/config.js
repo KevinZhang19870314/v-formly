@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = (ctx) => ({
-  dest: "vuepress",
+  base: "/v-formly/",
   locales: {
     "/": {
       lang: "en-US",
