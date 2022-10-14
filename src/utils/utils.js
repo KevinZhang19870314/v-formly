@@ -35,6 +35,7 @@ export function UUID(len = 8, radix = 10) {
 }
 
 export function deepClone(obj) {
+  if (obj === undefined) return undefined;
   if (obj === null) return null;
   let clone = Object.assign({}, obj);
   Object.keys(clone).forEach(

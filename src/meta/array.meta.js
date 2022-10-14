@@ -5,12 +5,26 @@ import { BaseMeta } from "./base.meta";
 class ArrayMeta extends BaseMeta {
   constructor(state, id, meta) {
     super(state, id, meta);
-    
+
     this.ids = [];
+    this.initValue();
   }
 
   initValue() {
-    // 覆盖 BaseMeta 的 initValue 逻辑，这里不需要设置 value
+    if (!this.ids) return;
+    if (this._initMetaValue && this._initMetaValue.length > 0) {
+      this.value = this._initMetaValue;
+    } else if (this.meta.default && this.meta.default.length > 0) {
+      const data = deepClone(this.meta.default);
+      data.forEach(() => this.add(false));
+      setTimeout(() => {
+        data.forEach((item, index) => {
+          const ctx = this.state.context.getContext(`${this.id}/${index}`);
+          ctx.value = item;
+        });
+      });
+      this.validate();
+    }
   }
 
   get value() {
@@ -18,27 +32,31 @@ class ArrayMeta extends BaseMeta {
   }
 
   set value(val) {
+    // 避免重复校验
+    if (this.value.length === 0 && val && val.length === 0) return;
     // 只允许设置 null / undefined / Array 类型的值
     if (!Array.isArray(val) && val != null) return;
+    const newVal = deepClone(val);
     const len = this.ids.length;
     // 从后往前删除
     for (let i = 0; i < len; i++) {
-      this.remove(len - i - 1);
+      this.remove(len - i - 1, false);
     }
-    if (val.length) {
-      val.forEach(() => this.add({ validate: false }));
-      this.validate();
+    if (newVal && newVal.length) {
+      newVal.forEach(() => this.add(false));
+
       Vue.nextTick(() => {
-        val.forEach((data, index) => {
+        newVal.forEach((item, index) => {
           const ctx = this.state.context.getContext(`${this.id}/${index}`);
-          ctx.value = data;
+          ctx.value = item;
         });
       });
     }
+
+    this.validate();
   }
 
   validate() {
-    // 仅对 array 做 minItems/maxItems 校验
     return this.state.validate.runValidationFormItem(this);
   }
 
@@ -74,7 +92,7 @@ class ArrayMeta extends BaseMeta {
   }
 
   // 在数组尾添加一个空对象
-  add({ validate } = { validate: true }) {
+  add(validate = true) {
     const id = `${this.id}/${this.ids.length}`;
     const value = this.getEmptyData();
     this.state.updateObjProp(this.state.formData, id, value);
@@ -84,7 +102,7 @@ class ArrayMeta extends BaseMeta {
     return id;
   }
 
-  remove(index) {
+  remove(index, validate = true) {
     // update ids
     this.ids.splice(index, 1);
     // update formData
@@ -129,7 +147,7 @@ class ArrayMeta extends BaseMeta {
         this.state.context.removeContext(key);
       });
 
-    this.validate();
+    validate && this.validate();
   }
 }
 

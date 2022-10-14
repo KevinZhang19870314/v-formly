@@ -132,11 +132,8 @@ export default {
 
 | 成员                   | 说明                     | 类型                      | 默认值  |
 | ---------------------- | ------------------------ | ------------------------- | ------- |
-| `:allowClear`          | 是否允许再次点击后清除   | `boolean`                 | `true`  |
-| `:allowHalf`           | 是否允许半选             | `boolean`                 | `false` |
 | `:character`           | 自定义字符               | `string`                  | -       |
 | `:slotNameOfCharacter` | 自定义字符 slot          | `string`                  | -       |
-| `:tooltips`            | 自定义每项的提示信息     | `string[]`                | -       |
 | `@change`              | 选择时的回调             | `function(value: number)` | -       |
 | `@hoverChange`         | 鼠标经过时数值变化的回调 | `function(value: number)` | -       |
 
