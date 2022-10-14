@@ -7,8 +7,6 @@
     "build:examples": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "build": "rollup -c",
-    "build:lib": "vue-cli-service build --target lib --name v-formly -dest lib src/formly.js",
-    "build:lib-report": "vue-cli-service build --report --target lib --name v-formly -dest lib src/formly.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },

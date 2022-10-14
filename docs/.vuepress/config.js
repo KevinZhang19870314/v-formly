@@ -165,7 +165,7 @@ function getComponentsSidebar(groupA, groupB) {
     {
       title: groupA,
       collapsable: false,
-      sidebarDepth: 2,
+      sidebarDepth: 0,
       children: [
         "",
         "array",

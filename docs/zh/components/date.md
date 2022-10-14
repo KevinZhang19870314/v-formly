@@ -10,6 +10,9 @@
 <template>
   <div>
     <v-formly ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
+      <template v-slot:custom_suffix>
+        <a-icon slot="suffixIcon" type="smile" />
+      </template>
     </v-formly>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
@@ -24,14 +27,23 @@ export default {
       meta: {
         type: "object",
         properties: {
+          name: {
+            title: "姓名",
+            type: "string",
+            default: "kevin",
+            ui: {
+              showRequired: true,
+            },
+          },
           month: {
             type: "string",
             title: "月份",
             default: "May",
             ui: {
               component: "date",
-              mode: "month",
+              type: "month",
               valueFormat: "MMMM",
+              slotNameOfSuffixIcon: "custom_suffix",
             },
           },
           week: {
@@ -39,7 +51,7 @@ export default {
             title: "周",
             ui: {
               component: "date",
-              mode: "week",
+              type: "week",
             },
           },
           range: {
@@ -47,7 +59,8 @@ export default {
             title: "日期范围",
             ui: {
               component: "date",
-              mode: "range",
+              type: "range",
+              slotNameOfSuffixIcon: "custom_suffix",
             },
           },
           date: {
@@ -55,14 +68,14 @@ export default {
             title: "日期",
             ui: {
               component: "date",
-              mode: "date",
+              type: "date",
               valueFormat: "X",
             },
           },
         },
-        required: [],
+        required: ["name"],
       },
-      data: {},
+      data: { name: "kevin zhang" },
     };
   },
   methods: {
@@ -96,7 +109,7 @@ export default {
 
 ### meta.ui 属性
 
-| 成员                    | 说明                              | 类型                                      | 默认值    |
-| ----------------------- | --------------------------------- | ----------------------------------------- | --------- |
-| `:slotNameOfSuffixIcon` | 自定义的选择框后缀图标，slot 名称 | `string`                                  | -         |
-| `@change`               | 输入框内容变化时的回调            | `Function(checked:Boolean, event: Event)` | -         |
+| 成员                    | 说明                              | 类型                                      | 默认值 |
+| ----------------------- | --------------------------------- | ----------------------------------------- | ------ |
+| `:slotNameOfSuffixIcon` | 自定义的选择框后缀图标，slot 名称 | `string`                                  | -      |
+| `@change`               | 输入框内容变化时的回调            | `Function(checked:Boolean, event: Event)` | -      |

@@ -6,6 +6,7 @@ import VFormly from "@/formly.js";
 import VPassword from "@/examples/components/password/Password.vue";
 import VChkInput from "@/examples/components/chk-input/ChkInput.vue";
 import { registerFormComponent } from "@/formly.js";
+import _ from 'lodash';
 
 registerFormComponent("v-password", VPassword);
 registerFormComponent("v-chkinput", VChkInput);

@@ -111,7 +111,7 @@ npm i v-formly --save
 <br />
 
 ```js
-import VFormly from "formly.js";
+import VFormly from "v-formly";
 
 // ...
 Vue.use(VFormly);

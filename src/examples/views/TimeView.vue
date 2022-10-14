@@ -4,19 +4,19 @@
       <template v-slot:suffixIcon3>
         <a-icon type="smile" />
       </template>
-      <template v-slot:addon4="{context}">
+      <template v-slot:addon4="{ context }">
         <a-button size="small" type="primary" @click="handleClose(context)">
-          {{ 'Close' }}
+          {{ "Close" }}
         </a-button>
       </template>
     </v-formly>
     <div class="btns">
-      <a-button type="primary" @click="printData"> 提交 </a-button>
+      <a-button type="danger" @click="clear"> 重置 </a-button>
+      <a-button type="primary" @click="submit"> 提交 </a-button>
     </div>
   </div>
 </template>
 <script>
-import VFormly from "@/Formly.vue";
 export default {
   data: function () {
     return {
@@ -168,14 +168,16 @@ export default {
       data: { name: "kevin zhang" },
     };
   },
-  components: {
-    VFormly,
-  },
   methods: {
-    async printData() {
-      const valid = await this.$refs.form.validate();
+    clear() {
+      this.formData = null;
+      // Below line do the same thing
+      // this.$refs.form.reset(null);
+    },
+    async submit() {
+      let valid = await this.$refs.form.validate();
       if (valid) {
-        console.log(this.data);
+        console.log(this.formData);
       }
     },
     handleClose(context) {
