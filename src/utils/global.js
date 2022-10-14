@@ -26,6 +26,7 @@ class Global {
       },
     };
     this._validate = null;
+    this._ignoreErrorIds = [];
 
     this._applyUseOptions();
   }

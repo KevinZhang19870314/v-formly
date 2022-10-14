@@ -26,21 +26,6 @@
       </v-formly-item>
     </a-col>
   </a-row>
-  <!-- <div v-else style="display: inline-block">
-    <v-formly-item
-      v-for="(item, index) in childMetaPairs"
-      :key="index"
-      :id="item.key"
-      :meta="item.meta"
-      :show="visible(item.meta)"
-    >
-      <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
-        <slot :name="slotName" v-bind:context="context">
-          {{ "object slot" }}
-        </slot>
-      </template>
-    </v-formly-item>
-  </div> -->
 </template>
 <script>
 import { ObjectMeta } from "../meta/object.meta.js";
@@ -76,7 +61,7 @@ export default {
   },
   methods: {
     visible(meta) {
-      return meta.ui && !meta.ui.hidden;
+      return meta.ui && meta.ui.show;
     },
     grid(item) {
       if (this.layout === "inline") return {};

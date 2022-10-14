@@ -55,6 +55,7 @@ export default {
       );
 
     this.visible = this.show;
+    this.applyIgnoreErrors(this.visible, this.id);
 
     Vue.bus.on(`${FORM_VALUE_CHANGE}-${this.state._formId}`, (change) => {
       this.visible = this.visibleIf(
@@ -66,7 +67,25 @@ export default {
           value: change.value,
         }
       );
+      // TODO: 当visible为false的时候，需要忽略当前字段的校验
+      const context = this.state.context.getContext(this.id);
+      if (context) {
+        this.applyIgnoreErrors(this.visible, context.id);
+      }
     });
+  },
+  methods: {
+    applyIgnoreErrors(visible, id) {
+      if (visible) {
+        this.state._ignoreErrorIds = this.state._ignoreErrorIds.filter(
+          (f) => f !== id
+        );
+      } else {
+        if (this.state._ignoreErrorIds.indexOf(id) === -1) {
+          this.state._ignoreErrorIds.push(id);
+        }
+      }
+    },
   },
 };
 </script>

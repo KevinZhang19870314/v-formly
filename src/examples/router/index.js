@@ -20,6 +20,7 @@ import SelectView from "../views/SelectView.vue";
 import LayoutView from "../views/LayoutView.vue";
 import PasswordView from "../views/PasswordView.vue";
 import ChkInputView from "../views/ChkInputView.vue";
+import VisibleIfView from "../views/VisibleIfView.vue";
 
 import CustomValidatorView from "../views/CustomValidatorView.vue";
 import SubmitButtonView from '../views/SubmitButtonView.vue';
@@ -196,6 +197,12 @@ export const routes = [
             name: "chkinput",
             component: ChkInputView,
             meta: { title: "自定义选择输入框组件" },
+          },
+          {
+            path: "visible-if",
+            name: "visible-if",
+            component: VisibleIfView,
+            meta: { title: "visibleIf动态设置表单项是否可见" },
           },
         ],
       },

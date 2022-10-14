@@ -1,5 +1,6 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
+    <!-- TODO: 绑定到ui的时候过滤掉所有非AntDv的字段，所有的内置组件都要顾虑 -->
     <a-input
       v-bind="ui"
       :defaultValue="meta.defaultValue"

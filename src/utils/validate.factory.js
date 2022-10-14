@@ -67,6 +67,7 @@ class ValidateFactory {
       this._replaceWithCustomErrors(context.id, errs, cusErrors);
       const ingoreKeywords = this.state.ui.ingoreKeywords || [];
       errors = errs.filter((f) => ingoreKeywords.indexOf(f.keyword) === -1);
+      errors = this._removeIgnoreErrors(errors);
       const error = this._getAjvError(context.id, errors);
       Vue.bus.emit(ERROR_CHANGE, {
         id: context.id,
@@ -122,6 +123,15 @@ class ValidateFactory {
         cur.message = err.message;
       }
     });
+  }
+
+  _removeIgnoreErrors(errors) {
+    const ids = this.state._ignoreErrorIds;
+    if (!ids || ids.length === 0) return errors;
+
+    const errs = errors.filter((f) => ids.indexOf(this._getId(f)) === -1);
+
+    return errs;
   }
 
   _getId(error) {
