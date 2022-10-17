@@ -12,8 +12,16 @@ v-formly 除了支持标准的[JSON Schema](https://js-schema.org/)和[Ajv](http
 
 ### 全局修改
 
-```js
-// TODO: 这里需要在formly.js导出后，然后看如何写
+```js {4-8}
+import VFormly from "@/formly.js";
+
+Vue.use(VFormly, {
+  ui: {
+    errors: {
+      required: "必填项",
+    },
+  },
+});
 ```
 
 ### 局部更改
