@@ -111,6 +111,8 @@ npm i v-formly --save
 <br />
 
 ```js
+// 别忘了引入Ant Design of Vue 1.7.8，v-formly当前只支持这个版本。
+
 import VFormly from "v-formly";
 
 // ...
