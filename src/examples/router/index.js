@@ -17,13 +17,14 @@ import SliderView from "../views/SliderView.vue";
 import RateView from "../views/RateView.vue";
 import TagView from "../views/TagView.vue";
 import SelectView from "../views/SelectView.vue";
+import CascaderView from "../views/CascaderView.vue";
 import LayoutView from "../views/LayoutView.vue";
 import PasswordView from "../views/PasswordView.vue";
 import ChkInputView from "../views/ChkInputView.vue";
 import VisibleIfView from "../views/VisibleIfView.vue";
 
 import CustomValidatorView from "../views/CustomValidatorView.vue";
-import SubmitButtonView from '../views/SubmitButtonView.vue';
+import SubmitButtonView from "../views/SubmitButtonView.vue";
 import redirect from "../layout/components/redirect.vue";
 
 /* Layout */
@@ -158,6 +159,12 @@ export const routes = [
             name: "tag",
             component: TagView,
             meta: { title: "Tag 标签" },
+          },
+          {
+            path: "cascader",
+            name: "cascader",
+            component: CascaderView,
+            meta: { title: "Cascader 级联选择" },
           },
         ],
       },

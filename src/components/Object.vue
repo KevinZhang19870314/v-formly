@@ -18,10 +18,8 @@
         :meta="item.meta"
         :show="visible(item.meta)"
       >
-        <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
-          <slot :name="slotName" v-bind:context="context">
-            {{ "object slot" }}
-          </slot>
+        <template v-for="slotName in slotsName" v-slot:[slotName]="slotProps">
+          <slot :name="slotName" v-bind="{ ...slotProps }"></slot>
         </template>
       </v-formly-item>
     </a-col>
