@@ -19,7 +19,13 @@
 
 ## 快速开始
 
-### [文档 & Demo](https://kevinzhang19870314.github.io/v-formly/zh/)
+### 文档 & Demo
+
+[文档](https://kevinzhang19870314.github.io/v-formly/zh/)
+
+[Stackblitz](https://stackblitz.com/edit/github-gr9ozc?file=src%2FApp.vue&terminal=serve)
+
+[CodeSandbox](https://codesandbox.io/s/blazing-sun-gtvwwz)
 
 ### 安装
 
