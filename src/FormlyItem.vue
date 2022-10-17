@@ -6,10 +6,8 @@
       :meta="meta"
       v-if="visible"
     >
-      <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
-        <slot :name="slotName" v-bind:context="context">
-          {{ "formly-item slot" }}
-        </slot>
+      <template v-for="slotName in slotsName" v-slot:[slotName]="slotProps">
+        <slot :name="slotName" v-bind="{ ...slotProps }"></slot>
       </template>
     </component>
   </div>

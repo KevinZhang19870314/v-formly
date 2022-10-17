@@ -12,6 +12,8 @@ v-formly 中的内置组件为了保证与原生 AntDv 组件的功能保持一�
 
 [AutoComplete 自动完成](/zh/components/autocomplete.html) -> [AutoComplete 自动完成](https://1x.antdv.com/components/auto-complete-cn/)
 
+[Cascader 级联选择](/zh/components/cascader.html) -> [Cascader 级联选择](https://1x.antdv.com/components/cascader-cn/)
+
 [Checkbox 多选框](/zh/components/checkbox.html) -> [Checkbox 多选框](https://1x.antdv.com/components/checkbox-cn/)
 
 [Date 日期选择框](/zh/components/date.html) -> [DatePicker 日期选择框](https://1x.antdv.com/components/date-picker-cn/)

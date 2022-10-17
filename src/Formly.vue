@@ -9,16 +9,17 @@
       }"
     >
       <v-formly-item id="/" :meta="objectMeta">
-        <template v-for="slotName in slotsName" v-slot:[slotName]="{ context }">
-          <slot :name="slotName" v-bind:context="context">
-            {{ "formly slot" }}
-          </slot>
+        <template v-for="slotName in slotsName" v-slot:[slotName]="slotProps">
+          <slot :name="slotName" v-bind="{ ...slotProps }"></slot>
         </template>
       </v-formly-item>
 
       <!-- submit button -->
       <template v-if="button === 'default'">
-        <a-form-model-item :wrapperCol="wrapperCol" class="v__default-submit-button">
+        <a-form-model-item
+          :wrapperCol="wrapperCol"
+          class="v__default-submit-button"
+        >
           <a-space>
             <a-button type="danger" @click="clearForm"> 重置 </a-button>
             <a-button type="primary" @click="submitForm" :loading="loading">
@@ -57,6 +58,7 @@ import VSlider from "@/components/Slider.vue";
 import VRate from "@/components/Rate.vue";
 import VTag from "@/components/Tag.vue";
 import VSelect from "@/components/Select.vue";
+import VCascader from "@/components/Cascader.vue";
 import { FormItemContext } from "./utils/context.js";
 import { Global } from "./utils/global.js";
 import { ValidateFactory } from "./utils/validate.factory";
@@ -183,6 +185,7 @@ export default {
       registerFormComponent("v-rate", VRate);
       registerFormComponent("v-tag", VTag);
       registerFormComponent("v-select", VSelect);
+      registerFormComponent("v-cascader", VCascader);
     },
     reset(data) {
       const context = this.globalInstance.context.getContext("/");
