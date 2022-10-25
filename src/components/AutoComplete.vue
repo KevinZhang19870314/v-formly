@@ -1,10 +1,10 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-auto-complete
-      v-bind="ui"
+      v-bind="bindings"
+      v-model="value"
       :defaultValue="meta.default"
       :disabled="meta.readOnly"
-      v-model="value"
       @change="change"
       @search="search"
       @select="select"
@@ -22,6 +22,8 @@
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { AutoComplete } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-autocomplete",
   components: { VWrapper },
@@ -40,24 +42,26 @@ export default {
         this.context.value = val || undefined;
       },
     },
+    bindings() {
+      return getBindings(Object.keys(AutoComplete.props), this.ui);
+    },
   },
   methods: {
     change(value) {
-      if (this.meta.ui && this.meta.ui.change) {
+      if (this.meta.ui.change) {
         this.meta.ui.change(value);
       }
     },
     search(value) {
-      if (this.meta.ui && this.meta.ui.search) {
+      if (this.meta.ui.search) {
         this.meta.ui.search(value);
       }
     },
     select(value, option) {
-      if (this.meta.ui && this.meta.ui.search) {
-        this.meta.ui.search(value, option);
+      if (this.meta.ui.select) {
+        this.meta.ui.select(value, option);
       }
     },
   },
 };
 </script>
-<style lang="less" scoped></style>

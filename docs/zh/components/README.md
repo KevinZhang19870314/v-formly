@@ -12,34 +12,31 @@ v-formly 中的内置组件为了保证与原生 AntDv 组件的功能保持一�
 
 [AutoComplete 自动完成](/zh/components/autocomplete.html) -> [AutoComplete 自动完成](https://1x.antdv.com/components/auto-complete-cn/)
 
+[Boolean 开关](/zh/components/boolean.html) -> [Switch 开关](https://1x.antdv.com/components/switch-cn/)
+
 [Cascader 级联选择](/zh/components/cascader.html) -> [Cascader 级联选择](https://1x.antdv.com/components/cascader-cn/)
 
 [Checkbox 多选框](/zh/components/checkbox.html) -> [Checkbox 多选框](https://1x.antdv.com/components/checkbox-cn/)
 
 [Date 日期选择框](/zh/components/date.html) -> [DatePicker 日期选择框](https://1x.antdv.com/components/date-picker-cn/)
 
-[String 文本框](/zh/components/string.html) -> [Input 输入框](https://1x.antdv.com/components/input-cn/)
-
 [Number 数字输入框](/zh/components/number.html) -> [InputNumber 数字输入框](https://1x.antdv.com/components/input-number-cn/)
 
 [Radio 单选框](/zh/components/radio.html) -> [Radio 单选框](https://1x.antdv.com/components/radio-cn/)
+
+[Rate 评分](/zh/components/rate.html) -> [Rate 评分](https://1x.antdv.com/components/rate-cn/)
 
 [Select 选择器](/zh/components/select.html) -> [Select 选择器](https://1x.antdv.com/components/select-cn/)
 
 [Slider 滑动输入条](/zh/components/slider.html) -> [Slider 滑动输入条](https://1x.antdv.com/components/slider-cn/)
 
-[Boolean 开关](/zh/components/boolean.html) -> [Switch 开关](https://1x.antdv.com/components/switch-cn/)
-
-[Time 时间选择器](/zh/components/time.html) -> [TimePicker 时间选择框](https://1x.antdv.com/components/time-picker-cn/)
-
-[Object 对象](/zh/components/object.html)
+[String 文本框](/zh/components/string.html) -> [Input 输入框](https://1x.antdv.com/components/input-cn/)
 
 [Tag 标签](/zh/components/tag.html) -> [Tag 标签](https://1x.antdv.com/components/tag-cn/)
 
-[Text 文本](/zh/components/text.html)
-
 [Textarea 多行文本框](/zh/components/textarea.html) -> [Input 输入框](https://1x.antdv.com/components/input-cn/#components-input-demo-textarea)
 
+[Time 时间选择器](/zh/components/time.html) -> [TimePicker 时间选择框](https://1x.antdv.com/components/time-picker-cn/)
 :::
 
 ## 关于`slot`的传递

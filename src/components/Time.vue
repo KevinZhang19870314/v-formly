@@ -4,7 +4,7 @@
     <a-time-picker
       v-if="ui.value"
       class="v__time"
-      v-bind="ui"
+      v-bind="bindings"
       :defaultValue="meta.default"
       :disabled="meta.readOnly"
       :open.sync="context.open"
@@ -26,7 +26,7 @@
       v-else
       class="v__time"
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :defaultValue="meta.default"
       :disabled="meta.readOnly"
       :open.sync="context.open"
@@ -49,6 +49,8 @@
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { TimePicker } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-time",
   components: { VWrapper },
@@ -66,6 +68,9 @@ export default {
       set: function (val) {
         this.context.value = val || undefined;
       },
+    },
+    bindings() {
+      return getBindings(Object.keys(TimePicker.props), this.ui);
     },
   },
   methods: {

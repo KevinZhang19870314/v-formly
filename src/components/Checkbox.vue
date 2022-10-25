@@ -4,7 +4,7 @@
       <a-checkbox-group
         class="v__checkbox"
         v-model="value"
-        v-bind="ui"
+        v-bind="bindings"
         :disabled="meta.readOnly"
         :options="meta.enum"
         @change="change"
@@ -40,6 +40,8 @@
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { Checkbox } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-checkbox",
   components: { VWrapper },
@@ -57,6 +59,9 @@ export default {
       set(val) {
         this.context.value = val || undefined;
       },
+    },
+    bindings() {
+      return getBindings(Object.keys(Checkbox.Group.props), this.ui);
     },
   },
   methods: {

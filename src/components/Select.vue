@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <a-select
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :defaultValue="meta.defaultValue"
       :disabled="meta.readOnly"
       @blur="blur"
@@ -46,6 +46,8 @@
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { Select } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-select",
   components: { VWrapper },
@@ -63,6 +65,9 @@ export default {
       set: function (val) {
         this.context.value = val || undefined;
       },
+    },
+    bindings() {
+      return getBindings(Object.keys(Select.props), this.ui);
     },
   },
   methods: {

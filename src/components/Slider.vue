@@ -1,7 +1,7 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <a-slider
-      v-bind="ui"
+      v-bind="bindings"
       :disabled="!!meta.readOnly"
       :min="min"
       :max="max"
@@ -20,6 +20,8 @@
 import VWrapper from "./Wrapper.vue";
 import { NumberMeta } from "../meta/number.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { Slider } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-slider",
   components: { VWrapper },
@@ -46,6 +48,9 @@ export default {
           this.context.value = typeof val == "number" ? val : undefined;
         }
       },
+    },
+    bindings() {
+      return getBindings(Object.keys(Slider.props), this.ui);
     },
     hiddenTooltip() {
       return this.ui.tipFormatter === null;
