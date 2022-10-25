@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <a-textarea
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :disabled="meta.readOnly"
       :autoSize="autoSize"
       :maxLength="meta.maxLength || null"
@@ -18,6 +18,8 @@
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { Input } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-textarea",
   components: { VWrapper },
@@ -36,6 +38,9 @@ export default {
       set: function (val) {
         this.context.value = val || undefined;
       },
+    },
+    bindings() {
+      return getBindings(Object.keys(Input.TextArea.props), this.ui);
     },
   },
   created() {

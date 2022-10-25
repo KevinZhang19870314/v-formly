@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <a-cascader
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :disabled="meta.readOnly"
       :options="meta.enum"
       @change="change"
@@ -20,15 +20,8 @@
         <slot :name="ui.slotNameOfCascaderSuffixIcon"></slot>
       </template>
       <!-- displayRender -->
-      <template
-        v-if="ui.slotNameOfDisplayRender"
-        v-slot:displayRender="{ labels, selectedOptions }"
-      >
-        <slot
-          :name="ui.slotNameOfDisplayRender"
-          v-bind:labels="labels"
-          v-bind:selectedOptions="selectedOptions"
-        ></slot>
+      <template v-if="ui.slotNameOfDisplayRender" v-slot:displayRender="slotProps">
+        <slot :name="ui.slotNameOfDisplayRender" v-bind="slotProps"></slot>
       </template>
     </a-cascader>
   </v-wrapper>
@@ -37,6 +30,8 @@
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { Cascader } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-cascader",
   components: { VWrapper },
@@ -54,6 +49,9 @@ export default {
       set(val) {
         this.context.value = val || undefined;
       },
+    },
+    bindings() {
+      return getBindings(Object.keys(Cascader.props), this.ui);
     },
   },
   created() {},

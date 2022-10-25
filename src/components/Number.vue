@@ -4,7 +4,7 @@
       class="v__number"
       :id="id"
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :disabled="meta.readOnly"
       :min="min"
       :max="max"
@@ -20,6 +20,8 @@
 import VWrapper from "./Wrapper.vue";
 import { NumberMeta } from "../meta/number.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { InputNumber } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-number",
   components: { VWrapper },
@@ -78,6 +80,9 @@ export default {
       set: function (val) {
         this.context.value = val || undefined;
       },
+    },
+    bindings() {
+      return getBindings(Object.keys(InputNumber.props), this.ui);
     },
   },
   methods: {

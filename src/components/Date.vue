@@ -4,7 +4,7 @@
       class="v__date"
       v-if="type === 'month'"
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :disabled="meta.readOnly"
       @openChange="openChange($event)"
       @change="change"
@@ -17,7 +17,7 @@
       class="v__date"
       v-if="type === 'week'"
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :disabled="meta.readOnly"
       @openChange="openChange($event)"
       @change="change"
@@ -30,7 +30,7 @@
       class="v__date"
       v-if="type === 'range'"
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :disabled="meta.readOnly"
       @openChange="openChange($event)"
       @change="change"
@@ -43,7 +43,7 @@
       class="v__date"
       v-if="type === 'date'"
       v-model="value"
-      v-bind="ui"
+      v-bind="bindings"
       :disabled="meta.readOnly"
       @ok="ok($event)"
       @change="change"
@@ -58,6 +58,8 @@
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "../meta/string.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { DatePicker } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-date",
   components: { VWrapper },
@@ -78,6 +80,9 @@ export default {
       set(val) {
         this.context.value = val || undefined;
       },
+    },
+        bindings() {
+      return getBindings(Object.keys(DatePicker.props), this.ui);
     },
   },
   methods: {

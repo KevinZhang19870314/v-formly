@@ -1,42 +1,26 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <template v-if="ui.character">
-      <a-rate
-        :id="ui.id"
-        :disabled="meta.readOnly"
-        :allowClear="allowClear"
-        :allowHalf="!!ui.allowHalf"
-        :tooltips="ui.tooltips || []"
-        :count="meta.maximum || 5"
-        :character="ui.character"
-        v-model="value"
-        @change="change"
-        @hoverChange="hoverChange"
-      />
-    </template>
-    <template v-else>
-      <a-rate
-        :id="ui.id"
-        :disabled="meta.readOnly"
-        :allowClear="allowClear"
-        :allowHalf="!!ui.allowHalf"
-        :tooltips="ui.tooltips || []"
-        :count="meta.maximum || 5"
-        v-model="value"
-        @change="change"
-        @hoverChange="hoverChange"
-      >
-        <template v-if="ui.slotNameOfCharacter" slot="character">
-          <slot :name="ui.slotNameOfCharacter"></slot>
-        </template>
-      </a-rate>
-    </template>
+    <a-rate
+      v-bind="bindings"
+      v-model="value"
+      :disabled="meta.readOnly"
+      :count="meta.maximum || 5"
+      :allowClear="allowClear"
+      @change="change"
+      @hoverChange="hoverChange"
+    >
+      <template v-if="ui.slotNameOfCharacter" v-slot:character>
+        <slot :name="ui.slotNameOfCharacter"></slot>
+      </template>
+    </a-rate>
   </v-wrapper>
 </template>
 <script>
 import VWrapper from "./Wrapper.vue";
 import { NumberMeta } from "../meta/number.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { Rate } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-rate",
   components: { VWrapper },
@@ -56,10 +40,13 @@ export default {
         this.context.value = val || undefined;
       },
     },
+    bindings() {
+      return getBindings(Object.keys(Rate.props), this.ui);
+    },
   },
   created() {
     const { allowClear } = this.ui;
-    this.allowClear = typeof allowClear == 'undefined' ? true : !!allowClear;
+    this.allowClear = typeof allowClear == "undefined" ? true : !!allowClear;
   },
   methods: {
     change(value) {

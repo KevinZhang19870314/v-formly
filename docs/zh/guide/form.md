@@ -121,8 +121,8 @@ export default {
 
 | 参数              | 说明                         | 类型                                     | 默认值                               |
 | ----------------- | ---------------------------- | ---------------------------------------- | ------------------------------------ |
-| `:layout`         | 表单布局                     | `'horizontal' \| 'vertical' \| 'inline'` | `'horizontal'`                       |
-| `:button`         | 提交按钮                     | `'default' \| 'custom'`                  | 默认不显示提交按钮                   |
+| `:layout`         | 表单布局                     | `'horizontal' | 'vertical' | 'inline'` | `'horizontal'`                       |
+| `:button`         | 提交按钮                     | `'default' | 'custom'`                  | 默认不显示提交按钮                   |
 | `:meta`           | JSON Schema + UI Schema      | -                                        | -                                    |
 | `:value(v-model)` | 表单绑定数据                 | `object`                                 | -                                    |
 | `button`          | 自定义提交按钮               | `slot`                                   | `{ loading, clearForm, submitForm }` |

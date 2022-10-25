@@ -2,8 +2,8 @@
   <v-wrapper :id="id" :meta="meta">
     <a-switch
       class="v__boolean"
+      v-bind="bindings"
       v-model="value"
-      v-bind="ui"
       :disabled="meta.readOnly"
       @change="change"
     >
@@ -20,6 +20,8 @@
 import VWrapper from "./Wrapper.vue";
 import { BooleanMeta } from "../meta/boolean.meta.js";
 import { componentMixin } from "../mixin/component.mixin.js";
+import { Switch } from "ant-design-vue";
+import { getBindings } from "@/utils/register.factory.js";
 export default {
   name: "v-boolean",
   components: { VWrapper },
@@ -38,14 +40,16 @@ export default {
         this.context.value = val || false;
       },
     },
+    bindings() {
+      return getBindings(Object.keys(Switch.props), this.ui);
+    },
   },
   methods: {
     change(checked, event) {
       if (this.ui.change) {
-        this.ui.change(this.value, event);
+        this.ui.change(checked, event);
       }
     },
   },
 };
 </script>
-<style lang="less" scoped></style>
