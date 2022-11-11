@@ -2,6 +2,8 @@
 
 [v-formly](https://kevinzhang19870314.github.io/v-formly/zh/) 是 vue 的动态（JSON 驱动）表单库。
 
+**Vue 3版本的请移步这里[v-formly-v3](https://github.com/KevinZhang19870314/v-formly-v3)**
+
 <div class="features">
   <div class="feature">
     <h2>简洁至上</h2>
